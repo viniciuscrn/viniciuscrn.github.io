@@ -1,41 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introdução a Python</title>
+    <style>
+        /* Estilo para o bloco de código */
+        .code-block {
+            background-color: #272822;
+            color: #F8F8F2;
+            padding: 5px;
+            font-family: "Monaco", "Courier New", monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            border-radius: 5px;
+        }
+
+        /* Estilo para os elementos do código */
+        .code-block span.comment {
+            color: #75715e;
+            font-style: italic;
+        }
+
+        .code-block span.keyword {
+            color: #f92672;
+        }
+
+        .code-block span.operator {
+            color: #f92672;
+        }
+
+        .code-block span.number {
+            color: #ae81ff;
+        }
+
+        .code-block span.string {
+            color: #e6db74;
+        }
+
+        .code-block span.punctuation {
+            color: #f8f8f2;
+        }
+    </style>
 </head>
+
 <body>
     <h3>1. Algoritmo para imprimir uma mensagem na tela:</h3>
-    <code>
+    <pre class="code-block">
+        <code>
         mensagem = "Olá, mundo!" <br>
         print(mensagem)
-    </code>
+        </code>
+    </pre>
 
     <hr>
 
     <h3>2. Algoritmo para somar dois números:</h3>
+    <pre class="code-block">
     <code>
         a = 5 <br>
         b = 3 <br>
         soma = a + b <br>
         print(f"A soma de {a} e {b} é {soma}.") <br>
     </code>
-    
+    </pre>
+
+    <hr>
+
     <h3>3. Algoritmo para calcular a área de um retângulo:</h3>
+    <pre class="code-block">
     <code>
         altura = 5 <br>
         largura = 3 <br>
         area = altura * largura <br>
         print(f"A área do retângulo é {area}.")
     </code>
-    
+</pre>
+
+    <hr>
+
     <h3>4. Algoritmo para converter graus Celsius em Fahrenheit:</h3>
+    <pre class="code-block">
     <code>
         celsius = 30 <br>
         fahrenheit = (celsius * 9/5) + 32 <br>
         print(f"{celsius} graus Celsius equivalem a {fahrenheit} graus Fahrenheit.") <br>
     </code>
+</pre>
+
+    <hr>
 </body>
+
 </html>
