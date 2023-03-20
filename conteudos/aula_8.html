@@ -5,50 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://unpkg.com/@highlightjs/cdn-assets@11.7.0/styles/default.min.css">
     <title>Introdução a Python</title>
-    <style>
-        /* Estilo para o bloco de código */
-        .code-block {
-            background-color: #272822;
-            color: #F8F8F2;
-            padding: 5px;
-            font-family: "Monaco", "Courier New", monospace;
-            font-size: 14px;
-            overflow-x: auto;
-            border-radius: 5px;
-        }
-
-        /* Estilo para os elementos do código */
-        .code-block span.comment {
-            color: #75715e;
-            font-style: italic;
-        }
-
-        .code-block span.keyword {
-            color: #f92672;
-        }
-
-        .code-block span.operator {
-            color: #f92672;
-        }
-
-        .code-block span.number {
-            color: #ae81ff;
-        }
-
-        .code-block span.string {
-            color: #e6db74;
-        }
-
-        .code-block span.punctuation {
-            color: #f8f8f2;
-        }
-    </style>
+   
 </head>
 
 <body>
     <h3>1. Algoritmo para imprimir uma mensagem na tela:</h3>
-    <pre class="code-block">
+    <pre>
         <code>
         mensagem = "Olá, mundo!" <br>
         print(mensagem)
@@ -58,8 +22,8 @@
     <hr>
 
     <h3>2. Algoritmo para somar dois números:</h3>
-    <pre class="code-block">
-    <code>
+    <pre>
+    <code class="language-python hljs">
         a = 5 <br>
         b = 3 <br>
         soma = a + b <br>
@@ -70,7 +34,7 @@
     <hr>
 
     <h3>3. Algoritmo para calcular a área de um retângulo:</h3>
-    <pre class="code-block">
+    <pre>
     <code>
         altura = 5 <br>
         largura = 3 <br>
@@ -82,8 +46,7 @@
     <hr>
 
     <h3>4. Algoritmo para converter graus Celsius em Fahrenheit:</h3>
-    <pre class="code-block">
-    <code>
+    <pre><code>
         celsius = 30 <br>
         fahrenheit = (celsius * 9/5) + 32 <br>
         print(f"{celsius} graus Celsius equivalem a {fahrenheit} graus Fahrenheit.") <br>
@@ -91,6 +54,8 @@
 </pre>
 
     <hr>
+    <script src="http://unpkg.com/@highlightjs/cdn-assets@11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </body>
 
 </html>
