@@ -1,0 +1,19 @@
+.quadrado {
+    height: 500px;
+    width: 800px;
+    background-color: green;
+    text-align: center;
+}
+
+.losango {
+    height: 500px;
+    width: 500px;
+    background-color: yellow;
+    transform: rotate(45deg);
+}
+.circulo {
+    height: 400px;
+    width: 400px;
+    background-color: blue;
+    border-radius: 50%;
+}
