@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Uso do fetch em JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 40px auto;
+      max-width: 900px;
+      padding: 0 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    pre {
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      padding: 10px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: "Courier New", Courier, monospace;
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Uso do <code>fetch</code> em JavaScript</h1>
+
+  <h2>📌 O que é o <code>fetch()</code>?</h2>
+  <p>O <code>fetch()</code> é uma função nativa do JavaScript usada para fazer requisições HTTP assíncronas. Ele permite buscar dados de arquivos locais ou de APIs externas, retornando uma <strong>Promise</strong> com a resposta da requisição.</p>
+
+  <h2>🔧 Estrutura básica do <code>fetch()</code></h2>
+  <pre><code>fetch(url)
+  .then(resposta =&gt; resposta.json())
+  .then(dados =&gt; {
+    // Manipula os dados
+  })
+  .catch(erro =&gt; {
+    // Trata erros
+  });</code></pre>
+
+  <ul>
+    <li><code>fetch(url)</code>: faz a requisição para a URL fornecida.</li>
+    <li><code>then()</code>: trata a resposta da requisição.</li>
+    <li><code>catch()</code>: captura e trata erros caso algo dê errado.</li>
+  </ul>
+
+  <h2>📁 Estrutura de Pastas do Projeto</h2>
+  <pre><code>/meu-projeto
+├── index.html
+├── script.js
+└── dados.json</code></pre>
+
+  <h2>📄 Arquivo: <code>index.html</code></h2>
+  <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Fetch com JSON local&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Lista de Usuários&lt;/h1&gt;
+  &lt;button onclick="carregarUsuarios()"&gt;Carregar&lt;/button&gt;
+  &lt;ul id="lista"&gt;&lt;/ul&gt;
+
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+  <h2>📄 Arquivo: <code>dados.json</code></h2>
+  <pre><code>[
+  {
+    "nome": "Maria",
+    "idade": 30
+  },
+  {
+    "nome": "João",
+    "idade": 25
+  }
+]</code></pre>
+
+  <h2>📄 Arquivo: <code>script.js</code></h2>
+  <pre><code>function carregarUsuarios() {
+  fetch('dados.json')
+    .then(resposta =&gt; resposta.json())
+    .then(dados =&gt; exibirUsuarios(dados))
+    .catch(erro =&gt; console.error('Erro ao carregar dados:', erro));
+}
+
+function exibirUsuarios(usuarios) {
+  const lista = document.getElementById('lista');
+  lista.innerHTML = '';
+
+  usuarios.forEach(usuario =&gt; {
+    const item = document.createElement('li');
+    item.textContent = `${usuario.nome} - ${usuario.idade} anos`;
+    lista.appendChild(item);
+  });
+}</code></pre>
+
+  <h3>🔍 Explicação do <code>script.js</code></h3>
+  <p>A função <code>carregarUsuarios()</code> utiliza <code>fetch()</code> para requisitar os dados do arquivo <code>dados.json</code>. Após a resposta, ela converte o conteúdo para JSON e chama a função <code>exibirUsuarios()</code> passando os dados.</p>
+  <p>A função <code>exibirUsuarios()</code> percorre o array de objetos retornado e insere os nomes e idades dentro de uma lista no HTML.</p>
+  <p>Se houver erro na requisição ou no carregamento do arquivo, o <code>catch()</code> captura o erro e o exibe no console.</p>
+
+  <h2>💡 Exemplo com verificação de status HTTP:</h2>
+  <pre><code>fetch('dados.json')
+  .then(resposta =&gt; {
+    if (!resposta.ok) {
+      throw new Error("Erro HTTP: " + resposta.status);
+    }
+    return resposta.json();
+  })
+  .then(dados =&gt; console.log(dados))
+  .catch(erro =&gt; console.error("Erro capturado:", erro));</code></pre>
+
+</body>
+</html>
