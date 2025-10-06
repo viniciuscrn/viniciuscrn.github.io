@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Métodos de Listas em Python</title>
+    <style>
+        /* Theme similar to the previous stylesheet */
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --text: #e6eef8;
+            --muted: #9fb0c8;
+            --accent: #60a5fa;
+            --code-bg: #011627;
+            --code-border: #23384d;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, var(--bg) 0%, #071025 100%);
+            color: var(--text);
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 12px 0;
+            color: var(--text);
+        }
+
+        h2 {
+            font-size: 20px;
+            margin: 18px 0 8px 0;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 16px;
+            margin: 14px 0 6px 0;
+            color: var(--accent);
+        }
+
+        p {
+            margin: 10px 0;
+            color: var(--muted);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+            margin: 18px 0;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 12px;
+            border-radius: 8px;
+            overflow: auto;
+            border: 1px solid var(--code-border);
+            margin: 12px 0;
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: #cbe4fe;
+            display: block;
+        }
+
+        ul {
+            margin: 8px 0 8px 18px;
+            color: var(--muted)
+        }
+
+        strong {
+            color: var(--text)
+        }
+
+        blockquote {
+            border-left: 4px solid rgba(96, 165, 250, 0.18);
+            padding: 8px 12px;
+            margin: 12px 0;
+            background: rgba(96, 165, 250, 0.02);
+            color: var(--muted);
+            border-radius: 6px;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 20px;
+            text-align: center
+        }
+
+        @media(max-width:700px){body{padding:18px}.container{padding:18px}}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Funções Arrays em Python</h1>
+        <p>As listas em Python possuem diversas <strong>funções úteis</strong> para manipular seus elementos.
+            A seguir, estão as principais funções, suas descrições e exemplos práticos.
+            <hr />
+            <h2>1. <strong>append()</strong></h2>
+            <strong>Descrição:</strong> Adiciona um elemento <strong>ao final da lista</strong>.
+        </p>
+        <pre><code class="language-python">frutas = ["maçã", "banana", "uva"]
+frutas.append("laranja")
+print(frutas)
+</code></pre>
+        <strong>Saída:</strong>
+        <pre><code class="">['maçã', 'banana', 'uva', 'laranja']
+</code></pre>
+        <hr />
+        <h2>2. <strong>clear()</strong></h2>
+        <strong>Descrição:</strong> Remove <strong>todos os elementos</strong> da lista, deixando-a vazia.
+        <pre><code class="language-python">numeros = [1, 2, 3, 4]
+numeros.clear()
+print(numeros)
+</code></pre>
+        <strong>Saída:</strong>
+        <pre><code class="">[]
+</code></pre>
+        <hr />
+        <h2>3. <strong>copy()</strong></h2>
+        <strong>Descrição:</strong> Cria uma <strong>cópia</strong> da lista.
+        <pre><code class="language-python">animais = ["gato", "cachorro", "pássaro"]
+copia = animais.copy()
+print(copia)
+</code></pre>
+        <strong>Saída:</strong>
+        <pre><code class="">['gato', 'cachorro', 'pássaro']
+</code></pre>
+        <blockquote>💡 Modificar a cópia não afeta a lista original.</blockquote>
+        <hr />
+        <h2>4. <strong>count()</strong></h2>
+        <strong>Descrição:</strong> Retorna o <strong>número de vezes</strong> que um valor aparece na lista.
+        <pre><code class="language-python">numeros = [1, 2, 2, 3, 2, 4]
+print(numeros.count(2))
+</code></pre>
+        <strong>Saída:</strong>
+        <pre><code class="">3
+</code></pre>
+        <hr />
+        <h2>5. <strong>extend()</strong></h2>
+        <strong>Descrição:</strong> Adiciona <strong>os elementos de outra lista (ou iterável)</strong> ao final da
+        lista atual.
+        <pre><code class="language-python">lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+lista1.extend(lista2)
+print(lista1)
+</code></pre>
+        <strong>Saída:</strong>
+        <pre><code class="">[1, 2, 3, 4, 5, 6]
+</code></pre>
+        <hr />
+        <h2>6. <strong>index()</strong></h2>
+        <strong>Descrição:</strong> Retorna o <strong>índice da primeira ocorrência</strong> de um valor na lista.
+        <pre><code class="language-python">nomes = ["Ana", "Bruno", "Carla", "Bruno"]
+print(nomes.index("Bruno"))
+</code></pre>
+        <strong>Saída:</strong>
+        <pre><code class="">1
+</code></pre>
+        <blockquote>⚠️ Se o valor não existir, o Python gera um erro <code>ValueError</code>.</blockquote>
+        <hr />
+        <h2>7. <strong>insert()</strong></h2>
+        <strong>Descrição:</strong> Insere um elemento em uma <strong>posição específica</strong> da lista.
+        <pre><code class="language-python">cores = ["vermelho", "azul", "verde"]
+cores.insert(1, "amarelo")
+print(cores)
+</code></pre>
+        <strong>Saída:</strong>
+        <pre><code class="">['vermelho', 'amarelo', 'azul', 'verde']
+</code></pre>
+        <hr />
+        <h2>8. <strong>pop()</strong></h2>
+        <strong>Descrição:</strong> Remove e retorna o elemento de uma <strong>posição específica</strong> (ou o último,
+        se nenhum índice for informado).
+        <pre><code class="language-python">frutas = ["maçã", "banana", "uva"]
+frutas.pop(1)
+print(frutas)
+</code></pre>
+        <strong>Saída:</strong>
+        <pre><code class="">['maçã', 'uva']
+</code></pre>
+        <blockquote>💡 <code>pop()</code> também pode ser usado sem argumento para remover o último item:</blockquote>
+        <blockquote>
+            <pre><code class="language-python"> frutas.pop()</blockquote>
+ </code></pre>
+            <hr />
+            <h2>9. <strong>remove()</strong></h2>
+            <strong>Descrição:</strong> Remove a <strong>primeira ocorrência</strong> de um valor na lista.
+            <pre><code class="language-python">numeros = [10, 20, 30, 20]
+numeros.remove(20)
+print(numeros)
+</code></pre>
+            <strong>Saída:</strong>
+            <pre><code class="">[10, 30, 20]
+</code></pre>
+            <hr />
+            <h2>10. <strong>reverse()</strong></h2>
+            <strong>Descrição:</strong> Inverte a <strong>ordem dos elementos</strong> na lista.
+            <pre><code class="language-python">numeros = [1, 2, 3, 4]
+numeros.reverse()
+print(numeros)
+</code></pre>
+            <strong>Saída:</strong>
+            <pre><code class="">[4, 3, 2, 1]
+</code></pre>
+            <hr />
+            <h2>11. <strong>sort()</strong></h2>
+            <strong>Descrição:</strong> Ordena os elementos da lista em <strong>ordem crescente</strong> (ou
+            decrescente, se especificado).
+            <pre><code class="language-python">valores = [3, 1, 4, 2]
+valores.sort()
+print(valores)
+</code></pre>
+            <strong>Saída:</strong>
+            <pre><code class="">[1, 2, 3, 4]
+</code></pre>
+            <blockquote>💡 Para ordenar em ordem decrescente:</blockquote>
+            <blockquote>
+                <pre><code class="language-python"> valores.sort(reverse=True)</blockquote></code></pre>
+                <hr />
+                <h2>💬 Dica Extra</h2>
+                <p>Você pode combinar esses métodos para criar manipulações mais complexas:</p>
+                <pre><code class="language-python">dados = [5, 3, 9]
+dados.append(1)
+dados.sort()
+dados.reverse()
+print(dados)
+</code></pre>
+                <strong>Saída:</strong>
+                <pre><code class="">[9, 5, 3, 1]
+</code></pre>
+
+    </div>
+</body>
+
+</html>
