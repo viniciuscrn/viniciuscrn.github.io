@@ -1,164 +1,200 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
-	<title>Vinicius Marques</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal do Aluno - Vinicius Marques</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonte (opcional, deixa mais “Apple”) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui']
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
-<body class="is-preload">
-	<!-- Wrapper -->
-	<div id="wrapper">
+<body class="min-h-screen bg-[#F6F7FB] text-slate-900 font-sans">
+  <!-- Background suave -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl"></div>
+    <div class="absolute top-20 right-0 h-72 w-72 rounded-full bg-indigo-200/35 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-emerald-200/25 blur-3xl"></div>
+  </div>
 
-		<!-- Header -->
-		<header id="header">
-			<div class="inner">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-white/60 bg-white/65 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-slate-900 text-white grid place-items-center shadow-sm">
+          <!-- ícone simples -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M4 19h16"></path>
+            <path d="M6 17V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-sm font-semibold leading-tight">Vinicius Marques</h1>
+          <p class="text-xs text-slate-500 leading-tight">Portal acadêmico</p>
+        </div>
+      </div>
 
-				<!-- Logo -->
-				<a href="index.html" class="logo">
-					<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Vinicius
-						Marques</span>
-				</a>
+      <nav class="flex items-center gap-2">
+        <a href="mailto:viniciuscrn@gmail.com"
+          class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow">
+          <!-- envelope -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M4 4h16v16H4z"></path>
+            <path d="m22 6-10 7L2 6"></path>
+          </svg>
+          Email
+        </a>
 
-				<!-- Nav -->
-				<nav>
-					<ul>
-						<li><a href="#menu">Menu</a></li>
-					</ul>
-				</nav>
+        <a href="http://instagram.com/viniciuscrn" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow">
+          <!-- câmera minimal -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <path d="M17.5 6.5h.01"></path>
+          </svg>
+          Instagram
+        </a>
+      </nav>
+    </div>
+  </header>
 
-			</div>
-		</header>
+  <main class="mx-auto max-w-6xl px-4">
+    <!-- Hero -->
+    <section class="pt-14 pb-10">
+      <div class="rounded-3xl border border-white/60 bg-white/70 p-8 shadow-sm backdrop-blur-xl">
+        <p class="text-xs font-semibold tracking-wide text-slate-500">ETE Professor Paulo Freire</p>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight">
+          Portal do Aluno
+        </h2>
+        <p class="mt-3 max-w-2xl text-slate-600">
+          Curso Técnico em Redes de Computadores — acesso rápido às disciplinas, materiais e atividades.
+        </p>
 
-		<!-- Menu -->
-		<nav id="menu">
-			<h2>Menu</h2>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="./pages/allp.html">ALLP</a></li>
-				<li><a href="./pages/atics.html">ATICS</a></li>
-				<li><a href="./pages/pnt.html">PNT</a></li>
-				<li><a href="./pages/dcu.html">DCU</a></li>
-			</ul>
-		</nav>
+        <div class="mt-6 flex flex-wrap items-center gap-2">
+          <span class="rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">Minimal</span>
+          <span
+            class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 border border-slate-200">Responsivo</span>
+          <span
+            class="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 border border-slate-200">Tailwind</span>
+        </div>
+      </div>
+    </section>
 
-		<!-- Main -->
-		<div id="main">
-			<div class="inner">
-				<header>
-					<h1>Escola Técnica Estadual Professor Paulo Freire</h1>
-					<p>Informações e conteúdos para disciplinas do curso de Redes de Computadores e Desenvolvimento de
-						Sistemas.</p>
-				</header>
-				<section class="tiles">
-					<article class="style1">
-						<span class="image">
-							<img src="./images/pic01.jpg" alt="" />
-						</span>
-						<a href="./pages/allp.html">
-							<h2>ALLP</h2>
-							<div class="content">
-								<p>Algoritmos, Lógica e Linguagens de Programação.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style2">
-						<span class="image">
-							<img src="images/pic02.jpg" alt="" />
-						</span>
-						<a href="./pages/atics.html">
-							<h2>ATICS</h2>
-							<div class="content">
-								<p>Aprofundamento em TICs.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style3">
-						<span class="image">
-							<img src="images/pic03.jpg" alt="" />
-						</span>
-						<a href="./pages/pnt.html">
-							<h2>PNT</h2>
-							<div class="content">
-								<p>Programação em Novas Tecnologias (WEB)</p>
-							</div>
-						</a>
-					</article>
-					<article class="style4">
-						<span class="image">
-							<img src="images/pic04.jpg" alt="" />
-						</span>
-						<a href="./pages/dcu.html">
-							<h2>DCU</h2>
-							<div class="content">
-								<p>Design Centrado no Usuário</p>
-							</div>
-						</a>
-					</article>
+    <!-- Disciplinas -->
+    <section class="pb-14">
+      <div class="flex items-end justify-between">
+        <h3 class="text-lg font-semibold">Disciplinas</h3>
+        <p class="text-sm text-slate-500">Clique para acessar</p>
+      </div>
 
-					<article class="style5">
-						<span class="image">
-							<img src="images/pic05.jpg" alt="" />
-						</span>
-						<a href="./pages/hmc.html">
-							<h2>HMC</h2>
-							<div class="content">
-								<p>Hardware e Manutenção de Computadores</p>
-							</div>
-						</a>
-					</article>
-					<article class="style6">
-						<span class="image">
-							<img src="images/pic06.jpg" alt="" />
-						</span>
-						<a href="./pages/abdc.html">
-							<h2>ABDC</h2>
-							<div class="content">
-								<p>Administração de Banco de Dados Cloud</p>
-							</div>
-						</a>
-					</article>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Card 1 -->
+        <a href="pages/alp.html"
+          class="group rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+          <div class="flex items-start justify-between">
+            <div class="h-10 w-10 rounded-xl bg-slate-900 text-white grid place-items-center">
+              <!-- ícone código -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="m16 18 6-6-6-6"></path>
+                <path d="m8 6-6 6 6 6"></path>
+              </svg>
+            </div>
+            <span class="text-slate-400 transition group-hover:text-slate-600">→</span>
+          </div>
+          <h4 class="mt-4 font-semibold">Algoritmos e Lógica de Programação</h4>
+          <p class="mt-1 text-sm text-slate-500">1º Redes</p>
+        </a>
 
-				</section>
-			</div>
-		</div>
+        <!-- Card 2 -->
+        <a href="pages/asp.html"
+          class="group rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+          <div class="flex items-start justify-between">
+            <div class="h-10 w-10 rounded-xl bg-slate-900 text-white grid place-items-center">
+              <!-- ícone servidor -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="7" rx="2"></rect>
+                <rect x="3" y="13" width="18" height="7" rx="2"></rect>
+                <path d="M7 8h.01"></path>
+                <path d="M7 17h.01"></path>
+              </svg>
+            </div>
+            <span class="text-slate-400 transition group-hover:text-slate-600">→</span>
+          </div>
+          <h4 class="mt-4 font-semibold">Administração de Sistemas</h4>
+          <p class="mt-1 text-sm text-slate-500">2º Redes</p>
+        </a>
 
-		<!-- Footer -->
-		<footer id="footer">
-			<div class="inner">
-				<section>
-					<h2>Follow</h2>
-					<ul class="icons">
-						<li><a href="https://www.instagram.com/viniciuscrn" target="_blank"
-								class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="https://github.com/viniciuscrn" target="_blank"
-								class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="https://api.whatsapp.com/send?phone=5583996546649" target="_blank"
-								class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
-						<li><a href="mailto:viniciuscrn@gmail.com" target="_blank"
-								class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-				</section>
-				<ul class="copyright">
-					<li>&copy; Vinicius Marques</li>
-					<li>2024</a></li>
-				</ul>
-			</div>
-		</footer>
+        <!-- Card 3 -->
+        <a href="pages/pa.html"
+          class="group rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+          <div class="flex items-start justify-between">
+            <div class="h-10 w-10 rounded-xl bg-slate-900 text-white grid place-items-center">
+              <!-- ícone terminal -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="m4 17 6-6-6-6"></path>
+                <path d="M12 19h8"></path>
+              </svg>
+            </div>
+            <span class="text-slate-400 transition group-hover:text-slate-600">→</span>
+          </div>
+          <h4 class="mt-4 font-semibold">Programação Aplicada</h4>
+          <p class="mt-1 text-sm text-slate-500">2º Redes</p>
+        </a>
 
-	</div>
+        <!-- Card 4 -->
+        <a href="pages/tar.html"
+          class="group rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+          <div class="flex items-start justify-between">
+            <div class="h-10 w-10 rounded-xl bg-slate-900 text-white grid place-items-center">
+              <!-- ícone rede -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 3v6"></path>
+                <path d="M12 15v6"></path>
+                <path d="M3 12h6"></path>
+                <path d="M15 12h6"></path>
+              </svg>
+            </div>
+            <span class="text-slate-400 transition group-hover:text-slate-600">→</span>
+          </div>
+          <h4 class="mt-4 font-semibold">Tecnologias Atuais de Redes</h4>
+          <p class="mt-1 text-sm text-slate-500">2º Redes</p>
+        </a>
+      </div>
+    </section>
+  </main>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
+  <footer class="border-t border-slate-200 bg-white/60">
+    <div class="mx-auto max-w-6xl px-4 py-8 text-center text-sm text-slate-500">
+      © 2026 — Vinicius Marques • ETE Professor Paulo Freire
+    </div>
+  </footer>
 </body>
 
 </html>
