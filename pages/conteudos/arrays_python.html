@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lembretes.md</title>
+  <style>
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css");
+
+  body {
+    font-family: Georgia, Cambria, serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #373D49;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  a { color: #35D7BB; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: "Ubuntu Mono", Monaco, monospace;
+    background: #F5F7FA;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  pre {
+    background: #F5F7FA;
+    padding: 1em;
+    border-radius: 3px;
+    overflow-x: auto;
+  }
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    color: #333;
+  }
+  pre code { background: none; padding: 0; }
+  blockquote {
+    border-left: 3px solid #A0AABF;
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    color: #666;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #E8E8E8;
+    padding: 0.5em;
+    text-align: left;
+  }
+  th {
+    background: #F5F7FA;
+    font-weight: 600;
+  }
+  #preview .table {
+    width: auto;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+</style>
+</head>
+<body id="preview">
+<h1 class="code-line has-line-data" data-line-start="0" data-line-end="1"><a id="Programao_Aplicada_0"></a>Programação Aplicada</h1>
+<h1 class="code-line has-line-data" data-line-start="1" data-line-end="2"><a id="Arrays_Listas_1"></a>Arrays (Listas)</h1>
+<blockquote>
+<p class="has-line-data" data-line-start="3" data-line-end="4"><strong>Definição • Acesso • Funções essenciais</strong></p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="7" data-line-end="8"><a id="1_O_que_um_Array_Lista_em_Python_7"></a>1. O que é um Array (Lista) em Python?</h2>
+<p class="has-line-data" data-line-start="9" data-line-end="10">Em Python, o equivalente ao <strong>array</strong> é chamado de <code>list</code> (lista). Uma lista é uma estrutura de dados que armazena <strong>vários valores em uma única variável</strong>, organizados em sequência e acessados por índice.</p>
+<blockquote>
+<p class="has-line-data" data-line-start="11" data-line-end="12">💡 Uma lista pode guardar números, textos, booleanos — e até outras listas! Os elementos ficam entre colchetes <code>[ ]</code> e separados por vírgulas.</p>
+</blockquote>
+<h3 class="code-line has-line-data" data-line-start="13" data-line-end="14"><a id="11_Criando_listas_13"></a>1.1 Criando listas</h3>
+<pre><code class="has-line-data language-python" data-line-start="16" data-line-end="28"><span class="hljs-comment"># Lista de números</span>
+notas = [<span class="hljs-number">7.5</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.5</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">10.0</span>]
+
+<span class="hljs-comment"># Lista de textos</span>
+frutas = [<span class="hljs-string">&#x27;maçã&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;laranja&#x27;</span>, <span class="hljs-string">&#x27;uva&#x27;</span>]
+
+<span class="hljs-comment"># Lista mista</span>
+dados = [<span class="hljs-string">&#x27;João&#x27;</span>, <span class="hljs-number">20</span>, <span class="hljs-literal">True</span>, <span class="hljs-number">9.5</span>]
+
+<span class="hljs-comment"># Lista vazia (para preencher depois)</span>
+vazia = []
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="29" data-line-end="30"><a id="12_Acessando_elementos_pelo_ndice_29"></a>1.2 Acessando elementos pelo índice</h3>
+<p class="has-line-data" data-line-start="31" data-line-end="32">Cada elemento da lista possui um <strong>índice</strong> (posição), que começa em <code>0</code>. O último elemento tem índice <code>-1</code>.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Valor</th>
+<th><code>'maçã'</code></th>
+<th><code>'banana'</code></th>
+<th><code>'laranja'</code></th>
+<th><code>'uva'</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Índice+</td>
+<td><code>0</code></td>
+<td><code>1</code></td>
+<td><code>2</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td>Índice-</td>
+<td><code>-4</code></td>
+<td><code>-3</code></td>
+<td><code>-2</code></td>
+<td><code>-1</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="39" data-line-end="46">frutas = [<span class="hljs-string">&#x27;maçã&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;laranja&#x27;</span>, <span class="hljs-string">&#x27;uva&#x27;</span>]
+
+<span class="hljs-built_in">print</span>(frutas[<span class="hljs-number">0</span>])   <span class="hljs-comment"># maçã   (primeiro elemento)</span>
+<span class="hljs-built_in">print</span>(frutas[<span class="hljs-number">2</span>])   <span class="hljs-comment"># laranja</span>
+<span class="hljs-built_in">print</span>(frutas[-<span class="hljs-number">1</span>])  <span class="hljs-comment"># uva    (último elemento)</span>
+<span class="hljs-built_in">print</span>(frutas[-<span class="hljs-number">2</span>])  <span class="hljs-comment"># laranja</span>
+</code></pre>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="49" data-line-end="50"><a id="2_Percorrendo_uma_lista_com_for_49"></a>2. Percorrendo uma lista com <code>for</code></h2>
+<p class="has-line-data" data-line-start="51" data-line-end="52">O laço <code>for</code> é a forma mais comum de percorrer todos os elementos de uma lista, um por um, sem precisar usar índices.</p>
+<h3 class="code-line has-line-data" data-line-start="53" data-line-end="54"><a id="21_for_direto_nos_elementos_53"></a>2.1 <code>for</code> direto nos elementos</h3>
+<pre><code class="has-line-data language-python" data-line-start="56" data-line-end="67">frutas = [<span class="hljs-string">&#x27;maçã&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;laranja&#x27;</span>, <span class="hljs-string">&#x27;uva&#x27;</span>]
+
+<span class="hljs-keyword">for</span> fruta <span class="hljs-keyword">in</span> frutas:
+    <span class="hljs-built_in">print</span>(fruta)
+
+<span class="hljs-comment"># Saída:</span>
+<span class="hljs-comment"># maçã</span>
+<span class="hljs-comment"># banana</span>
+<span class="hljs-comment"># laranja</span>
+<span class="hljs-comment"># uva</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="68" data-line-end="69"><a id="22_for_com_ndice_usando_enumerate_68"></a>2.2 <code>for</code> com índice usando <code>enumerate()</code></h3>
+<p class="has-line-data" data-line-start="70" data-line-end="71">Quando você precisa do <strong>índice e do valor</strong> ao mesmo tempo, use <code>enumerate()</code>:</p>
+<pre><code class="has-line-data language-python" data-line-start="73" data-line-end="84">frutas = [<span class="hljs-string">&#x27;maçã&#x27;</span>, <span class="hljs-string">&#x27;banana&#x27;</span>, <span class="hljs-string">&#x27;laranja&#x27;</span>, <span class="hljs-string">&#x27;uva&#x27;</span>]
+
+<span class="hljs-keyword">for</span> indice, fruta <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(frutas):
+    <span class="hljs-built_in">print</span>(indice, <span class="hljs-string">&#x27;-&#x27;</span>, fruta)
+
+<span class="hljs-comment"># Saída:</span>
+<span class="hljs-comment"># 0 - maçã</span>
+<span class="hljs-comment"># 1 - banana</span>
+<span class="hljs-comment"># 2 - laranja</span>
+<span class="hljs-comment"># 3 - uva</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="85" data-line-end="86"><a id="23_for_com_range_pelo_ndice_85"></a>2.3 <code>for</code> com <code>range()</code> pelo índice</h3>
+<pre><code class="has-line-data language-python" data-line-start="88" data-line-end="99">notas = [<span class="hljs-number">7.5</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.5</span>, <span class="hljs-number">6.0</span>]
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(notas)):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Aluno <span class="hljs-subst">{i+<span class="hljs-number">1</span>}</span>: nota <span class="hljs-subst">{notas[i]}</span>&#x27;</span>)
+
+<span class="hljs-comment"># Saída:</span>
+<span class="hljs-comment"># Aluno 1: nota 7.5</span>
+<span class="hljs-comment"># Aluno 2: nota 8.0</span>
+<span class="hljs-comment"># Aluno 3: nota 9.5</span>
+<span class="hljs-comment"># Aluno 4: nota 6.0</span>
+</code></pre>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="102" data-line-end="103"><a id="3_Funes_essenciais_das_listas_102"></a>3. Funções essenciais das listas</h2>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="106" data-line-end="107"><a id="31_len_106"></a>3.1 <code>len()</code></h3>
+<p class="has-line-data" data-line-start="108" data-line-end="109">Retorna o <strong>número total de elementos</strong> da lista.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>len(lista)</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>len([7, 8, 9])</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="117" data-line-end="123">notas = [<span class="hljs-number">7.5</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.5</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">10.0</span>]
+
+tamanho = <span class="hljs-built_in">len</span>(notas)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;A lista tem&#x27;</span>, tamanho, <span class="hljs-string">&#x27;elementos&#x27;</span>)
+<span class="hljs-comment"># A lista tem 5 elementos</span>
+</code></pre>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="126" data-line-end="127"><a id="32_append_126"></a>3.2 <code>append()</code></h3>
+<p class="has-line-data" data-line-start="128" data-line-end="129">Adiciona um elemento ao <strong>final</strong> da lista.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>lista.append(elemento)</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>frutas.append('banana')</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>['maçã', 'banana']</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="137" data-line-end="145">compras = [<span class="hljs-string">&#x27;arroz&#x27;</span>, <span class="hljs-string">&#x27;feijão&#x27;</span>]
+
+compras.append(<span class="hljs-string">&#x27;macarrão&#x27;</span>)
+compras.append(<span class="hljs-string">&#x27;sal&#x27;</span>)
+
+<span class="hljs-built_in">print</span>(compras)
+<span class="hljs-comment"># [&#x27;arroz&#x27;, &#x27;feijão&#x27;, &#x27;macarrão&#x27;, &#x27;sal&#x27;]</span>
+</code></pre>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="148" data-line-end="149"><a id="33_insert_148"></a>3.3 <code>insert()</code></h3>
+<p class="has-line-data" data-line-start="150" data-line-end="151">Insere um elemento em uma <strong>posição específica</strong> da lista.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>lista.insert(indice, elemento)</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>frutas.insert(1, 'banana')</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>['maçã', 'banana', 'laranja']</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="159" data-line-end="167">times = [<span class="hljs-string">&#x27;Flamengo&#x27;</span>, <span class="hljs-string">&#x27;Palmeiras&#x27;</span>, <span class="hljs-string">&#x27;Santos&#x27;</span>]
+
+<span class="hljs-comment"># Insere na posição 1 (segundo lugar)</span>
+times.insert(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Corinthians&#x27;</span>)
+
+<span class="hljs-built_in">print</span>(times)
+<span class="hljs-comment"># [&#x27;Flamengo&#x27;, &#x27;Corinthians&#x27;, &#x27;Palmeiras&#x27;, &#x27;Santos&#x27;]</span>
+</code></pre>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="170" data-line-end="171"><a id="34_pop_170"></a>3.4 <code>pop()</code></h3>
+<p class="has-line-data" data-line-start="172" data-line-end="173">Remove e <strong>retorna</strong> o elemento de uma posição (padrão: último).</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>lista.pop()</code> ou <code>lista.pop(indice)</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>nums = [1, 2, 3, 4]; nums.pop()</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>removido = 4  /  nums = [1, 2, 3]</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="181" data-line-end="193">fila = [<span class="hljs-string">&#x27;Ana&#x27;</span>, <span class="hljs-string">&#x27;Bruno&#x27;</span>, <span class="hljs-string">&#x27;Carlos&#x27;</span>, <span class="hljs-string">&#x27;Diana&#x27;</span>]
+
+<span class="hljs-comment"># Remove o último</span>
+ultimo = fila.pop()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Removido:&#x27;</span>, ultimo)   <span class="hljs-comment"># Diana</span>
+<span class="hljs-built_in">print</span>(fila)                  <span class="hljs-comment"># [&#x27;Ana&#x27;, &#x27;Bruno&#x27;, &#x27;Carlos&#x27;]</span>
+
+<span class="hljs-comment"># Remove pelo índice</span>
+primeiro = fila.pop(<span class="hljs-number">0</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Removido:&#x27;</span>, primeiro) <span class="hljs-comment"># Ana</span>
+<span class="hljs-built_in">print</span>(fila)                  <span class="hljs-comment"># [&#x27;Bruno&#x27;, &#x27;Carlos&#x27;]</span>
+</code></pre>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="196" data-line-end="197"><a id="35_remove_196"></a>3.5 <code>remove()</code></h3>
+<p class="has-line-data" data-line-start="198" data-line-end="199">Remove a <strong>primeira ocorrência</strong> de um valor específico.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>lista.remove(valor)</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>cores = ['azul', 'verde', 'azul']; cores.remove('azul')</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>['verde', 'azul']</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="207" data-line-end="214">notas = [<span class="hljs-number">7</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>]
+
+notas.remove(<span class="hljs-number">5</span>)   <span class="hljs-comment"># remove o PRIMEIRO 5</span>
+
+<span class="hljs-built_in">print</span>(notas)
+<span class="hljs-comment"># [7, 9, 5, 8]</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="215" data-line-end="216">⚠️ <strong>Atenção:</strong> se o valor não existir na lista, o Python levanta um <code>ValueError</code>. Use <code>in</code> para verificar antes de remover.</p>
+</blockquote>
+<pre><code class="has-line-data language-python" data-line-start="218" data-line-end="221"><span class="hljs-keyword">if</span> <span class="hljs-number">5</span> <span class="hljs-keyword">in</span> notas:
+    notas.remove(<span class="hljs-number">5</span>)
+</code></pre>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="224" data-line-end="225"><a id="36_index_224"></a>3.6 <code>index()</code></h3>
+<p class="has-line-data" data-line-start="226" data-line-end="227">Retorna o <strong>índice (posição)</strong> da primeira ocorrência de um valor.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>lista.index(valor)</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>frutas.index('banana')</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="235" data-line-end="241">alunos = [<span class="hljs-string">&#x27;Ana&#x27;</span>, <span class="hljs-string">&#x27;Bruno&#x27;</span>, <span class="hljs-string">&#x27;Carlos&#x27;</span>, <span class="hljs-string">&#x27;Diana&#x27;</span>]
+
+pos = alunos.index(<span class="hljs-string">&#x27;Carlos&#x27;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Carlos está na posição:&#x27;</span>, pos)
+<span class="hljs-comment"># Carlos está na posição: 2</span>
+</code></pre>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="244" data-line-end="245"><a id="37_reverse_244"></a>3.7 <code>reverse()</code></h3>
+<p class="has-line-data" data-line-start="246" data-line-end="247">Inverte a ordem dos elementos <strong>na própria lista</strong> (modifica diretamente).</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>lista.reverse()</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>nums = [1, 2, 3, 4, 5]; nums.reverse()</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>[5, 4, 3, 2, 1]</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="255" data-line-end="262">palavras = [<span class="hljs-string">&#x27;Python&#x27;</span>, <span class="hljs-string">&#x27;é&#x27;</span>, <span class="hljs-string">&#x27;muito&#x27;</span>, <span class="hljs-string">&#x27;legal&#x27;</span>]
+
+palavras.reverse()
+
+<span class="hljs-built_in">print</span>(palavras)
+<span class="hljs-comment"># [&#x27;legal&#x27;, &#x27;muito&#x27;, &#x27;é&#x27;, &#x27;Python&#x27;]</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="263" data-line-end="264">💡 <strong>Dica:</strong> <code>reverse()</code> altera a lista original. Se quiser manter a original, use <code>lista[::-1]</code>, que cria uma cópia invertida.</p>
+</blockquote>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="267" data-line-end="268"><a id="38_count_267"></a>3.8 <code>count()</code></h3>
+<p class="has-line-data" data-line-start="269" data-line-end="270">Conta quantas vezes um valor <strong>aparece</strong> na lista.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>lista.count(valor)</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>notas = [7, 8, 7, 9, 7]; notas.count(7)</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="278" data-line-end="286">respostas = [<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&#x27;A&#x27;</span>]
+
+qtd_A = respostas.count(<span class="hljs-string">&#x27;A&#x27;</span>)
+qtd_B = respostas.count(<span class="hljs-string">&#x27;B&#x27;</span>)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Resposta A:&#x27;</span>, qtd_A, <span class="hljs-string">&#x27;vezes&#x27;</span>)  <span class="hljs-comment"># 4 vezes</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Resposta B:&#x27;</span>, qtd_B, <span class="hljs-string">&#x27;vezes&#x27;</span>)  <span class="hljs-comment"># 2 vezes</span>
+</code></pre>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="289" data-line-end="290"><a id="39_copy_289"></a>3.9 <code>copy()</code></h3>
+<p class="has-line-data" data-line-start="291" data-line-end="292">Cria uma <strong>cópia independente</strong> da lista (sem copiar o endereço de memória).</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>nova = lista.copy()</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>b = a.copy(); b.append(4)</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>a = [1, 2, 3]  /  b = [1, 2, 3, 4]</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="300" data-line-end="313">original = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+
+<span class="hljs-comment"># SEM copy — ambas apontam para o mesmo lugar!</span>
+errada = original
+errada.append(<span class="hljs-number">99</span>)
+<span class="hljs-built_in">print</span>(original)  <span class="hljs-comment"># [1, 2, 3, 4, 5, 99]  &lt;- MODIFICOU!</span>
+
+<span class="hljs-comment"># COM copy — listas independentes</span>
+certa = original.copy()
+certa.append(<span class="hljs-number">100</span>)
+<span class="hljs-built_in">print</span>(original)  <span class="hljs-comment"># [1, 2, 3, 4, 5, 99]  &lt;- intacta</span>
+<span class="hljs-built_in">print</span>(certa)     <span class="hljs-comment"># [1, 2, 3, 4, 5, 99, 100]</span>
+</code></pre>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="316" data-line-end="317"><a id="310_extend_316"></a>3.10 <code>extend()</code></h3>
+<p class="has-line-data" data-line-start="318" data-line-end="319">Adiciona todos os elementos de outra lista <strong>ao final</strong> da lista atual.</p>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sintaxe</strong></td>
+<td><code>lista.extend(outra_lista)</code></td>
+</tr>
+<tr>
+<td><strong>Exemplo</strong></td>
+<td><code>a = [1, 2, 3]; a.extend([4, 5, 6])</code></td>
+</tr>
+<tr>
+<td><strong>Saída</strong></td>
+<td><code>[1, 2, 3, 4, 5, 6]</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="has-line-data language-python" data-line-start="327" data-line-end="335">turma_manha = [<span class="hljs-string">&#x27;Ana&#x27;</span>, <span class="hljs-string">&#x27;Bruno&#x27;</span>, <span class="hljs-string">&#x27;Carlos&#x27;</span>]
+turma_tarde  = [<span class="hljs-string">&#x27;Diana&#x27;</span>, <span class="hljs-string">&#x27;Eduardo&#x27;</span>, <span class="hljs-string">&#x27;Fernanda&#x27;</span>]
+
+turma_manha.extend(turma_tarde)
+
+<span class="hljs-built_in">print</span>(turma_manha)
+<span class="hljs-comment"># [&#x27;Ana&#x27;, &#x27;Bruno&#x27;, &#x27;Carlos&#x27;, &#x27;Diana&#x27;, &#x27;Eduardo&#x27;, &#x27;Fernanda&#x27;]</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="336" data-line-end="337">💡 <strong>Diferença:</strong> <code>append(['a','b'])</code> adiciona a lista inteira como <strong>1 elemento</strong>. <code>extend(['a','b'])</code> adiciona <strong>cada elemento</strong> separadamente.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="340" data-line-end="341"><a id="4_Resumo_todas_as_funes_340"></a>4. Resumo — todas as funções</h2>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Função</th>
+<th>Sintaxe</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>len()</code></td>
+<td><code>len(lista)</code></td>
+<td>Retorna o tamanho da lista</td>
+</tr>
+<tr>
+<td><code>append()</code></td>
+<td><code>lista.append(x)</code></td>
+<td>Adiciona <code>x</code> ao final</td>
+</tr>
+<tr>
+<td><code>insert()</code></td>
+<td><code>lista.insert(i, x)</code></td>
+<td>Insere <code>x</code> na posição <code>i</code></td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td><code>lista.pop()</code> / <code>lista.pop(i)</code></td>
+<td>Remove e retorna o último (ou posição <code>i</code>)</td>
+</tr>
+<tr>
+<td><code>remove()</code></td>
+<td><code>lista.remove(x)</code></td>
+<td>Remove a primeira ocorrência de <code>x</code></td>
+</tr>
+<tr>
+<td><code>index()</code></td>
+<td><code>lista.index(x)</code></td>
+<td>Retorna o índice de <code>x</code></td>
+</tr>
+<tr>
+<td><code>reverse()</code></td>
+<td><code>lista.reverse()</code></td>
+<td>Inverte a lista in-place</td>
+</tr>
+<tr>
+<td><code>count()</code></td>
+<td><code>lista.count(x)</code></td>
+<td>Conta quantas vezes <code>x</code> aparece</td>
+</tr>
+<tr>
+<td><code>copy()</code></td>
+<td><code>lista.copy()</code></td>
+<td>Retorna uma cópia independente</td>
+</tr>
+<tr>
+<td><code>extend()</code></td>
+<td><code>lista.extend(outra)</code></td>
+<td>Adiciona todos os elementos de outra lista</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 class="code-line has-line-data" data-line-start="357" data-line-end="358"><a id="Exerccios_Arrays_Listas_em_Python_357"></a>Exercícios — Arrays (Listas) em Python</h1>
+<blockquote>
+<p class="has-line-data" data-line-start="359" data-line-end="360">6 exercícios práticos com entrada de dados, do básico ao avançado.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="363" data-line-end="364"><a id="Exerccio_1_Cadastro_e_exibio_de_notas_363"></a>Exercício 1 — Cadastro e exibição de notas</h2>
+<h3 class="code-line has-line-data" data-line-start="365" data-line-end="366"><a id="Descrio_365"></a>Descrição</h3>
+<p class="has-line-data" data-line-start="367" data-line-end="368">Você foi contratado para criar um sistema simples de cadastro de notas para uma turma. O programa deve pedir ao usuário quantos alunos existem na turma e, em seguida, solicitar a nota de cada um. Ao final, o programa deve exibir todas as notas cadastradas, uma por linha, com o número do aluno.</p>
+<h3 class="code-line has-line-data" data-line-start="369" data-line-end="370"><a id="Requisitos_369"></a>Requisitos</h3>
+<ul>
+<li class="has-line-data" data-line-start="371" data-line-end="372">Usar uma lista vazia e <code>append()</code> para adicionar as notas</li>
+<li class="has-line-data" data-line-start="372" data-line-end="373">Usar <code>for</code> com <code>range()</code> para solicitar as entradas</li>
+<li class="has-line-data" data-line-start="373" data-line-end="375">Exibir o resultado com <code>for</code> e <code>enumerate()</code></li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="375" data-line-end="376"><a id="Exemplo_de_execuo_375"></a>Exemplo de execução</h3>
+<pre><code class="has-line-data" data-line-start="378" data-line-end="391">Quantos alunos na turma? 4
+
+Digite a nota do aluno 1: 7.5
+Digite a nota do aluno 2: 9.0
+Digite a nota do aluno 3: 6.0
+Digite a nota do aluno 4: 8.5
+
+--- Notas cadastradas ---
+Aluno 1: 7.5
+Aluno 2: 9.0
+Aluno 3: 6.0
+Aluno 4: 8.5
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="392" data-line-end="393"><a id="Dicas_392"></a>Dicas</h3>
+<ul>
+<li class="has-line-data" data-line-start="394" data-line-end="395">Use <code>int(input(...))</code> para ler a quantidade de alunos</li>
+<li class="has-line-data" data-line-start="395" data-line-end="396">Use <code>float(input(...))</code> para ler as notas, pois podem ter casas decimais</li>
+<li class="has-line-data" data-line-start="396" data-line-end="398">Lembre-se que <code>enumerate()</code> começa do índice <code>0</code> — some <code>1</code> para exibir o número correto do aluno</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="400" data-line-end="401"><a id="Exerccio_2_Maior_menor_e_mdia_da_turma_400"></a>Exercício 2 — Maior, menor e média da turma</h2>
+<h3 class="code-line has-line-data" data-line-start="402" data-line-end="403"><a id="Descrio_402"></a>Descrição</h3>
+<p class="has-line-data" data-line-start="404" data-line-end="405">Continuando o sistema de notas do exercício anterior, agora o programa deve calcular e exibir três informações sobre as notas cadastradas: a <strong>maior nota</strong>, a <strong>menor nota</strong> e a <strong>média da turma</strong>. O usuário informa a quantidade de alunos e suas respectivas notas, e o programa processa os dados.</p>
+<h3 class="code-line has-line-data" data-line-start="406" data-line-end="407"><a id="Requisitos_406"></a>Requisitos</h3>
+<ul>
+<li class="has-line-data" data-line-start="408" data-line-end="409">Usar <code>append()</code> para montar a lista de notas</li>
+<li class="has-line-data" data-line-start="409" data-line-end="410">Calcular a média somando todos os elementos com um <code>for</code> e dividindo pelo total</li>
+<li class="has-line-data" data-line-start="410" data-line-end="411">Usar <code>len()</code> para obter o total de alunos</li>
+<li class="has-line-data" data-line-start="411" data-line-end="413">Encontrar o maior e o menor valor percorrendo a lista (sem usar <code>max()</code> ou <code>min()</code> — tente com <code>if</code> dentro do <code>for</code>)</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="413" data-line-end="414"><a id="Exemplo_de_execuo_413"></a>Exemplo de execução</h3>
+<pre><code class="has-line-data" data-line-start="416" data-line-end="429">Quantos alunos na turma? 5
+
+Digite a nota do aluno 1: 8.0
+Digite a nota do aluno 2: 5.5
+Digite a nota do aluno 3: 9.5
+Digite a nota do aluno 4: 7.0
+Digite a nota do aluno 5: 6.5
+
+--- Resultado ---
+Maior nota : 9.5
+Menor nota : 5.5
+Média      : 7.3
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="430" data-line-end="431"><a id="Dicas_430"></a>Dicas</h3>
+<ul>
+<li class="has-line-data" data-line-start="432" data-line-end="433">Para encontrar o maior valor manualmente: crie uma variável <code>maior</code> começando com <code>lista[0]</code> e compare com cada elemento no <code>for</code></li>
+<li class="has-line-data" data-line-start="433" data-line-end="434">Para a média: some todos os valores em uma variável <code>soma</code> e divida por <code>len(lista)</code> ao final</li>
+<li class="has-line-data" data-line-start="434" data-line-end="436">Use <code>round(media, 1)</code> para exibir apenas uma casa decimal</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="438" data-line-end="439"><a id="Exerccio_3_Fila_de_atendimento_438"></a>Exercício 3 — Fila de atendimento</h2>
+<h3 class="code-line has-line-data" data-line-start="440" data-line-end="441"><a id="Descrio_440"></a>Descrição</h3>
+<p class="has-line-data" data-line-start="442" data-line-end="443">Uma clínica precisa de um sistema de gerenciamento de fila de atendimento. O programa deve primeiro cadastrar os nomes dos pacientes que chegaram. Depois, deve simular o atendimento: a cada vez que o usuário pressionar Enter, o <strong>primeiro da fila</strong> é atendido e removido, exibindo uma mensagem de atendimento. O processo continua até a fila estar vazia.</p>
+<h3 class="code-line has-line-data" data-line-start="444" data-line-end="445"><a id="Requisitos_444"></a>Requisitos</h3>
+<ul>
+<li class="has-line-data" data-line-start="446" data-line-end="447">Usar <code>append()</code> para cadastrar os pacientes</li>
+<li class="has-line-data" data-line-start="447" data-line-end="448">Usar <code>pop(0)</code> para remover e retornar o primeiro da fila a cada atendimento</li>
+<li class="has-line-data" data-line-start="448" data-line-end="449">Usar <code>len()</code> para mostrar quantas pessoas ainda aguardam</li>
+<li class="has-line-data" data-line-start="449" data-line-end="451">Usar um <code>while</code> para continuar enquanto houver pacientes</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="451" data-line-end="452"><a id="Exemplo_de_execuo_451"></a>Exemplo de execução</h3>
+<pre><code class="has-line-data" data-line-start="454" data-line-end="481">Quantos pacientes na fila? 3
+
+Nome do paciente 1: Ana
+Nome do paciente 2: Bruno
+Nome do paciente 3: Carlos
+
+--- Atendimento iniciado ---
+
+Fila atual: ['Ana', 'Bruno', 'Carlos']
+Pressione Enter para chamar o próximo...
+
+Atendendo: Ana
+Ainda aguardando: 2 paciente(s)
+
+Fila atual: ['Bruno', 'Carlos']
+Pressione Enter para chamar o próximo...
+
+Atendendo: Bruno
+Ainda aguardando: 1 paciente(s)
+
+Fila atual: ['Carlos']
+Pressione Enter para chamar o próximo...
+
+Atendendo: Carlos
+
+Fila encerrada. Todos os pacientes foram atendidos!
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="482" data-line-end="483"><a id="Dicas_482"></a>Dicas</h3>
+<ul>
+<li class="has-line-data" data-line-start="484" data-line-end="485">Para “pressionar Enter”, use <code>input()</code> sem nenhum texto — ele apenas pausa até o usuário apertar Enter</li>
+<li class="has-line-data" data-line-start="485" data-line-end="486"><code>pop(0)</code> remove e retorna o primeiro elemento: <code>paciente = fila.pop(0)</code></li>
+<li class="has-line-data" data-line-start="486" data-line-end="488">Verifique <code>len(fila) &gt; 0</code> antes de mostrar quantos ainda aguardam para evitar exibir <code>0 paciente(s)</code> após o último</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="490" data-line-end="491"><a id="Exerccio_4_Removendo_repetidos_da_lista_490"></a>Exercício 4 — Removendo repetidos da lista</h2>
+<h3 class="code-line has-line-data" data-line-start="492" data-line-end="493"><a id="Descrio_492"></a>Descrição</h3>
+<p class="has-line-data" data-line-start="494" data-line-end="495">Um sistema de cadastro recebeu uma lista de produtos digitados manualmente e, por descuido, vários nomes foram inseridos mais de uma vez. Seu programa deve receber os produtos um a um, verificar se o produto já foi cadastrado e, caso tenha sido, informar ao usuário que o item é duplicado e não adicioná-lo novamente. Ao final, exibe a lista limpa e sem repetições.</p>
+<h3 class="code-line has-line-data" data-line-start="496" data-line-end="497"><a id="Requisitos_496"></a>Requisitos</h3>
+<ul>
+<li class="has-line-data" data-line-start="498" data-line-end="499">Usar <code>in</code> para verificar se o elemento já está na lista antes de adicionar</li>
+<li class="has-line-data" data-line-start="499" data-line-end="500">Usar <code>append()</code> apenas quando o item for novo</li>
+<li class="has-line-data" data-line-start="500" data-line-end="501">Usar <code>count()</code> ao final para confirmar que não há repetições</li>
+<li class="has-line-data" data-line-start="501" data-line-end="503">O usuário digita <code>&quot;fim&quot;</code> para encerrar o cadastro</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="503" data-line-end="504"><a id="Exemplo_de_execuo_503"></a>Exemplo de execução</h3>
+<pre><code class="has-line-data" data-line-start="506" data-line-end="526">Digite os produtos (ou 'fim' para encerrar):
+
+Produto: arroz
+Produto: feijão
+Produto: arroz
+⚠️  'arroz' já está na lista. Ignorando.
+Produto: macarrão
+Produto: feijão
+⚠️  'feijão' já está na lista. Ignorando.
+Produto: sal
+Produto: fim
+
+--- Lista final de produtos ---
+1. arroz
+2. feijão
+3. macarrão
+4. sal
+
+Total de produtos únicos: 4
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="527" data-line-end="528"><a id="Dicas_527"></a>Dicas</h3>
+<ul>
+<li class="has-line-data" data-line-start="529" data-line-end="530">Use um <code>while True</code> com <code>break</code> quando o usuário digitar <code>&quot;fim&quot;</code></li>
+<li class="has-line-data" data-line-start="530" data-line-end="531">Compare sempre em letras minúsculas para evitar que <code>&quot;Arroz&quot;</code> e <code>&quot;arroz&quot;</code> sejam tratados como diferentes: <code>produto.lower()</code></li>
+<li class="has-line-data" data-line-start="531" data-line-end="533">Para listar com número, use <code>enumerate(lista, start=1)</code> que já começa pelo índice <code>1</code></li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="535" data-line-end="536"><a id="Exerccio_5_Fuso_e_ordenao_de_duas_turmas_535"></a>Exercício 5 — Fusão e ordenação de duas turmas</h2>
+<h3 class="code-line has-line-data" data-line-start="537" data-line-end="538"><a id="Descrio_537"></a>Descrição</h3>
+<p class="has-line-data" data-line-start="539" data-line-end="540">Duas turmas de uma escola fizeram a mesma prova. Cada turma tem sua própria lista de notas. O programa deve receber as notas das duas turmas separadamente, juntá-las em uma única lista usando <code>extend()</code>, calcular a média geral e exibir quantos alunos ficaram <strong>acima da média</strong> e quantos ficaram <strong>abaixo ou na média</strong>. Por fim, deve exibir a lista completa ordenada do maior para o menor usando <code>reverse()</code> após ordenar com <code>sort()</code>.</p>
+<h3 class="code-line has-line-data" data-line-start="541" data-line-end="542"><a id="Requisitos_541"></a>Requisitos</h3>
+<ul>
+<li class="has-line-data" data-line-start="543" data-line-end="544">Usar <code>append()</code> para cada turma separadamente</li>
+<li class="has-line-data" data-line-start="544" data-line-end="545">Usar <code>extend()</code> para unir as duas listas</li>
+<li class="has-line-data" data-line-start="545" data-line-end="546">Usar <code>len()</code> para contar o total de alunos</li>
+<li class="has-line-data" data-line-start="546" data-line-end="547">Usar <code>sort()</code> e <code>reverse()</code> para ordenar do maior para o menor</li>
+<li class="has-line-data" data-line-start="547" data-line-end="549">Usar <code>count()</code> não é necessário aqui — use <code>if</code> dentro de um <code>for</code> para contar acima/abaixo da média</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="549" data-line-end="550"><a id="Exemplo_de_execuo_549"></a>Exemplo de execução</h3>
+<pre><code class="has-line-data" data-line-start="552" data-line-end="579">--- Turma A ---
+Quantos alunos na Turma A? 3
+Nota do aluno 1: 6.0
+Nota do aluno 2: 8.5
+Nota do aluno 3: 7.0
+
+--- Turma B ---
+Quantos alunos na Turma B? 3
+Nota do aluno 1: 9.0
+Nota do aluno 2: 5.5
+Nota do aluno 3: 7.5
+
+--- Resultado Geral ---
+Total de alunos : 6
+Média geral     : 7.25
+
+Acima da média  : 3 aluno(s) → [8.5, 9.0, 7.5]
+Abaixo/na média : 3 aluno(s) → [6.0, 7.0, 5.5]
+
+--- Ranking (maior para menor) ---
+1º lugar: 9.0
+2º lugar: 8.5
+3º lugar: 7.5
+4º lugar: 7.0
+5º lugar: 6.0
+6º lugar: 5.5
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="580" data-line-end="581"><a id="Dicas_580"></a>Dicas</h3>
+<ul>
+<li class="has-line-data" data-line-start="582" data-line-end="583">Monte as listas das turmas A e B separadamente, depois use <code>turma_a.extend(turma_b)</code> para criar a lista geral</li>
+<li class="has-line-data" data-line-start="583" data-line-end="584">Para ordenar do maior para o menor: <code>lista.sort()</code> ordena crescente → depois <code>lista.reverse()</code> inverte</li>
+<li class="has-line-data" data-line-start="584" data-line-end="585">Para o ranking, use <code>enumerate(lista_ordenada, start=1)</code> e formate com <code>f'{i}º lugar: {nota}'</code></li>
+<li class="has-line-data" data-line-start="585" data-line-end="587">Separe os alunos acima da média em uma lista auxiliar com <code>append()</code> dentro do <code>for</code> para exibir no resultado</li>
+</ul>
+<hr>
+<blockquote>
+<p class="has-line-data" data-line-start="589" data-line-end="590">💡 <strong>Dica geral:</strong> antes de escrever o código, leia o enunciado com calma, identifique quais funções de lista serão usadas e esboce o passo a passo em comentários no código. Isso facilita muito!</p>
+</blockquote>
+
+</body>
+</html>
