@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>documentacao-endpoint-buscar-fornecedor.md</title>
+  <style>
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css");
+
+  body {
+    font-family: Georgia, Cambria, serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #373D49;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  a { color: #35D7BB; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: "Ubuntu Mono", Monaco, monospace;
+    background: #F5F7FA;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  pre {
+    background: #F5F7FA;
+    padding: 1em;
+    border-radius: 3px;
+    overflow-x: auto;
+  }
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    color: #333;
+  }
+  pre code { background: none; padding: 0; }
+  blockquote {
+    border-left: 3px solid #A0AABF;
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    color: #666;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #E8E8E8;
+    padding: 0.5em;
+    text-align: left;
+  }
+  th {
+    background: #F5F7FA;
+    font-weight: 600;
+  }
+  #preview .table {
+    width: auto;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+</style>
+</head>
+<body id="preview">
+<h1 class="code-line has-line-data" data-line-start="0" data-line-end="1"><a id="Padro_IEEE_80211_e_a_Evoluo_das_Redes_WiFi_0"></a>Padrão IEEE 802.11 e a Evolução das Redes Wi-Fi</h1>
+<p class="has-line-data" data-line-start="2" data-line-end="4"><strong>Disciplina:</strong> Tecnologias Atuais de Redes<br>
+<strong>Assunto:</strong> Padrão 802.11 — Histórico e Gerações</p>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="7" data-line-end="8"><a id="1_O_que_o_padro_IEEE_80211_7"></a>1. O que é o padrão IEEE 802.11?</h2>
+<p class="has-line-data" data-line-start="9" data-line-end="10">O <strong>IEEE 802.11</strong> é um conjunto de especificações definidas pelo Instituto de Engenheiros Elétricos e Eletrônicos (IEEE) para redes locais sem fio (WLAN — <em>Wireless Local Area Network</em>).</p>
+<p class="has-line-data" data-line-start="11" data-line-end="12">Ele define como os dados são transmitidos pelo ar por meio de ondas de rádio, operando nas camadas:</p>
+<ul>
+<li class="has-line-data" data-line-start="13" data-line-end="14"><strong>Camada Física (PHY):</strong> define as características do sinal (frequência, modulação, taxa de dados)</li>
+<li class="has-line-data" data-line-start="14" data-line-end="16"><strong>Camada de Controle de Acesso ao Meio (MAC):</strong> define como os dispositivos compartilham o meio sem fio</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="16" data-line-end="17">O termo <strong>Wi-Fi</strong> é uma marca registrada da Wi-Fi Alliance — não é uma sigla, mas um nome comercial baseado no padrão IEEE 802.11.</p>
+</blockquote>
+<h3 class="code-line has-line-data" data-line-start="18" data-line-end="19"><a id="Tecnologia_de_acesso_ao_meio_18"></a>Tecnologia de acesso ao meio</h3>
+<p class="has-line-data" data-line-start="20" data-line-end="21">O 802.11 utiliza o mecanismo <strong>CSMA/CA</strong> (<em>Carrier Sense Multiple Access with Collision Avoidance</em>): antes de transmitir, o dispositivo “escuta” o canal para verificar se está livre, evitando colisões.</p>
+<h3 class="code-line has-line-data" data-line-start="22" data-line-end="23"><a id="Padro_original_1997_22"></a>Padrão original (1997)</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Velocidade máxima</td>
+<td>2 Mbps</td>
+</tr>
+<tr>
+<td>Frequência</td>
+<td>2,4 GHz / Infravermelho</td>
+</tr>
+<tr>
+<td>Modulação</td>
+<td>DSSS / FHSS</td>
+</tr>
+<tr>
+<td>Ano</td>
+<td>1997</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="33" data-line-end="34"><a id="2_Linha_do_Tempo_33"></a>2. Linha do Tempo</h2>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Ano</th>
+<th>Padrão</th>
+<th>Nome Wi-Fi</th>
+<th>Destaque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1997</td>
+<td>802.11 (original)</td>
+<td>—</td>
+<td>Primeiro padrão, 2 Mbps</td>
+</tr>
+<tr>
+<td>1999</td>
+<td>802.11a</td>
+<td>—</td>
+<td>5 GHz, até 54 Mbps</td>
+</tr>
+<tr>
+<td>1999</td>
+<td>802.11b</td>
+<td>—</td>
+<td>2,4 GHz, até 11 Mbps</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>802.11g</td>
+<td>—</td>
+<td>2,4 GHz, até 54 Mbps</td>
+</tr>
+<tr>
+<td>2009</td>
+<td>802.11n</td>
+<td>Wi-Fi 4</td>
+<td>Dual-band, MIMO, até 600 Mbps</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>802.11ac</td>
+<td>Wi-Fi 5</td>
+<td>5 GHz, MU-MIMO, até 3,5 Gbps</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>802.11ax</td>
+<td>Wi-Fi 6 / 6E</td>
+<td>Tri-band, OFDMA, até 9,6 Gbps</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>802.11be</td>
+<td>Wi-Fi 7</td>
+<td>MLO, 4K-QAM, até 46 Gbps</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="48" data-line-end="49"><a id="3_Padro_80211a_1999_48"></a>3. Padrão 802.11a (1999)</h2>
+<h3 class="code-line has-line-data" data-line-start="50" data-line-end="51"><a id="Caractersticas_tcnicas_50"></a>Características técnicas</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ano de lançamento</td>
+<td>1999</td>
+</tr>
+<tr>
+<td>Frequência</td>
+<td>5 GHz</td>
+</tr>
+<tr>
+<td>Velocidade máxima</td>
+<td>54 Mbps</td>
+</tr>
+<tr>
+<td>Modulação</td>
+<td>OFDM (52 subportadoras)</td>
+</tr>
+<tr>
+<td>Canais não sobrepostos</td>
+<td>8 (EUA)</td>
+</tr>
+<tr>
+<td>Alcance interior</td>
+<td>~35 m</td>
+</tr>
+<tr>
+<td>MIMO</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="62" data-line-end="63"><a id="Principais_caractersticas_62"></a>Principais características</h3>
+<ul>
+<li class="has-line-data" data-line-start="64" data-line-end="65">Primeiro padrão a utilizar a banda de 5 GHz — menos congestionada que 2,4 GHz</li>
+<li class="has-line-data" data-line-start="65" data-line-end="66">Uso de OFDM (<em>Orthogonal Frequency Division Multiplexing</em>) para maior eficiência espectral</li>
+<li class="has-line-data" data-line-start="66" data-line-end="67">Menor alcance que o 802.11b, pois sinais de 5 GHz sofrem mais atenuação em obstáculos</li>
+<li class="has-line-data" data-line-start="67" data-line-end="68">Incompatível com os padrões 802.11b e 802.11g</li>
+<li class="has-line-data" data-line-start="68" data-line-end="70">Mais adotado em ambientes corporativos do que em redes domésticas</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="70" data-line-end="71">Lançado simultaneamente ao 802.11b, mas adotado mais lentamente devido ao custo mais elevado do hardware.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="74" data-line-end="75"><a id="4_Padro_80211b_1999_74"></a>4. Padrão 802.11b (1999)</h2>
+<h3 class="code-line has-line-data" data-line-start="76" data-line-end="77"><a id="Caractersticas_tcnicas_76"></a>Características técnicas</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ano de lançamento</td>
+<td>1999</td>
+</tr>
+<tr>
+<td>Frequência</td>
+<td>2,4 GHz</td>
+</tr>
+<tr>
+<td>Velocidade máxima</td>
+<td>11 Mbps</td>
+</tr>
+<tr>
+<td>Modulação</td>
+<td>DSSS / HR-DSSS</td>
+</tr>
+<tr>
+<td>Canais não sobrepostos</td>
+<td>3 (canais 1, 6 e 11)</td>
+</tr>
+<tr>
+<td>Alcance interior</td>
+<td>~38–140 m</td>
+</tr>
+<tr>
+<td>MIMO</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="88" data-line-end="89"><a id="Principais_caractersticas_88"></a>Principais características</h3>
+<ul>
+<li class="has-line-data" data-line-start="90" data-line-end="91">Primeiro padrão Wi-Fi de ampla adoção popular</li>
+<li class="has-line-data" data-line-start="91" data-line-end="92">Banda 2,4 GHz oferece maior alcance em comparação ao 802.11a</li>
+<li class="has-line-data" data-line-start="92" data-line-end="93">Vulnerável a interferências de outros dispositivos (micro-ondas, Bluetooth, babás eletrônicas)</li>
+<li class="has-line-data" data-line-start="93" data-line-end="94">Apenas 3 canais não sobrepostos disponíveis em 2,4 GHz</li>
+<li class="has-line-data" data-line-start="94" data-line-end="96">Taxas de transmissão: 1, 2, 5,5 e 11 Mbps (adapta conforme qualidade do sinal)</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="96" data-line-end="97">Foi o padrão que popularizou o Wi-Fi em residências e escritórios no início dos anos 2000.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="100" data-line-end="101"><a id="5_Padro_80211g_2003_100"></a>5. Padrão 802.11g (2003)</h2>
+<h3 class="code-line has-line-data" data-line-start="102" data-line-end="103"><a id="Caractersticas_tcnicas_102"></a>Características técnicas</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ano de lançamento</td>
+<td>2003</td>
+</tr>
+<tr>
+<td>Frequência</td>
+<td>2,4 GHz</td>
+</tr>
+<tr>
+<td>Velocidade máxima</td>
+<td>54 Mbps</td>
+</tr>
+<tr>
+<td>Modulação</td>
+<td>OFDM (compatível com DSSS)</td>
+</tr>
+<tr>
+<td>Canais não sobrepostos</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Alcance interior</td>
+<td>~38–140 m</td>
+</tr>
+<tr>
+<td>MIMO</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="114" data-line-end="115"><a id="Principais_caractersticas_114"></a>Principais características</h3>
+<ul>
+<li class="has-line-data" data-line-start="116" data-line-end="117">Combina o melhor dos dois mundos: velocidade do 802.11a + alcance do 802.11b</li>
+<li class="has-line-data" data-line-start="117" data-line-end="118">Retrocompatível com dispositivos 802.11b (sem necessidade de troca de hardware)</li>
+<li class="has-line-data" data-line-start="118" data-line-end="119">Mantém a faixa 2,4 GHz — vulnerabilidades a interferências permanecem</li>
+<li class="has-line-data" data-line-start="119" data-line-end="120">Usa OFDM para atingir 54 Mbps, mesmo na faixa de 2,4 GHz</li>
+<li class="has-line-data" data-line-start="120" data-line-end="122">Dominou o mercado de redes domésticas e corporativas de 2003 a 2009</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="122" data-line-end="123">O 802.11g foi o padrão predominante por anos, presente na maioria dos notebooks, smartphones e roteadores domésticos da época.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="126" data-line-end="127"><a id="6_Padro_80211n_WiFi_4_2009_126"></a>6. Padrão 802.11n — Wi-Fi 4 (2009)</h2>
+<h3 class="code-line has-line-data" data-line-start="128" data-line-end="129"><a id="Caractersticas_tcnicas_128"></a>Características técnicas</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ano de lançamento</td>
+<td>2009</td>
+</tr>
+<tr>
+<td>Nome Wi-Fi</td>
+<td>Wi-Fi 4</td>
+</tr>
+<tr>
+<td>Frequência</td>
+<td>2,4 GHz e 5 GHz (dual-band)</td>
+</tr>
+<tr>
+<td>Velocidade máxima</td>
+<td>Até 600 Mbps</td>
+</tr>
+<tr>
+<td>Modulação</td>
+<td>OFDM com MIMO</td>
+</tr>
+<tr>
+<td>Largura de canal</td>
+<td>Até 40 MHz</td>
+</tr>
+<tr>
+<td>MIMO</td>
+<td>Sim — até 4×4 MIMO</td>
+</tr>
+<tr>
+<td>Alcance interior</td>
+<td>Até 70 m</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="141" data-line-end="142"><a id="Principais_caractersticas_141"></a>Principais características</h3>
+<ul>
+<li class="has-line-data" data-line-start="143" data-line-end="144"><strong>Introdução do MIMO</strong> (<em>Multiple Input Multiple Output</em>): uso de múltiplas antenas para enviar e receber dados simultaneamente</li>
+<li class="has-line-data" data-line-start="144" data-line-end="145"><strong>Dual-band</strong>: pode operar em 2,4 GHz e 5 GHz ao mesmo tempo</li>
+<li class="has-line-data" data-line-start="145" data-line-end="146"><strong>Agregação de canais (bonding)</strong>: canais de 40 MHz duplicam a largura de banda disponível</li>
+<li class="has-line-data" data-line-start="146" data-line-end="147">Técnica de beamforming (opcional)</li>
+<li class="has-line-data" data-line-start="147" data-line-end="149">Melhora significativa de alcance e throughput em relação às gerações anteriores</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="149" data-line-end="150">O Wi-Fi 4 foi um salto tecnológico enorme. O MIMO permitiu múltiplos fluxos de dados simultâneos, multiplicando a capacidade de transmissão.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="153" data-line-end="154"><a id="7_Padro_80211ac_WiFi_5_2013_153"></a>7. Padrão 802.11ac — Wi-Fi 5 (2013)</h2>
+<h3 class="code-line has-line-data" data-line-start="155" data-line-end="156"><a id="Caractersticas_tcnicas_155"></a>Características técnicas</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ano de lançamento</td>
+<td>2013</td>
+</tr>
+<tr>
+<td>Nome Wi-Fi</td>
+<td>Wi-Fi 5</td>
+</tr>
+<tr>
+<td>Frequência</td>
+<td>5 GHz (exclusivamente)</td>
+</tr>
+<tr>
+<td>Velocidade máxima</td>
+<td>Até 3,5 Gbps</td>
+</tr>
+<tr>
+<td>Modulação</td>
+<td>256-QAM com OFDM</td>
+</tr>
+<tr>
+<td>Largura de canal</td>
+<td>Até 160 MHz</td>
+</tr>
+<tr>
+<td>MIMO</td>
+<td>MU-MIMO — até 8 fluxos espaciais</td>
+</tr>
+<tr>
+<td>Alcance interior</td>
+<td>~35 m</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="168" data-line-end="169"><a id="Principais_caractersticas_168"></a>Principais características</h3>
+<ul>
+<li class="has-line-data" data-line-start="170" data-line-end="171">Opera <strong>exclusivamente em 5 GHz</strong> — menos interferências que a faixa 2,4 GHz</li>
+<li class="has-line-data" data-line-start="171" data-line-end="172"><strong>MU-MIMO</strong> (<em>Multi-User MIMO</em>): atende múltiplos clientes simultaneamente (downlink)</li>
+<li class="has-line-data" data-line-start="172" data-line-end="173">Canais de até 160 MHz para maior throughput</li>
+<li class="has-line-data" data-line-start="173" data-line-end="174">Beamforming explícito padronizado (maior precisão de feixe)</li>
+<li class="has-line-data" data-line-start="174" data-line-end="175">Modulação 256-QAM — mais eficiente que o 64-QAM do 802.11n</li>
+<li class="has-line-data" data-line-start="175" data-line-end="177">Wave 2: introdução do MU-MIMO com até 4 clientes simultâneos</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="177" data-line-end="178">O Wi-Fi 5 foi a geração padrão em roteadores domésticos e corporativos de 2013 a 2021, inaugurando a era do “gigabit wireless”.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="181" data-line-end="182"><a id="8_Padro_80211ax_WiFi_6_WiFi_6E_2021_181"></a>8. Padrão 802.11ax — Wi-Fi 6 / Wi-Fi 6E (2021)</h2>
+<h3 class="code-line has-line-data" data-line-start="183" data-line-end="184"><a id="Caractersticas_tcnicas_183"></a>Características técnicas</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ano de lançamento</td>
+<td>2021</td>
+</tr>
+<tr>
+<td>Nome Wi-Fi</td>
+<td>Wi-Fi 6 / Wi-Fi 6E</td>
+</tr>
+<tr>
+<td>Frequência</td>
+<td>2,4 GHz + 5 GHz + 6 GHz (Wi-Fi 6E)</td>
+</tr>
+<tr>
+<td>Velocidade máxima</td>
+<td>Até 9,6 Gbps</td>
+</tr>
+<tr>
+<td>Modulação</td>
+<td>1024-QAM com OFDMA</td>
+</tr>
+<tr>
+<td>Largura de canal</td>
+<td>Até 160 MHz (novos canais em 6 GHz)</td>
+</tr>
+<tr>
+<td>MIMO</td>
+<td>MU-MIMO — até 8 fluxos (uplink e downlink)</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="195" data-line-end="196"><a id="Principais_caractersticas_195"></a>Principais características</h3>
+<ul>
+<li class="has-line-data" data-line-start="197" data-line-end="198"><strong>OFDMA</strong> (<em>Orthogonal Frequency Division Multiple Access</em>): divide os canais em sub-canais menores (<em>Resource Units</em>), permitindo atender múltiplos usuários ao mesmo tempo</li>
+<li class="has-line-data" data-line-start="198" data-line-end="199"><strong>Wi-Fi 6E</strong>: abre a faixa de 6 GHz — 59 novos canais de 80 MHz e 29 canais de 160 MHz</li>
+<li class="has-line-data" data-line-start="199" data-line-end="200"><strong>BSS Coloring</strong>: reduz interferências entre redes Wi-Fi próximas</li>
+<li class="has-line-data" data-line-start="200" data-line-end="201"><strong>Target Wake Time (TWT)</strong>: melhora dramática na eficiência energética de dispositivos IoT</li>
+<li class="has-line-data" data-line-start="201" data-line-end="202">MU-MIMO em uplink — maior eficiência em ambientes densos (escritórios, hospitais, estádios)</li>
+<li class="has-line-data" data-line-start="202" data-line-end="204">Ideal para ambientes com alta densidade de dispositivos conectados</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="204" data-line-end="205">O Wi-Fi 6E abriu uma faixa completamente nova e menos congestionada, revolucionando redes em ambientes com muitos dispositivos.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="208" data-line-end="209"><a id="9_Padro_80211be_WiFi_7_2024_208"></a>9. Padrão 802.11be — Wi-Fi 7 (2024)</h2>
+<h3 class="code-line has-line-data" data-line-start="210" data-line-end="211"><a id="Caractersticas_tcnicas_210"></a>Características técnicas</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ano de lançamento</td>
+<td>2024</td>
+</tr>
+<tr>
+<td>Nome Wi-Fi</td>
+<td>Wi-Fi 7</td>
+</tr>
+<tr>
+<td>Frequência</td>
+<td>2,4 GHz + 5 GHz + 6 GHz</td>
+</tr>
+<tr>
+<td>Velocidade máxima</td>
+<td>Até 46 Gbps</td>
+</tr>
+<tr>
+<td>Modulação</td>
+<td>4096-QAM (4K-QAM)</td>
+</tr>
+<tr>
+<td>Largura de canal</td>
+<td>Até 320 MHz</td>
+</tr>
+<tr>
+<td>MIMO</td>
+<td>MU-MIMO — até 16 fluxos espaciais</td>
+</tr>
+<tr>
+<td>Latência</td>
+<td>&lt; 1 ms (condições ideais)</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="223" data-line-end="224"><a id="Principais_caractersticas_223"></a>Principais características</h3>
+<ul>
+<li class="has-line-data" data-line-start="225" data-line-end="226"><strong>Multi-Link Operation (MLO)</strong>: usa múltiplas bandas simultaneamente como um único canal virtual — principal inovação do Wi-Fi 7</li>
+<li class="has-line-data" data-line-start="226" data-line-end="227">Canais de até 320 MHz — o dobro do Wi-Fi 6</li>
+<li class="has-line-data" data-line-start="227" data-line-end="228"><strong>4K-QAM (4096-QAM)</strong>: 20% mais eficiência espectral em comparação ao 1024-QAM</li>
+<li class="has-line-data" data-line-start="228" data-line-end="229">Latência ultra-baixa, ideal para AR/VR e aplicações em tempo real</li>
+<li class="has-line-data" data-line-start="229" data-line-end="230">Suporte a até 16 fluxos espaciais simultâneos</li>
+<li class="has-line-data" data-line-start="230" data-line-end="232">Indicado para streaming 8K, jogos em nuvem, aplicações industriais e ambientes corporativos de alta densidade</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="232" data-line-end="233">O MLO é a grande inovação do Wi-Fi 7: combinar todas as bandas disponíveis como se fossem um único canal, aumentando throughput e reduzindo latência drasticamente.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="236" data-line-end="237"><a id="10_Comparativo_Geral_236"></a>10. Comparativo Geral</h2>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Padrão</th>
+<th>Ano</th>
+<th>Frequência</th>
+<th>Modulação</th>
+<th>Velocidade Máx.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>802.11a</td>
+<td>1999</td>
+<td>5 GHz</td>
+<td>OFDM</td>
+<td>54 Mbps</td>
+</tr>
+<tr>
+<td>802.11b</td>
+<td>1999</td>
+<td>2,4 GHz</td>
+<td>DSSS</td>
+<td>11 Mbps</td>
+</tr>
+<tr>
+<td>802.11g</td>
+<td>2003</td>
+<td>2,4 GHz</td>
+<td>OFDM</td>
+<td>54 Mbps</td>
+</tr>
+<tr>
+<td>802.11n</td>
+<td>2009</td>
+<td>2,4 / 5 GHz</td>
+<td>OFDM + MIMO</td>
+<td>600 Mbps</td>
+</tr>
+<tr>
+<td>802.11ac</td>
+<td>2013</td>
+<td>5 GHz</td>
+<td>256-QAM</td>
+<td>3,5 Gbps</td>
+</tr>
+<tr>
+<td>802.11ax</td>
+<td>2021</td>
+<td>2,4 / 5 / 6 GHz</td>
+<td>1024-QAM</td>
+<td>9,6 Gbps</td>
+</tr>
+<tr>
+<td>802.11be</td>
+<td>2024</td>
+<td>2,4 / 5 / 6 GHz</td>
+<td>4096-QAM</td>
+<td>46 Gbps</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p class="has-line-data" data-line-start="248" data-line-end="249"><strong>Nota:</strong> Velocidades teóricas máximas em condições ideais. Na prática, o throughput real é menor devido a overhead de protocolo, interferências e distância.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="252" data-line-end="253"><a id="11_Evoluo_das_Principais_Tecnologias_252"></a>11. Evolução das Principais Tecnologias</h2>
+<h3 class="code-line has-line-data" data-line-start="254" data-line-end="255"><a id="Modulao_254"></a>Modulação</h3>
+<p class="has-line-data" data-line-start="256" data-line-end="257">A modulação define como os bits são codificados no sinal de rádio. Quanto maior o esquema de modulação, mais bits por símbolo — e maior a velocidade, desde que o sinal seja forte:</p>
+<ul>
+<li class="has-line-data" data-line-start="258" data-line-end="259"><strong>DSSS</strong> (Direct Sequence Spread Spectrum) — 802.11b</li>
+<li class="has-line-data" data-line-start="259" data-line-end="260"><strong>OFDM</strong> (Orthogonal Frequency Division Multiplexing) — 802.11a/g/n</li>
+<li class="has-line-data" data-line-start="260" data-line-end="261"><strong>256-QAM</strong> — 802.11ac (Wi-Fi 5)</li>
+<li class="has-line-data" data-line-start="261" data-line-end="262"><strong>1024-QAM</strong> — 802.11ax (Wi-Fi 6)</li>
+<li class="has-line-data" data-line-start="262" data-line-end="264"><strong>4096-QAM</strong> — 802.11be (Wi-Fi 7)</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="264" data-line-end="265"><a id="MIMO_e_MUMIMO_264"></a>MIMO e MU-MIMO</h3>
+<ul>
+<li class="has-line-data" data-line-start="266" data-line-end="267"><strong>MIMO</strong> (Wi-Fi 4): múltiplas antenas para múltiplos fluxos — um cliente por vez</li>
+<li class="has-line-data" data-line-start="267" data-line-end="268"><strong>MU-MIMO downlink</strong> (Wi-Fi 5): múltiplos clientes recebendo dados simultaneamente</li>
+<li class="has-line-data" data-line-start="268" data-line-end="269"><strong>MU-MIMO uplink + downlink</strong> (Wi-Fi 6): mais eficiência em ambientes densos</li>
+<li class="has-line-data" data-line-start="269" data-line-end="271"><strong>Até 16 fluxos</strong> (Wi-Fi 7): capacidade massiva de atendimento simultâneo</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="271" data-line-end="272"><a id="Frequncias_271"></a>Frequências</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Faixa</th>
+<th>Característica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2,4 GHz</td>
+<td>Maior alcance, mais interferências, menos canais disponíveis</td>
+</tr>
+<tr>
+<td>5 GHz</td>
+<td>Menor alcance, menos interferências, mais canais</td>
+</tr>
+<tr>
+<td>6 GHz</td>
+<td>Disponível a partir do Wi-Fi 6E — praticamente sem interferências</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="281" data-line-end="282"><a id="12_Resumo_e_Perspectivas_281"></a>12. Resumo e Perspectivas</h2>
+<p class="has-line-data" data-line-start="283" data-line-end="284">A evolução do padrão 802.11 representa um aumento de velocidade de mais de <strong>23.000×</strong> em 27 anos — de 2 Mbps (1997) para 46 Gbps (Wi-Fi 7, 2024).</p>
+<p class="has-line-data" data-line-start="285" data-line-end="286">Cada geração trouxe não apenas mais velocidade, mas novas tecnologias que mudaram a forma como redes sem fio funcionam:</p>
+<ul>
+<li class="has-line-data" data-line-start="287" data-line-end="288"><strong>802.11a/b/g</strong> — estabeleceram a base do Wi-Fi</li>
+<li class="has-line-data" data-line-start="288" data-line-end="289"><strong>802.11n</strong> — introduziu MIMO e dual-band</li>
+<li class="has-line-data" data-line-start="289" data-line-end="290"><strong>802.11ac</strong> — levou o Wi-Fi ao nível gigabit</li>
+<li class="has-line-data" data-line-start="290" data-line-end="291"><strong>802.11ax</strong> — focou em eficiência em ambientes densos</li>
+<li class="has-line-data" data-line-start="291" data-line-end="293"><strong>802.11be</strong> — integra múltiplas bandas e atinge latências ultrabaixas</li>
+</ul>
+<p class="has-line-data" data-line-start="293" data-line-end="294">O futuro aponta para redes sem fio cada vez mais integradas a aplicações de <strong>IoT, AR/VR, automação industrial e 5G</strong>, com o Wi-Fi 7 como a principal tecnologia de acesso sem fio de alta performance para os próximos anos.</p>
+<hr>
+<p class="has-line-data" data-line-start="297" data-line-end="298"><em>Referência: IEEE Std 802.11 — Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY) Specifications</em></p>
+
+</body>
+</html>
