@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução a Python</title>
+  <style>
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css");
+
+  body {
+    font-family: Georgia, Cambria, serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #373D49;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  a { color: #35D7BB; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: "Ubuntu Mono", Monaco, monospace;
+    background: #F5F7FA;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  pre {
+    background: #F5F7FA;
+    padding: 1em;
+    border-radius: 3px;
+    overflow-x: auto;
+  }
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    color: #333;
+  }
+  pre code { background: none; padding: 0; }
+  blockquote {
+    border-left: 3px solid #A0AABF;
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    color: #666;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #E8E8E8;
+    padding: 0.5em;
+    text-align: left;
+  }
+  th {
+    background: #F5F7FA;
+    font-weight: 600;
+  }
+  #preview .table {
+    width: auto;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+</style>
+</head>
+<body id="preview">
+<h1 class="code-line has-line-data" data-line-start="0" data-line-end="1"><a id="Arquiteturas_32_e_64_bits_0"></a>Arquiteturas 32 e 64 bits</h1>
+<p class="has-line-data" data-line-start="1" data-line-end="4"><strong>Disciplina:</strong> Administração de Sistemas Proprietários<br>
+<strong>Turma:</strong> Redes — 2º ano<br>
+<strong>Duração:</strong> 2 aulas</p>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="7" data-line-end="8"><a id="1_O_que_arquitetura_de_bits_7"></a>1. O que é arquitetura de bits?</h2>
+<p class="has-line-data" data-line-start="9" data-line-end="10">A arquitetura de bits de um processador define o tamanho das palavras de dados que ele processa internamente — ou seja, quantos bits ele consegue operar de uma só vez. Isso inclui o tamanho dos <strong>registradores</strong>, do <strong>barramento de endereços</strong> e do <strong>barramento de dados</strong>.</p>
+<p class="has-line-data" data-line-start="11" data-line-end="12">Essa característica afeta diretamente três pilares:</p>
+<ul>
+<li class="has-line-data" data-line-start="13" data-line-end="14">A quantidade de memória RAM endereçável;</li>
+<li class="has-line-data" data-line-start="14" data-line-end="15">A precisão dos cálculos realizados;</li>
+<li class="has-line-data" data-line-start="15" data-line-end="17">A velocidade do processamento de dados.</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="17" data-line-end="18"><strong>Analogia:</strong> Pense em registradores como caixotes de transporte. Um processador de 32 bits carrega 32 itens por viagem; o de 64 bits carrega 64. Com mais capacidade por viagem, o trabalho termina mais rápido.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="21" data-line-end="22"><a id="2_CPU_diferenas_de_hardware_21"></a>2. CPU: diferenças de hardware</h2>
+<h3 class="code-line has-line-data" data-line-start="23" data-line-end="24"><a id="21_Comparao_entre_x86_32_bits_e_x8664_64_bits_23"></a>2.1 Comparação entre x86 (32 bits) e x86-64 (64 bits)</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>32 bits (x86)</th>
+<th>64 bits (x86-64)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tamanho dos registradores</td>
+<td>32 bits</td>
+<td>64 bits</td>
+</tr>
+<tr>
+<td>RAM máxima endereçável</td>
+<td>4 GB</td>
+<td>Teórico: 16 EB</td>
+</tr>
+<tr>
+<td>Espaço de endereços</td>
+<td>2³² ≈ 4 bilhões</td>
+<td>2⁶⁴ (enorme)</td>
+</tr>
+<tr>
+<td>Registradores de uso geral</td>
+<td>8</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Extensão de memória (PAE)</td>
+<td>Até 64 GB*</td>
+<td>Não se aplica</td>
+</tr>
+<tr>
+<td>Paralelismo de instruções</td>
+<td>Menor</td>
+<td>Maior</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p class="has-line-data" data-line-start="34" data-line-end="35">* O PAE (Physical Address Extension) permite que processadores x86 acessem mais memória física, mas cada processo individual ainda fica limitado a 4 GB.</p>
+</blockquote>
+<h3 class="code-line has-line-data" data-line-start="36" data-line-end="37"><a id="22_O_limite_dos_4_GB_no_x86_36"></a>2.2 O limite dos 4 GB no x86</h3>
+<p class="has-line-data" data-line-start="38" data-line-end="39">O barramento de endereços de 32 bits gera exatamente <strong>2³² = 4.294.967.296</strong> posições de memória. Contudo, parte desse espaço é reservada para dispositivos de hardware (BIOS, placas de vídeo, chipset), reduzindo a RAM utilizável para aproximadamente <strong>3,2 a 3,5 GB</strong> na prática.</p>
+<p class="has-line-data" data-line-start="40" data-line-end="41">Processadores 64 bits duplicaram o número de registradores de uso geral (de 8 para 16 no x86-64), o que reduz os acessos à memória durante cálculos intensivos, melhorando a performance geral.</p>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="44" data-line-end="45"><a id="3_Sistemas_Operacionais_edies_32_vs_64_bits_44"></a>3. Sistemas Operacionais: edições 32 vs 64 bits</h2>
+<p class="has-line-data" data-line-start="46" data-line-end="47">O SO precisa ser compilado para a arquitetura alvo. Um sistema operacional 64 bits explora todos os recursos do processador, enquanto um SO 32 bits instalado em hardware 64 bits desperdiça capacidade e impõe os mesmos limites de RAM.</p>
+<h3 class="code-line has-line-data" data-line-start="48" data-line-end="49"><a id="31_Windows_verses_e_suporte_48"></a>3.1 Windows — versões e suporte</h3>
+<ul>
+<li class="has-line-data" data-line-start="50" data-line-end="51">O <strong>Windows XP</strong> foi o primeiro a ter ampla adoção em versão 64 bits (2005).</li>
+<li class="has-line-data" data-line-start="51" data-line-end="52">O <strong>Windows 10/11 64 bits</strong> é o padrão atual do mercado.</li>
+<li class="has-line-data" data-line-start="52" data-line-end="53">O <strong>Windows 11</strong> abandonou completamente o suporte a 32 bits — é exigido hardware 64 bits com TPM 2.0.</li>
+<li class="has-line-data" data-line-start="53" data-line-end="55">Versões 32 bits do Windows suportam no máximo <strong>4 GB de RAM</strong>; versões 64 bits chegam a <strong>128 GB</strong> (Home) e <strong>2 TB</strong> (Pro/Enterprise).</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="55" data-line-end="56"><a id="32_Linux_compatibilidade_e_distribuies_55"></a>3.2 Linux — compatibilidade e distribuições</h3>
+<ul>
+<li class="has-line-data" data-line-start="57" data-line-end="58">Distribuições modernas como <strong>Ubuntu 20.04+</strong> eliminaram as ISOs 32 bits para desktop.</li>
+<li class="has-line-data" data-line-start="58" data-line-end="59">O kernel Linux 64 bits suporta até <strong>128 TB</strong> de memória física em arquitetura x86-64.</li>
+<li class="has-line-data" data-line-start="59" data-line-end="61">Ainda existem imagens 32 bits para hardware legado, IoT e sistemas embarcados.</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="61" data-line-end="62"><a id="33_Modo_de_compatibilidade_e_subsistemas_61"></a>3.3 Modo de compatibilidade e subsistemas</h3>
+<p class="has-line-data" data-line-start="63" data-line-end="64">SOs 64 bits implementam camadas de compatibilidade para executar software antigo:</p>
+<ul>
+<li class="has-line-data" data-line-start="65" data-line-end="66"><strong>Windows:</strong> o subsistema <strong>WoW64</strong> (Windows on Windows 64) permite executar aplicativos 32 bits em um SO 64 bits sem virtualização.</li>
+<li class="has-line-data" data-line-start="66" data-line-end="68"><strong>Linux:</strong> as bibliotecas <code>lib32</code> cumprem papel equivalente, permitindo rodar binários 32 bits em sistemas 64 bits.</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="70" data-line-end="71"><a id="4_Aplicativos_impactos_e_escolhas_70"></a>4. Aplicativos: impactos e escolhas</h2>
+<p class="has-line-data" data-line-start="72" data-line-end="73">Um aplicativo precisa ser compilado para a arquitetura alvo. Um binário 32 bits roda em sistemas 64 bits (via compatibilidade), mas o inverso <strong>não é possível</strong> sem emulação.</p>
+<h3 class="code-line has-line-data" data-line-start="74" data-line-end="75"><a id="41_Comparao_entre_apps_32_e_64_bits_74"></a>4.1 Comparação entre apps 32 e 64 bits</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Característica</th>
+<th>App 32 bits</th>
+<th>App 64 bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memória máxima por processo</td>
+<td>2 GB</td>
+<td>~128 TB (teórico)</td>
+</tr>
+<tr>
+<td>Compatibilidade</td>
+<td>x86 e x64</td>
+<td>Somente x64</td>
+</tr>
+<tr>
+<td>Registradores disponíveis</td>
+<td>8</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Uso atual</td>
+<td>Legado / embarcado</td>
+<td>Padrão moderno</td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="83" data-line-end="84"><a id="42_Quando_a_migrao_para_64_bits_faz_mais_diferena_83"></a>4.2 Quando a migração para 64 bits faz mais diferença?</h3>
+<p class="has-line-data" data-line-start="85" data-line-end="86">Aplicativos que se beneficiam mais da migração são aqueles que processam grandes volumes de dados:</p>
+<ul>
+<li class="has-line-data" data-line-start="87" data-line-end="88">Editores de vídeo e áudio;</li>
+<li class="has-line-data" data-line-start="88" data-line-end="89">Bancos de dados de grande porte;</li>
+<li class="has-line-data" data-line-start="89" data-line-end="90">Servidores de aplicação e web;</li>
+<li class="has-line-data" data-line-start="90" data-line-end="91">Máquinas virtuais (Hyper-V, VMware, VirtualBox);</li>
+<li class="has-line-data" data-line-start="91" data-line-end="93">Ferramentas científicas e de simulação.</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="93" data-line-end="94"><strong>Por que alguns apps ainda usam 32 bits?</strong> Compatibilidade com sistemas legados, menor consumo de memória (ponteiros 32 bits ocupam menos espaço) e código antigo sem manutenção ativa são as razões mais comuns.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="97" data-line-end="98"><a id="5_Desempenho_e_casos_de_uso_97"></a>5. Desempenho e casos de uso</h2>
+<h3 class="code-line has-line-data" data-line-start="99" data-line-end="100"><a id="51_Quando_64_bits_faz_diferena_real_99"></a>5.1 Quando 64 bits faz diferença real?</h3>
+<ul>
+<li class="has-line-data" data-line-start="101" data-line-end="102"><strong>Edição de vídeo e renderização 3D</strong> — precisam de mais de 4 GB de RAM;</li>
+<li class="has-line-data" data-line-start="102" data-line-end="103"><strong>Bancos de dados de grande porte</strong> — indexação de conjuntos massivos de dados;</li>
+<li class="has-line-data" data-line-start="103" data-line-end="104"><strong>Virtualização (Hyper-V, VMware)</strong> — cada VM aloca memória separada;</li>
+<li class="has-line-data" data-line-start="104" data-line-end="105"><strong>Compilação de projetos grandes</strong> — GCC, LLVM se beneficiam de mais memória;</li>
+<li class="has-line-data" data-line-start="105" data-line-end="107"><strong>Servidores web de alto tráfego</strong> — muitos processos simultâneos em memória.</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="107" data-line-end="108"><a id="52_Quando_a_diferena_mnima_107"></a>5.2 Quando a diferença é mínima?</h3>
+<ul>
+<li class="has-line-data" data-line-start="109" data-line-end="110">Navegação web simples e edição de texto;</li>
+<li class="has-line-data" data-line-start="110" data-line-end="111">Sistemas com até 2 GB de RAM instalados;</li>
+<li class="has-line-data" data-line-start="111" data-line-end="112">Dispositivos embarcados com firmware específico (roteadores, switches);</li>
+<li class="has-line-data" data-line-start="112" data-line-end="114">Aplicações de controle industrial com hardware fixo.</li>
+</ul>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="116" data-line-end="117"><a id="6_Resumo_o_que_muda_em_cada_camada_116"></a>6. Resumo: o que muda em cada camada</h2>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Camada</th>
+<th>32 bits → 64 bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>+8 registradores, barramento de endereços duplicado</td>
+</tr>
+<tr>
+<td>Memória endereçável</td>
+<td>4 GB → teoricamente ilimitado</td>
+</tr>
+<tr>
+<td>Sistema Operacional</td>
+<td>Gerenciamento de memória expandido</td>
+</tr>
+<tr>
+<td>Drivers</td>
+<td>Devem ser recompilados para 64 bits</td>
+</tr>
+<tr>
+<td>Aplicativos</td>
+<td>Processo pode usar mais de 2 GB de RAM</td>
+</tr>
+<tr>
+<td>Segurança</td>
+<td>ASLR mais eficaz, DEP/NX obrigatório</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="129" data-line-end="130"><a id="7_Atividade_Avaliativa_10_questes_abertas_129"></a>7. Atividade Avaliativa — 10 questões</h2>
+<p class="has-line-data" data-line-start="131" data-line-end="133"><strong>Valor sugerido:</strong> 1,0 ponto por questão<br>
+<strong>Total:</strong> 10,0 pontos</p>
+<hr>
+<p class="has-line-data" data-line-start="136" data-line-end="137"><strong>Questão 1</strong></p>
+<p class="has-line-data" data-line-start="138" data-line-end="139">Explique o que significa dizer que um processador é de 32 ou 64 bits. Em sua resposta, mencione o papel dos registradores e do barramento de endereços nessa classificação.</p>
+<hr>
+<p class="has-line-data" data-line-start="142" data-line-end="143"><strong>Questão 2</strong></p>
+<p class="has-line-data" data-line-start="144" data-line-end="145">Um técnico afirma que um computador com processador 64 bits e 8 GB de RAM pode rodar qualquer sistema operacional, seja ele de 32 ou 64 bits. Você concorda? Justifique sua resposta indicando as implicações de instalar um SO 32 bits nessa máquina.</p>
+<hr>
+<p class="has-line-data" data-line-start="148" data-line-end="149"><strong>Questão 3</strong></p>
+<p class="has-line-data" data-line-start="150" data-line-end="151">Por que sistemas operacionais de 32 bits limitam o uso de RAM a aproximadamente 4 GB? Faça o cálculo matemático que explica esse limite e diga o que acontece com parte dessa memória na prática.</p>
+<hr>
+<p class="has-line-data" data-line-start="154" data-line-end="155"><strong>Questão 4</strong></p>
+<p class="has-line-data" data-line-start="156" data-line-end="157">O Windows 11 exige hardware 64 bits e não oferece versão 32 bits. Descreva pelo menos três razões técnicas que podem ter levado a Microsoft a tomar essa decisão.</p>
+<hr>
+<p class="has-line-data" data-line-start="160" data-line-end="161"><strong>Questão 5</strong></p>
+<p class="has-line-data" data-line-start="162" data-line-end="163">O que é o subsistema WoW64 no Windows? Explique como ele funciona e em que situação um administrador de sistemas precisaria recorrer a ele.</p>
+<hr>
+<p class="has-line-data" data-line-start="166" data-line-end="167"><strong>Questão 6</strong></p>
+<p class="has-line-data" data-line-start="168" data-line-end="169">Um desenvolvedor precisa criar um aplicativo que processa arquivos de vídeo em 4K e usa mais de 6 GB de dados na memória durante a edição. Para qual arquitetura ele deve compilar o aplicativo? Justifique indicando o limite de memória por processo em aplicações 32 bits.</p>
+<hr>
+<p class="has-line-data" data-line-start="172" data-line-end="173"><strong>Questão 7</strong></p>
+<p class="has-line-data" data-line-start="174" data-line-end="175">Explique por que drivers de dispositivos (como impressoras ou placas de rede) desenvolvidos para sistemas 32 bits geralmente não funcionam em sistemas operacionais 64 bits. O que o fabricante precisa fazer para resolver essa incompatibilidade?</p>
+<hr>
+<p class="has-line-data" data-line-start="178" data-line-end="179"><strong>Questão 8</strong></p>
+<p class="has-line-data" data-line-start="180" data-line-end="181">Em redes de computadores, muitos roteadores e switches utilizam processadores com arquitetura de 32 bits. Isso representa uma limitação relevante nesses dispositivos? Argumente considerando a função e o contexto de uso desses equipamentos.</p>
+<hr>
+<p class="has-line-data" data-line-start="184" data-line-end="185"><strong>Questão 9</strong></p>
+<p class="has-line-data" data-line-start="186" data-line-end="187">Descreva como a migração de 32 para 64 bits impactou a segurança dos sistemas operacionais modernos. Mencione pelo menos dois mecanismos de segurança que se tornam mais eficazes em arquiteturas 64 bits.</p>
+<hr>
+<p class="has-line-data" data-line-start="190" data-line-end="191"><strong>Questão 10</strong></p>
+<p class="has-line-data" data-line-start="192" data-line-end="193">Um cliente solicita a uma empresa de TI a montagem de um servidor para hospedar máquinas virtuais. O técnico responsável sugere adquirir um servidor com 64 GB de RAM e instalar um SO 64 bits. O cliente questiona se não seria mais barato instalar um SO 32 bits para economizar na licença. Como você responderia a esse cliente? Elabore uma justificativa técnica completa.</p>
+<hr>
+<p class="has-line-data" data-line-start="196" data-line-end="197"><em>Disciplina: Administração de Sistemas Proprietários — ETE Professor Paulo Freire</em></p>
+
+</body>
+</html>
