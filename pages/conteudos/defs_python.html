@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Def() Funções em Python</title>
+  <style>
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css");
+
+  body {
+    font-family: Georgia, Cambria, serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #373D49;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  a { color: #35D7BB; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: "Ubuntu Mono", Monaco, monospace;
+    background: #F5F7FA;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  pre {
+    background: #F5F7FA;
+    padding: 1em;
+    border-radius: 3px;
+    overflow-x: auto;
+  }
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    color: #333;
+  }
+  pre code { background: none; padding: 0; }
+  blockquote {
+    border-left: 3px solid #A0AABF;
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    color: #666;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #E8E8E8;
+    padding: 0.5em;
+    text-align: left;
+  }
+  th {
+    background: #F5F7FA;
+    font-weight: 600;
+  }
+  #preview .table {
+    width: auto;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+</style>
+</head>
+<body id="preview">
+<h1 class="code-line has-line-data" data-line-start="0" data-line-end="1"><a id="Funes_em_Python_def_0"></a>Funções em Python — <code>def()</code></h1>
+<blockquote>
+<p class="has-line-data" data-line-start="2" data-line-end="4"><strong>Disciplina:</strong> Programação Aplicada | <strong>Turma:</strong> 2º Ano Redes<br>
+<strong>Objetivo:</strong> Compreender o conceito de funções, sua sintaxe, parâmetros, retorno de valores e escopo de variáveis.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="7" data-line-end="8"><a id="1_O_que_uma_funo_7"></a>1. O que é uma função?</h2>
+<p class="has-line-data" data-line-start="9" data-line-end="10">Uma <strong>função</strong> é um bloco de código nomeado que realiza uma tarefa específica. Você escreve esse bloco <strong>uma vez</strong> e pode executá-lo quantas vezes quiser, simplesmente chamando pelo seu nome.</p>
+<p class="has-line-data" data-line-start="11" data-line-end="12">Pense em funções como “receitas”: você escreve a receita do bolo uma vez, e pode fazer o bolo quantas vezes quiser sem precisar reescrever as instruções.</p>
+<h3 class="code-line has-line-data" data-line-start="13" data-line-end="14"><a id="Por_que_usar_funes_13"></a>Por que usar funções?</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Vantagem</th>
+<th>Explicação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evita repetição</strong></td>
+<td>Escreva o código uma vez, use várias vezes (princípio DRY — <em>Don’t Repeat Yourself</em>)</td>
+</tr>
+<tr>
+<td><strong>Organização</strong></td>
+<td>Divide o programa em partes menores e mais fáceis de entender</td>
+</tr>
+<tr>
+<td><strong>Manutenção</strong></td>
+<td>Para corrigir um erro, você muda em um só lugar</td>
+</tr>
+<tr>
+<td><strong>Reutilização</strong></td>
+<td>A mesma função pode ser usada em projetos diferentes</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="24" data-line-end="25"><a id="2_Sintaxe_bsica_24"></a>2. Sintaxe básica</h2>
+<pre><code class="has-line-data language-python" data-line-start="27" data-line-end="32"><span class="hljs-keyword">def</span> <span class="hljs-title function_">nome_da_funcao</span>(<span class="hljs-params">parametros</span>):
+    <span class="hljs-comment"># corpo da função (indentado com 4 espaços)</span>
+    <span class="hljs-comment"># instruções...</span>
+    <span class="hljs-keyword">return</span> valor  <span class="hljs-comment"># opcional</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="33" data-line-end="34"><a id="Explicando_cada_parte_33"></a>Explicando cada parte:</h3>
+<ul>
+<li class="has-line-data" data-line-start="35" data-line-end="36"><strong><code>def</code></strong> → palavra-chave que inicia a definição da função</li>
+<li class="has-line-data" data-line-start="36" data-line-end="37"><strong><code>nome_da_funcao</code></strong> → identificador escolhido por você (use <code>snake_case</code>, ex: <code>calcular_media</code>)</li>
+<li class="has-line-data" data-line-start="37" data-line-end="38"><strong><code>(parametros)</code></strong> → dados de entrada que a função pode receber (pode ser vazio: <code>()</code>)</li>
+<li class="has-line-data" data-line-start="38" data-line-end="39"><strong><code>:</code></strong> → dois-pontos obrigatórios após o cabeçalho</li>
+<li class="has-line-data" data-line-start="39" data-line-end="40"><strong>corpo</strong> → bloco de código indentado (4 espaços ou 1 Tab)</li>
+<li class="has-line-data" data-line-start="40" data-line-end="42"><strong><code>return</code></strong> → devolve um valor ao ponto de chamada (opcional)</li>
+</ul>
+<blockquote>
+<p class="has-line-data" data-line-start="42" data-line-end="43">⚠️ <strong>Atenção:</strong> Em Python, a indentação <strong>não é opcional</strong> — ela faz parte da sintaxe. Todo o corpo da função precisa estar indentado.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="46" data-line-end="47"><a id="3_Funo_sem_parmetros_46"></a>3. Função sem parâmetros</h2>
+<p class="has-line-data" data-line-start="48" data-line-end="49">A forma mais simples: a função executa sempre o mesmo comportamento, sem receber dados externos.</p>
+<pre><code class="has-line-data language-python" data-line-start="51" data-line-end="57"><span class="hljs-keyword">def</span> <span class="hljs-title function_">saudacao</span>():
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Olá! Bem-vindo à aula de Python!&quot;</span>)
+
+<span class="hljs-comment"># Chamando a função:</span>
+saudacao()
+</code></pre>
+<p class="has-line-data" data-line-start="58" data-line-end="59"><strong>Saída:</strong></p>
+<pre><code class="has-line-data" data-line-start="60" data-line-end="62">Olá! Bem-vindo à aula de Python!
+</code></pre>
+<p class="has-line-data" data-line-start="63" data-line-end="64">Perceba que primeiro <strong>definimos</strong> a função com <code>def</code>, e depois a <strong>chamamos</strong> pelo nome seguido de parênteses. Sem os parênteses, Python apenas referencia a função sem executá-la.</p>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="67" data-line-end="68"><a id="4_Funo_com_parmetros_67"></a>4. Função com parâmetros</h2>
+<p class="has-line-data" data-line-start="69" data-line-end="70">Parâmetros são variáveis que a função recebe como entrada. Eles permitem que a função trabalhe com dados diferentes a cada chamada.</p>
+<pre><code class="has-line-data language-python" data-line-start="72" data-line-end="80"><span class="hljs-keyword">def</span> <span class="hljs-title function_">saudacao</span>(<span class="hljs-params">nome</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Olá, <span class="hljs-subst">{nome}</span>! Seja bem-vindo.&quot;</span>)
+
+<span class="hljs-comment"># Chamando com argumentos diferentes:</span>
+saudacao(<span class="hljs-string">&quot;Ana&quot;</span>)      <span class="hljs-comment"># saída: Olá, Ana! Seja bem-vindo.</span>
+saudacao(<span class="hljs-string">&quot;Carlos&quot;</span>)   <span class="hljs-comment"># saída: Olá, Carlos! Seja bem-vindo.</span>
+saudacao(<span class="hljs-string">&quot;Turma&quot;</span>)    <span class="hljs-comment"># saída: Olá, Turma! Seja bem-vindo.</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="81" data-line-end="82"><strong>Terminologia importante:</strong></p>
+<ul>
+<li class="has-line-data" data-line-start="82" data-line-end="83"><strong>Parâmetro</strong> → a variável no cabeçalho da função: <code>def saudacao(nome)</code></li>
+<li class="has-line-data" data-line-start="83" data-line-end="84"><strong>Argumento</strong> → o valor passado na chamada: <code>saudacao(&quot;Ana&quot;)</code></li>
+</ul>
+</blockquote>
+<h3 class="code-line has-line-data" data-line-start="85" data-line-end="86"><a id="Funo_com_mltiplos_parmetros_85"></a>Função com múltiplos parâmetros</h3>
+<pre><code class="has-line-data language-python" data-line-start="88" data-line-end="95"><span class="hljs-keyword">def</span> <span class="hljs-title function_">apresentar</span>(<span class="hljs-params">nome, idade, cidade</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Nome: <span class="hljs-subst">{nome}</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Idade: <span class="hljs-subst">{idade}</span> anos&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Cidade: <span class="hljs-subst">{cidade}</span>&quot;</span>)
+
+apresentar(<span class="hljs-string">&quot;Maria&quot;</span>, <span class="hljs-number">17</span>, <span class="hljs-string">&quot;Recife&quot;</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="96" data-line-end="97"><strong>Saída:</strong></p>
+<pre><code class="has-line-data" data-line-start="98" data-line-end="102">Nome: Maria
+Idade: 17 anos
+Cidade: Recife
+</code></pre>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="105" data-line-end="106"><a id="5_Retorno_de_valores_com_return_105"></a>5. Retorno de valores com <code>return</code></h2>
+<p class="has-line-data" data-line-start="107" data-line-end="108">A instrução <code>return</code> faz a função <strong>devolver um resultado</strong> que pode ser armazenado em uma variável ou usado em expressões.</p>
+<pre><code class="has-line-data language-python" data-line-start="110" data-line-end="121"><span class="hljs-keyword">def</span> <span class="hljs-title function_">somar</span>(<span class="hljs-params">a, b</span>):
+    resultado = a + b
+    <span class="hljs-keyword">return</span> resultado
+
+<span class="hljs-comment"># O valor retornado pode ser guardado:</span>
+total = somar(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)
+<span class="hljs-built_in">print</span>(total)          <span class="hljs-comment"># saída: 15</span>
+
+<span class="hljs-comment"># Ou usado diretamente em expressões:</span>
+<span class="hljs-built_in">print</span>(somar(<span class="hljs-number">3</span>, <span class="hljs-number">7</span>) * <span class="hljs-number">2</span>)  <span class="hljs-comment"># saída: 20</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="122" data-line-end="123"><a id="Diferena_entre_print_e_return_122"></a>Diferença entre <code>print()</code> e <code>return</code></h3>
+<p class="has-line-data" data-line-start="124" data-line-end="125">Esta é uma das confusões mais comuns entre iniciantes:</p>
+<pre><code class="has-line-data language-python" data-line-start="127" data-line-end="142"><span class="hljs-comment"># Com print: exibe na tela, mas não retorna nada utilizável</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">dobrar_print</span>(<span class="hljs-params">x</span>):
+    <span class="hljs-built_in">print</span>(x * <span class="hljs-number">2</span>)
+
+<span class="hljs-comment"># Com return: devolve o valor para quem chamou</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">dobrar_return</span>(<span class="hljs-params">x</span>):
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">2</span>
+
+<span class="hljs-comment"># Testando a diferença:</span>
+a = dobrar_print(<span class="hljs-number">5</span>)    <span class="hljs-comment"># exibe 10 na tela</span>
+<span class="hljs-built_in">print</span>(a)               <span class="hljs-comment"># exibe: None  ← a função não retornou nada!</span>
+
+b = dobrar_return(<span class="hljs-number">5</span>)   <span class="hljs-comment"># não exibe nada</span>
+<span class="hljs-built_in">print</span>(b)               <span class="hljs-comment"># exibe: 10  ← o valor foi guardado em b</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="143" data-line-end="144">💡 <strong>Regra prática:</strong> Use <code>return</code> quando quiser <strong>usar o resultado</strong> da função em outras operações. Use <code>print()</code> apenas para exibir informação ao usuário.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="147" data-line-end="148"><a id="6_Parmetros_com_valor_padro_default_147"></a>6. Parâmetros com valor padrão (default)</h2>
+<p class="has-line-data" data-line-start="149" data-line-end="150">Você pode definir um valor padrão para um parâmetro. Se o argumento não for passado na chamada, o valor padrão é usado automaticamente.</p>
+<pre><code class="has-line-data language-python" data-line-start="152" data-line-end="159"><span class="hljs-keyword">def</span> <span class="hljs-title function_">potencia</span>(<span class="hljs-params">base, expoente=<span class="hljs-number">2</span></span>):
+    <span class="hljs-keyword">return</span> base ** expoente
+
+<span class="hljs-built_in">print</span>(potencia(<span class="hljs-number">3</span>))      <span class="hljs-comment"># 9  → usa expoente=2 (padrão)</span>
+<span class="hljs-built_in">print</span>(potencia(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>))   <span class="hljs-comment"># 27 → sobrescreve: usa expoente=3</span>
+<span class="hljs-built_in">print</span>(potencia(<span class="hljs-number">2</span>, <span class="hljs-number">10</span>))  <span class="hljs-comment"># 1024</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="160" data-line-end="161">⚠️ <strong>Regra:</strong> Parâmetros com valor padrão devem vir <strong>depois</strong> dos parâmetros sem padrão.</p>
+<pre><code class="has-line-data language-python" data-line-start="163" data-line-end="169"><span class="hljs-keyword">def</span> <span class="hljs-title function_">funcao</span>(<span class="hljs-params">a, b=<span class="hljs-number">10</span></span>):   <span class="hljs-comment"># ✅ correto</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">funcao</span>(<span class="hljs-params">a=<span class="hljs-number">10</span>, b</span>):   <span class="hljs-comment"># ❌ SyntaxError</span>
+    <span class="hljs-keyword">pass</span>
+</code></pre>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="172" data-line-end="173"><a id="7_Escopo_de_variveis_172"></a>7. Escopo de variáveis</h2>
+<p class="has-line-data" data-line-start="174" data-line-end="175"><strong>Escopo</strong> define onde uma variável pode ser acessada no programa.</p>
+<ul>
+<li class="has-line-data" data-line-start="176" data-line-end="177"><strong>Variável local:</strong> criada dentro de uma função. Existe apenas enquanto a função executa.</li>
+<li class="has-line-data" data-line-start="177" data-line-end="179"><strong>Variável global:</strong> criada fora de qualquer função. Pode ser lida de dentro das funções.</li>
+</ul>
+<pre><code class="has-line-data language-python" data-line-start="180" data-line-end="192">x = <span class="hljs-number">100</span>  <span class="hljs-comment"># variável global</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">minha_funcao</span>():
+    y = <span class="hljs-number">50</span>  <span class="hljs-comment"># variável local</span>
+    <span class="hljs-built_in">print</span>(x)  <span class="hljs-comment"># ✅ pode ler variável global: 100</span>
+    <span class="hljs-built_in">print</span>(y)  <span class="hljs-comment"># ✅ variável local: 50</span>
+
+minha_funcao()
+
+<span class="hljs-built_in">print</span>(x)  <span class="hljs-comment"># ✅ funciona: 100</span>
+<span class="hljs-built_in">print</span>(y)  <span class="hljs-comment"># ❌ NameError: y não existe fora da função!</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="193" data-line-end="194"><a id="Visualizando_o_escopo_193"></a>Visualizando o escopo:</h3>
+<pre><code class="has-line-data" data-line-start="196" data-line-end="209">┌─────────────────────────────────────┐
+│  ESCOPO GLOBAL                      │
+│  x = 100                            │
+│                                     │
+│  ┌────────────────────────────────┐ │
+│  │  ESCOPO LOCAL (minha_funcao)   │ │
+│  │  y = 50                        │ │
+│  │  pode ler x ✅                 │ │
+│  └────────────────────────────────┘ │
+│                                     │
+│  não pode ler y ❌                  │
+└─────────────────────────────────────┘
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="210" data-line-end="211">💡 <strong>Boa prática:</strong> Evite depender de variáveis globais dentro das funções. Prefira passar os dados como parâmetros — isso torna o código mais previsível e fácil de testar.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="214" data-line-end="215"><a id="8_Resumo_da_sintaxe_214"></a>8. Resumo da sintaxe</h2>
+<pre><code class="has-line-data language-python" data-line-start="217" data-line-end="241"><span class="hljs-comment"># Sem parâmetros, sem retorno</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">mensagem</span>():
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Olá!&quot;</span>)
+
+<span class="hljs-comment"># Com parâmetros, sem retorno</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">cumprimentar</span>(<span class="hljs-params">nome</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Olá, <span class="hljs-subst">{nome}</span>!&quot;</span>)
+
+<span class="hljs-comment"># Com parâmetros e com retorno</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">multiplicar</span>(<span class="hljs-params">a, b</span>):
+    <span class="hljs-keyword">return</span> a * b
+
+<span class="hljs-comment"># Com parâmetro padrão</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">elevar</span>(<span class="hljs-params">base, exp=<span class="hljs-number">2</span></span>):
+    <span class="hljs-keyword">return</span> base ** exp
+
+<span class="hljs-comment"># Chamadas:</span>
+mensagem()
+cumprimentar(<span class="hljs-string">&quot;João&quot;</span>)
+resultado = multiplicar(<span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+<span class="hljs-built_in">print</span>(resultado)             <span class="hljs-comment"># 20</span>
+<span class="hljs-built_in">print</span>(elevar(<span class="hljs-number">3</span>))             <span class="hljs-comment"># 9</span>
+<span class="hljs-built_in">print</span>(elevar(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>))          <span class="hljs-comment"># 81</span>
+</code></pre>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="244" data-line-end="245"><a id="9_Exerccios_244"></a>9. Exercícios</h2>
+<blockquote>
+<p class="has-line-data" data-line-start="246" data-line-end="247"><strong>Instruções gerais:</strong></p>
+<ul>
+<li class="has-line-data" data-line-start="247" data-line-end="248">Escreva cada função em um arquivo <code>.py</code> separado ou em um único arquivo organizado por comentários.</li>
+<li class="has-line-data" data-line-start="248" data-line-end="249">Teste sua função com pelo menos <strong>3 chamadas diferentes</strong>.</li>
+<li class="has-line-data" data-line-start="249" data-line-end="250">Leia as dicas apenas se travar por mais de 5 minutos.</li>
+</ul>
+</blockquote>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="253" data-line-end="254"><a id="Exerccio_1_Apresentao_pessoal_Fcil_253"></a>Exercício 1 — Apresentação pessoal 🟢 Fácil</h3>
+<p class="has-line-data" data-line-start="255" data-line-end="256"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="257" data-line-end="258">Crie uma função chamada <code>apresentar()</code> que receba <code>nome</code> e <code>idade</code> como parâmetros e exiba uma mensagem de apresentação formatada.</p>
+<p class="has-line-data" data-line-start="259" data-line-end="260"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="261" data-line-end="267">apresentar(&quot;Maria&quot;, 17)
+→ Olá! Me chamo Maria e tenho 17 anos.
+
+apresentar(&quot;João&quot;, 16)
+→ Olá! Me chamo João e tenho 16 anos.
+</code></pre>
+<p class="has-line-data" data-line-start="268" data-line-end="269"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="271" data-line-end="280"><span class="hljs-keyword">def</span> <span class="hljs-title function_">apresentar</span>(<span class="hljs-params">nome, idade</span>):
+    <span class="hljs-comment"># seu código aqui</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># Teste com 3 chamadas:</span>
+apresentar(<span class="hljs-string">&quot;Maria&quot;</span>, <span class="hljs-number">17</span>)
+apresentar(<span class="hljs-string">&quot;João&quot;</span>, <span class="hljs-number">16</span>)
+apresentar(<span class="hljs-string">&quot;Ana&quot;</span>, <span class="hljs-number">18</span>)
+</code></pre>
+<details>
+<summary>💡 Dica (clique para revelar)</summary>
+<p class="has-line-data" data-line-start="284" data-line-end="285">Use uma f-string para montar a mensagem:</p>
+<pre><code class="has-line-data language-python" data-line-start="286" data-line-end="288"><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Olá! Me chamo <span class="hljs-subst">{nome}</span> e tenho <span class="hljs-subst">{idade}</span> anos.&quot;</span>)
+</code></pre>
+</details>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="293" data-line-end="294"><a id="Exerccio_2_Calculadora_simples_Fcil_293"></a>Exercício 2 — Calculadora simples 🟢 Fácil</h3>
+<p class="has-line-data" data-line-start="295" data-line-end="296"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="297" data-line-end="298">Crie <strong>quatro funções</strong>: <code>somar(a, b)</code>, <code>subtrair(a, b)</code>, <code>multiplicar(a, b)</code> e <code>dividir(a, b)</code>. Cada uma deve <strong>retornar</strong> o resultado da operação. Para a divisão, trate o caso de divisão por zero retornando uma mensagem de erro.</p>
+<p class="has-line-data" data-line-start="299" data-line-end="300"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="301" data-line-end="307">print(somar(10, 3))       → 13
+print(subtrair(10, 3))    → 7
+print(multiplicar(10, 3)) → 30
+print(dividir(10, 3))     → 3.3333...
+print(dividir(10, 0))     → &quot;Erro: divisão por zero&quot;
+</code></pre>
+<p class="has-line-data" data-line-start="308" data-line-end="309"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="311" data-line-end="329"><span class="hljs-keyword">def</span> <span class="hljs-title function_">somar</span>(<span class="hljs-params">a, b</span>):
+    <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">subtrair</span>(<span class="hljs-params">a, b</span>):
+    <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">multiplicar</span>(<span class="hljs-params">a, b</span>):
+    <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">dividir</span>(<span class="hljs-params">a, b</span>):
+    <span class="hljs-keyword">if</span> b == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Erro: divisão por zero&quot;</span>
+    <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+
+<span class="hljs-comment"># Testes:</span>
+<span class="hljs-built_in">print</span>(somar(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>))
+<span class="hljs-built_in">print</span>(dividir(<span class="hljs-number">10</span>, <span class="hljs-number">0</span>))
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<p class="has-line-data" data-line-start="333" data-line-end="334">As operações em Python:</p>
+<ul>
+<li class="has-line-data" data-line-start="334" data-line-end="335">Soma: <code>a + b</code></li>
+<li class="has-line-data" data-line-start="335" data-line-end="336">Subtração: <code>a - b</code></li>
+<li class="has-line-data" data-line-start="336" data-line-end="337">Multiplicação: <code>a * b</code></li>
+<li class="has-line-data" data-line-start="337" data-line-end="339">Divisão: <code>a / b</code></li>
+</ul>
+</details>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="343" data-line-end="344"><a id="Exerccio_3_Par_ou_mpar_Fcil_343"></a>Exercício 3 — Par ou ímpar 🟢 Fácil</h3>
+<p class="has-line-data" data-line-start="345" data-line-end="346"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="347" data-line-end="348">Crie uma função <code>verificar_paridade(numero)</code> que receba um número inteiro e retorne a string <code>&quot;par&quot;</code> ou <code>&quot;ímpar&quot;</code>. Em seguida, use um laço <code>for</code> para verificar e exibir a paridade dos números de 1 a 10.</p>
+<p class="has-line-data" data-line-start="349" data-line-end="350"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="351" data-line-end="357">1 é ímpar
+2 é par
+3 é ímpar
+...
+10 é par
+</code></pre>
+<p class="has-line-data" data-line-start="358" data-line-end="359"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="361" data-line-end="369"><span class="hljs-keyword">def</span> <span class="hljs-title function_">verificar_paridade</span>(<span class="hljs-params">numero</span>):
+    <span class="hljs-keyword">if</span> numero % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+    <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">11</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">{i}</span> é <span class="hljs-subst">{verificar_paridade(i)}</span>&quot;</span>)
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<p class="has-line-data" data-line-start="373" data-line-end="374">O operador <code>%</code> (módulo) retorna o resto da divisão. Se <code>numero % 2 == 0</code>, o número é par (divisível por 2 sem resto).</p>
+</details>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="379" data-line-end="380"><a id="Exerccio_4_Maior_de_trs_nmeros_Mdio_379"></a>Exercício 4 — Maior de três números 🟡 Médio</h3>
+<p class="has-line-data" data-line-start="381" data-line-end="382"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="383" data-line-end="384">Crie uma função <code>maior_de_tres(a, b, c)</code> que receba três números e retorne o maior deles. <strong>Não use a função <code>max()</code> do Python</strong> — implemente a lógica você mesmo usando <code>if</code>. Teste com pelo menos 3 chamadas, incluindo números negativos.</p>
+<p class="has-line-data" data-line-start="385" data-line-end="386"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="387" data-line-end="391">maior_de_tres(4, 9, 2)    → 9
+maior_de_tres(-1, -5, 0)  → 0
+maior_de_tres(7, 7, 3)    → 7
+</code></pre>
+<p class="has-line-data" data-line-start="392" data-line-end="393"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="395" data-line-end="406"><span class="hljs-keyword">def</span> <span class="hljs-title function_">maior_de_tres</span>(<span class="hljs-params">a, b, c</span>):
+    maior = a
+    <span class="hljs-keyword">if</span> b &gt; maior:
+        maior = b
+    <span class="hljs-comment"># continue a lógica para c...</span>
+    <span class="hljs-keyword">return</span> maior
+
+<span class="hljs-built_in">print</span>(maior_de_tres(<span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">2</span>))
+<span class="hljs-built_in">print</span>(maior_de_tres(-<span class="hljs-number">1</span>, -<span class="hljs-number">5</span>, <span class="hljs-number">0</span>))
+<span class="hljs-built_in">print</span>(maior_de_tres(<span class="hljs-number">7</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>))
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<p class="has-line-data" data-line-start="410" data-line-end="411">Comece assumindo que <code>a</code> é o maior. Depois compare com <code>b</code>: se <code>b &gt; maior</code>, atualize <code>maior = b</code>. Repita para <code>c</code>.</p>
+</details>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="416" data-line-end="417"><a id="Exerccio_5_Fatorial_Mdio_416"></a>Exercício 5 — Fatorial 🟡 Médio</h3>
+<p class="has-line-data" data-line-start="418" data-line-end="419"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="420" data-line-end="421">Crie uma função <code>fatorial(n)</code> que calcule o fatorial de um número inteiro não-negativo usando um laço <code>for</code> ou <code>while</code>. Lembre-se: <code>0! = 1</code> por definição matemática. Exiba o resultado para os números de 0 a 8.</p>
+<p class="has-line-data" data-line-start="422" data-line-end="423"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="424" data-line-end="434">0! = 1
+1! = 1
+2! = 2
+3! = 6
+4! = 24
+5! = 120
+6! = 720
+7! = 5040
+8! = 40320
+</code></pre>
+<p class="has-line-data" data-line-start="435" data-line-end="436"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="438" data-line-end="447"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fatorial</span>(<span class="hljs-params">n</span>):
+    resultado = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n + <span class="hljs-number">1</span>):
+        resultado = resultado * i
+    <span class="hljs-keyword">return</span> resultado
+
+<span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">9</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">{num}</span>! = <span class="hljs-subst">{fatorial(num)}</span>&quot;</span>)
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<p class="has-line-data" data-line-start="451" data-line-end="452">O fatorial é uma multiplicação acumulada: <code>5! = 5 × 4 × 3 × 2 × 1</code>. Use uma variável <code>resultado = 1</code> e multiplique por cada número do laço. O <code>range(1, n+1)</code> gera os números de 1 até n (inclusive).</p>
+</details>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="457" data-line-end="458"><a id="Exerccio_6_Calculadora_de_mdia_com_conceito_Desafio_457"></a>Exercício 6 — Calculadora de média com conceito 🔴 Desafio</h3>
+<p class="has-line-data" data-line-start="459" data-line-end="460"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="461" data-line-end="462">Crie <strong>duas funções</strong>:</p>
+<ol>
+<li class="has-line-data" data-line-start="463" data-line-end="464"><code>calcular_media(notas)</code> → recebe uma <strong>lista</strong> de notas e retorna a média aritmética.</li>
+<li class="has-line-data" data-line-start="464" data-line-end="466"><code>atribuir_conceito(media)</code> → recebe a média e retorna o conceito conforme a tabela:</li>
+</ol>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Média</th>
+<th>Conceito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;= 9.0</td>
+<td>A</td>
+</tr>
+<tr>
+<td>&gt;= 7.0</td>
+<td>B</td>
+</tr>
+<tr>
+<td>&gt;= 5.0</td>
+<td>C</td>
+</tr>
+<tr>
+<td>&lt; 5.0</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+<p class="has-line-data" data-line-start="473" data-line-end="474">No programa principal, peça ao usuário para digitar <strong>4 notas</strong>, armazene em uma lista, chame as duas funções e exiba o resultado final.</p>
+<p class="has-line-data" data-line-start="475" data-line-end="476"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="477" data-line-end="486">Digite a nota 1: 8.5
+Digite a nota 2: 7.0
+Digite a nota 3: 9.0
+Digite a nota 4: 6.5
+
+Notas: [8.5, 7.0, 9.0, 6.5]
+Média: 7.8
+Conceito: B
+</code></pre>
+<p class="has-line-data" data-line-start="487" data-line-end="488"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="490" data-line-end="517"><span class="hljs-keyword">def</span> <span class="hljs-title function_">calcular_media</span>(<span class="hljs-params">notas</span>):
+    soma = <span class="hljs-built_in">sum</span>(notas)
+    <span class="hljs-keyword">return</span> soma / <span class="hljs-built_in">len</span>(notas)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">atribuir_conceito</span>(<span class="hljs-params">media</span>):
+    <span class="hljs-keyword">if</span> media &gt;= <span class="hljs-number">9.0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;A&quot;</span>
+    <span class="hljs-keyword">elif</span> media &gt;= <span class="hljs-number">7.0</span>:
+        <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+    <span class="hljs-keyword">elif</span> media &gt;= <span class="hljs-number">5.0</span>:
+        <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">return</span>  <span class="hljs-comment"># ?</span>
+
+<span class="hljs-comment"># Programa principal:</span>
+notas = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):
+    n = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">f&quot;Digite a nota <span class="hljs-subst">{i + <span class="hljs-number">1</span>}</span>: &quot;</span>))
+    notas.append(n)
+
+media = calcular_media(notas)
+conceito = atribuir_conceito(media)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;\nNotas: <span class="hljs-subst">{notas}</span>&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Média: <span class="hljs-subst">{media:<span class="hljs-number">.1</span>f}</span>&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Conceito: <span class="hljs-subst">{conceito}</span>&quot;</span>)
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<ul>
+<li class="has-line-data" data-line-start="521" data-line-end="522"><code>sum(lista)</code> soma todos os elementos de uma lista.</li>
+<li class="has-line-data" data-line-start="522" data-line-end="523"><code>len(lista)</code> retorna a quantidade de elementos.</li>
+<li class="has-line-data" data-line-start="523" data-line-end="528">Funções podem chamar outras funções! Você pode passar o resultado de <code>calcular_media()</code> direto para <code>atribuir_conceito()</code>:<pre><code class="has-line-data language-python" data-line-start="525" data-line-end="527">conceito = atribuir_conceito(calcular_media(notas))
+</code></pre>
+</li>
+</ul>
+</details>
+<hr>
+<p class="has-line-data" data-line-start="532" data-line-end="533"><em>Programação Aplicada — ETE Professor Paulo Freire</em></p>
+
+</body>
+</html>

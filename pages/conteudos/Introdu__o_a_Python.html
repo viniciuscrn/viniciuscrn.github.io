@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução a Python</title>
+  <style>
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css");
+
+  body {
+    font-family: Georgia, Cambria, serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #373D49;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  a { color: #35D7BB; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code {
+    font-family: "Ubuntu Mono", Monaco, monospace;
+    background: #F5F7FA;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+  }
+  pre {
+    background: #F5F7FA;
+    padding: 1em;
+    border-radius: 3px;
+    overflow-x: auto;
+  }
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    color: #333;
+  }
+  pre code { background: none; padding: 0; }
+  blockquote {
+    border-left: 3px solid #A0AABF;
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    color: #666;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #E8E8E8;
+    padding: 0.5em;
+    text-align: left;
+  }
+  th {
+    background: #F5F7FA;
+    font-weight: 600;
+  }
+  #preview .table {
+    width: auto;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+</style>
+</head>
+<body id="preview">
+<h1 class="code-line has-line-data" data-line-start="0" data-line-end="1"><a id="Aula_01_Introduo_ao_Python_variveis_tipos_de_dados_print_e_input_0"></a>Aula 01 — Introdução ao Python: variáveis, tipos de dados, <code>print()</code> e <code>input()</code></h1>
+<blockquote>
+<p class="has-line-data" data-line-start="2" data-line-end="4"><strong>Disciplina:</strong> Algoritmos e Lógica de Programação | <strong>Turma:</strong> 1º Ano Redes<br>
+<strong>Objetivo:</strong> Compreender o que é Python, como declarar variáveis, os principais tipos de dados e como interagir com o usuário via <code>print()</code> e <code>input()</code>.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="7" data-line-end="8"><a id="1_O_que_Python_7"></a>1. O que é Python?</h2>
+<p class="has-line-data" data-line-start="9" data-line-end="10">Python é uma linguagem de programação de <strong>alto nível</strong>, criada por Guido van Rossum e lançada em 1991. É uma das linguagens mais populares do mundo, usada em áreas como:</p>
+<ul>
+<li class="has-line-data" data-line-start="11" data-line-end="12">Desenvolvimento web (Django, Flask)</li>
+<li class="has-line-data" data-line-start="12" data-line-end="13">Ciência de dados e inteligência artificial</li>
+<li class="has-line-data" data-line-start="13" data-line-end="14">Automação de tarefas</li>
+<li class="has-line-data" data-line-start="14" data-line-end="15">Segurança e redes</li>
+<li class="has-line-data" data-line-start="15" data-line-end="17">Jogos e aplicativos</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="17" data-line-end="18"><a id="Por_que_Python_uma_boa_primeira_linguagem_17"></a>Por que Python é uma boa primeira linguagem?</h3>
+<ul>
+<li class="has-line-data" data-line-start="19" data-line-end="20">Sintaxe próxima do inglês — fácil de ler e escrever</li>
+<li class="has-line-data" data-line-start="20" data-line-end="21">Não precisa declarar tipos de variáveis explicitamente</li>
+<li class="has-line-data" data-line-start="21" data-line-end="22">Erros são claros e descritivos</li>
+<li class="has-line-data" data-line-start="22" data-line-end="24">Enorme comunidade e quantidade de recursos gratuitos</li>
+</ul>
+<h3 class="code-line has-line-data" data-line-start="24" data-line-end="25"><a id="Seu_primeiro_programa_24"></a>Seu primeiro programa</h3>
+<p class="has-line-data" data-line-start="26" data-line-end="27">Abra o Vscode ou qualquer editor de Python e digite:</p>
+<pre><code class="has-line-data language-python" data-line-start="29" data-line-end="31"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Olá, mundo!&quot;</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="32" data-line-end="33"><strong>Saída:</strong></p>
+<pre><code class="has-line-data" data-line-start="34" data-line-end="36">Olá, mundo!
+</code></pre>
+<p class="has-line-data" data-line-start="37" data-line-end="38">Parabéns — você acabou de escrever e executar seu primeiro programa em Python!</p>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="41" data-line-end="42"><a id="2_Comentrios_41"></a>2. Comentários</h2>
+<p class="has-line-data" data-line-start="43" data-line-end="44">Comentários são linhas ignoradas pelo Python — servem para explicar o código para quem vai ler.</p>
+<pre><code class="has-line-data language-python" data-line-start="46" data-line-end="57"><span class="hljs-comment"># Isso é um comentário de linha única</span>
+
+<span class="hljs-comment"># O Python ignora tudo que começa com #</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Isso será executado&quot;</span>)  <span class="hljs-comment"># comentário no final da linha</span>
+
+<span class="hljs-string">&quot;&quot;&quot;
+Isso é um comentário
+de múltiplas linhas
+(tecnicamente é uma string não atribuída)
+&quot;&quot;&quot;</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="58" data-line-end="59">💡 <strong>Bons comentários explicam o “porquê”, não o “o quê”.</strong> O código já mostra o que está sendo feito; o comentário deve explicar a intenção.</p>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="62" data-line-end="63"><a id="3_Variveis_62"></a>3. Variáveis</h2>
+<p class="has-line-data" data-line-start="64" data-line-end="65">Uma <strong>variável</strong> é um espaço na memória do computador onde guardamos um valor. Pense como uma caixa com uma etiqueta: a etiqueta é o nome da variável, e o conteúdo da caixa é o valor armazenado.</p>
+<h3 class="code-line has-line-data" data-line-start="66" data-line-end="67"><a id="Criando_variveis_66"></a>Criando variáveis</h3>
+<p class="has-line-data" data-line-start="68" data-line-end="69">Em Python, basta escrever o nome, o sinal <code>=</code> e o valor:</p>
+<pre><code class="has-line-data language-python" data-line-start="71" data-line-end="76">nome = <span class="hljs-string">&quot;Ana&quot;</span>
+idade = <span class="hljs-number">17</span>
+altura = <span class="hljs-number">1.65</span>
+aprovado = <span class="hljs-literal">True</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="77" data-line-end="78">⚠️ O <code>=</code> em programação <strong>não significa igualdade matemática</strong> — significa <strong>atribuição</strong>: “guarde este valor nesta variável”.</p>
+</blockquote>
+<h3 class="code-line has-line-data" data-line-start="79" data-line-end="80"><a id="Regras_para_nomes_de_variveis_79"></a>Regras para nomes de variáveis</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Regra</th>
+<th>Exemplo válido</th>
+<th>Exemplo inválido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Letras, números e <code>_</code></td>
+<td><code>nota_1</code>, <code>total2</code></td>
+<td><code>nota-1</code>, <code>total 2</code></td>
+</tr>
+<tr>
+<td>Não pode começar com número</td>
+<td><code>media</code>, <code>_valor</code></td>
+<td><code>1media</code>, <code>3total</code></td>
+</tr>
+<tr>
+<td>Case-sensitive (maiúsculas importam)</td>
+<td><code>nome</code> ≠ <code>Nome</code> ≠ <code>NOME</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Não usar palavras reservadas</td>
+<td><code>resultado</code></td>
+<td><code>if</code>, <code>for</code>, <code>return</code></td>
+</tr>
+</tbody>
+</table>
+<h3 class="code-line has-line-data" data-line-start="88" data-line-end="89"><a id="Conveno_snake_case_88"></a>Convenção: snake_case</h3>
+<p class="has-line-data" data-line-start="90" data-line-end="91">Em Python, o padrão é usar <code>snake_case</code> para nomes de variáveis: todas as letras minúsculas, palavras separadas por underscore.</p>
+<pre><code class="has-line-data language-python" data-line-start="93" data-line-end="102"><span class="hljs-comment"># ✅ Bom (snake_case)</span>
+nome_completo = <span class="hljs-string">&quot;João Silva&quot;</span>
+nota_final = <span class="hljs-number">8.5</span>
+quantidade_alunos = <span class="hljs-number">30</span>
+
+<span class="hljs-comment"># ❌ Evitar</span>
+NomeCompleto = <span class="hljs-string">&quot;João Silva&quot;</span>   <span class="hljs-comment"># PascalCase (usado para classes)</span>
+notaFinal = <span class="hljs-number">8.5</span>               <span class="hljs-comment"># camelCase (usado em outras linguagens)</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="103" data-line-end="104"><a id="Variveis_podem_ser_reatribudas_103"></a>Variáveis podem ser reatribuídas</h3>
+<pre><code class="has-line-data language-python" data-line-start="106" data-line-end="115">pontuacao = <span class="hljs-number">0</span>
+<span class="hljs-built_in">print</span>(pontuacao)   <span class="hljs-comment"># 0</span>
+
+pontuacao = <span class="hljs-number">10</span>
+<span class="hljs-built_in">print</span>(pontuacao)   <span class="hljs-comment"># 10</span>
+
+pontuacao = pontuacao + <span class="hljs-number">5</span>
+<span class="hljs-built_in">print</span>(pontuacao)   <span class="hljs-comment"># 15</span>
+</code></pre>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="118" data-line-end="119"><a id="4_Tipos_de_dados_118"></a>4. Tipos de dados</h2>
+<p class="has-line-data" data-line-start="120" data-line-end="121">Cada valor em Python tem um <strong>tipo</strong>. O tipo define quais operações podem ser feitas com aquele valor. Os principais tipos são:</p>
+<h3 class="code-line has-line-data" data-line-start="122" data-line-end="123"><a id="41_int_Nmeros_inteiros_122"></a>4.1 <code>int</code> — Números inteiros</h3>
+<p class="has-line-data" data-line-start="124" data-line-end="125">Números sem parte decimal — positivos, negativos ou zero.</p>
+<pre><code class="has-line-data language-python" data-line-start="127" data-line-end="134">ano = <span class="hljs-number">2025</span>
+temperatura = -<span class="hljs-number">3</span>
+quantidade = <span class="hljs-number">0</span>
+populacao = <span class="hljs-number">215_000_000</span>   <span class="hljs-comment"># underscore como separador de milhar (só visual)</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(ano))   <span class="hljs-comment"># &lt;class &#x27;int&#x27;&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="135" data-line-end="136"><strong>Operações com inteiros:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="138" data-line-end="149">a = <span class="hljs-number">10</span>
+b = <span class="hljs-number">3</span>
+
+<span class="hljs-built_in">print</span>(a + b)   <span class="hljs-comment"># 13  → soma</span>
+<span class="hljs-built_in">print</span>(a - b)   <span class="hljs-comment"># 7   → subtração</span>
+<span class="hljs-built_in">print</span>(a * b)   <span class="hljs-comment"># 30  → multiplicação</span>
+<span class="hljs-built_in">print</span>(a / b)   <span class="hljs-comment"># 3.333... → divisão (resultado sempre float!)</span>
+<span class="hljs-built_in">print</span>(a // b)  <span class="hljs-comment"># 3   → divisão inteira (descarta o decimal)</span>
+<span class="hljs-built_in">print</span>(a % b)   <span class="hljs-comment"># 1   → módulo (resto da divisão)</span>
+<span class="hljs-built_in">print</span>(a ** b)  <span class="hljs-comment"># 1000 → potenciação (10³)</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="150" data-line-end="151"><a id="42_float_Nmeros_decimais_150"></a>4.2 <code>float</code> — Números decimais</h3>
+<p class="has-line-data" data-line-start="152" data-line-end="153">Números com parte decimal (ponto flutuante). Use <strong>ponto</strong>, não vírgula.</p>
+<pre><code class="has-line-data language-python" data-line-start="155" data-line-end="162">altura = <span class="hljs-number">1.75</span>
+preco = <span class="hljs-number">29.90</span>
+pi = <span class="hljs-number">3.14159</span>
+temperatura = -<span class="hljs-number">7.5</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(altura))   <span class="hljs-comment"># &lt;class &#x27;float&#x27;&gt;</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="163" data-line-end="164">⚠️ Em Python (e na maioria das linguagens), o separador decimal é o <strong>ponto</strong> (<code>.</code>), não a vírgula. <code>1,75</code> seria interpretado como dois valores separados por vírgula — causaria erro ou comportamento inesperado.</p>
+</blockquote>
+<pre><code class="has-line-data language-python" data-line-start="166" data-line-end="171"><span class="hljs-comment"># Operações com float:</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-number">1.5</span> + <span class="hljs-number">2.3</span>)    <span class="hljs-comment"># 3.8</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-number">10</span> / <span class="hljs-number">3</span>)       <span class="hljs-comment"># 3.3333333333333335 (imprecisão de ponto flutuante — normal!)</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">round</span>(<span class="hljs-number">10</span>/<span class="hljs-number">3</span>, <span class="hljs-number">2</span>))  <span class="hljs-comment"># 3.33 → arredondando para 2 casas</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="172" data-line-end="173"><a id="43_str_Texto_string_172"></a>4.3 <code>str</code> — Texto (string)</h3>
+<p class="has-line-data" data-line-start="174" data-line-end="175">Qualquer sequência de caracteres entre aspas simples <code>'...'</code> ou duplas <code>&quot;...&quot;</code>.</p>
+<pre><code class="has-line-data language-python" data-line-start="177" data-line-end="184">nome = <span class="hljs-string">&quot;Maria&quot;</span>
+cidade = <span class="hljs-string">&#x27;Recife&#x27;</span>
+mensagem = <span class="hljs-string">&quot;Olá, tudo bem?&quot;</span>
+numero_como_texto = <span class="hljs-string">&quot;42&quot;</span>   <span class="hljs-comment"># é uma string, não um int!</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(nome))   <span class="hljs-comment"># &lt;class &#x27;str&#x27;&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="185" data-line-end="186"><strong>Operações com strings:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="188" data-line-end="206"><span class="hljs-comment"># Concatenação (juntar strings)</span>
+primeiro = <span class="hljs-string">&quot;João&quot;</span>
+ultimo = <span class="hljs-string">&quot;Silva&quot;</span>
+nome_completo = primeiro + <span class="hljs-string">&quot; &quot;</span> + ultimo
+<span class="hljs-built_in">print</span>(nome_completo)   <span class="hljs-comment"># João Silva</span>
+
+<span class="hljs-comment"># Repetição</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;ha&quot;</span> * <span class="hljs-number">3</span>)   <span class="hljs-comment"># hahaha</span>
+
+<span class="hljs-comment"># Tamanho</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(<span class="hljs-string">&quot;Python&quot;</span>))   <span class="hljs-comment"># 6</span>
+
+<span class="hljs-comment"># Acesso por índice (começa em 0)</span>
+palavra = <span class="hljs-string">&quot;Python&quot;</span>
+<span class="hljs-built_in">print</span>(palavra[<span class="hljs-number">0</span>])   <span class="hljs-comment"># P</span>
+<span class="hljs-built_in">print</span>(palavra[<span class="hljs-number">1</span>])   <span class="hljs-comment"># y</span>
+<span class="hljs-built_in">print</span>(palavra[-<span class="hljs-number">1</span>])  <span class="hljs-comment"># n  (último caractere)</span>
+</code></pre>
+<p class="has-line-data" data-line-start="207" data-line-end="208"><strong>f-strings (formatação moderna):</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="210" data-line-end="219">nome = <span class="hljs-string">&quot;Ana&quot;</span>
+idade = <span class="hljs-number">17</span>
+nota = <span class="hljs-number">8.756</span>
+
+<span class="hljs-comment"># f-string: coloque f antes das aspas e use {} para variáveis</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Aluna: <span class="hljs-subst">{nome}</span>&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Idade: <span class="hljs-subst">{idade}</span> anos&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Nota: <span class="hljs-subst">{nota:<span class="hljs-number">.2</span>f}</span>&quot;</span>)   <span class="hljs-comment"># .2f = 2 casas decimais → 8.76</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="220" data-line-end="221"><a id="44_bool_Booleano_verdadeiro_ou_falso_220"></a>4.4 <code>bool</code> — Booleano (verdadeiro ou falso)</h3>
+<p class="has-line-data" data-line-start="222" data-line-end="223">Representa apenas dois valores possíveis: <code>True</code> ou <code>False</code>. Muito usado em condições.</p>
+<pre><code class="has-line-data language-python" data-line-start="225" data-line-end="231">aprovado = <span class="hljs-literal">True</span>
+reprovado = <span class="hljs-literal">False</span>
+maior_de_idade = <span class="hljs-literal">True</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(aprovado))   <span class="hljs-comment"># &lt;class &#x27;bool&#x27;&gt;</span>
+</code></pre>
+<p class="has-line-data" data-line-start="232" data-line-end="233"><strong>Comparações retornam booleano:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="235" data-line-end="241"><span class="hljs-built_in">print</span>(<span class="hljs-number">10</span> &gt; <span class="hljs-number">5</span>)     <span class="hljs-comment"># True</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-number">10</span> &lt; <span class="hljs-number">5</span>)     <span class="hljs-comment"># False</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-number">10</span> == <span class="hljs-number">10</span>)   <span class="hljs-comment"># True  (== compara, = atribui!)</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-number">10</span> != <span class="hljs-number">5</span>)    <span class="hljs-comment"># True  (diferente de)</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-number">10</span> &gt;= <span class="hljs-number">10</span>)   <span class="hljs-comment"># True</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="242" data-line-end="243"><a id="45_Tabela_resumo_dos_tipos_242"></a>4.5 Tabela resumo dos tipos</h3>
+<table class="table table-striped table-bordered">
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Nome</th>
+<th>Exemplo</th>
+<th><code>type()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inteiro</td>
+<td><code>int</code></td>
+<td><code>42</code>, <code>-7</code>, <code>0</code></td>
+<td><code>&lt;class 'int'&gt;</code></td>
+</tr>
+<tr>
+<td>Decimal</td>
+<td><code>float</code></td>
+<td><code>3.14</code>, <code>-1.5</code></td>
+<td><code>&lt;class 'float'&gt;</code></td>
+</tr>
+<tr>
+<td>Texto</td>
+<td><code>str</code></td>
+<td><code>&quot;Olá&quot;</code>, <code>'Python'</code></td>
+<td><code>&lt;class 'str'&gt;</code></td>
+</tr>
+<tr>
+<td>Booleano</td>
+<td><code>bool</code></td>
+<td><code>True</code>, <code>False</code></td>
+<td><code>&lt;class 'bool'&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="253" data-line-end="254"><a id="5_Converso_de_tipos_casting_253"></a>5. Conversão de tipos (casting)</h2>
+<p class="has-line-data" data-line-start="255" data-line-end="256">Às vezes é necessário converter um tipo em outro. Python oferece funções para isso:</p>
+<pre><code class="has-line-data language-python" data-line-start="258" data-line-end="277"><span class="hljs-comment"># String para inteiro</span>
+idade_texto = <span class="hljs-string">&quot;17&quot;</span>
+idade_numero = <span class="hljs-built_in">int</span>(idade_texto)
+<span class="hljs-built_in">print</span>(idade_numero + <span class="hljs-number">1</span>)   <span class="hljs-comment"># 18</span>
+
+<span class="hljs-comment"># String para float</span>
+nota_texto = <span class="hljs-string">&quot;8.5&quot;</span>
+nota_numero = <span class="hljs-built_in">float</span>(nota_texto)
+<span class="hljs-built_in">print</span>(nota_numero * <span class="hljs-number">2</span>)    <span class="hljs-comment"># 17.0</span>
+
+<span class="hljs-comment"># Número para string</span>
+valor = <span class="hljs-number">42</span>
+valor_texto = <span class="hljs-built_in">str</span>(valor)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;O valor é: &quot;</span> + valor_texto)   <span class="hljs-comment"># O valor é: 42</span>
+
+<span class="hljs-comment"># Inteiro para float e vice-versa</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">float</span>(<span class="hljs-number">5</span>))    <span class="hljs-comment"># 5.0</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">int</span>(<span class="hljs-number">3.9</span>))    <span class="hljs-comment"># 3  (trunca, não arredonda!)</span>
+</code></pre>
+<blockquote>
+<p class="has-line-data" data-line-start="278" data-line-end="279">⚠️ <strong>Cuidado:</strong> tentar converter texto não numérico para número causa erro:</p>
+<pre><code class="has-line-data language-python" data-line-start="280" data-line-end="282"><span class="hljs-built_in">int</span>(<span class="hljs-string">&quot;abc&quot;</span>)   <span class="hljs-comment"># ValueError: invalid literal for int()</span>
+</code></pre>
+</blockquote>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="285" data-line-end="286"><a id="6_A_funo_print_285"></a>6. A função <code>print()</code></h2>
+<p class="has-line-data" data-line-start="287" data-line-end="288"><code>print()</code> exibe informações na tela. É a principal ferramenta para mostrar resultados ao usuário.</p>
+<h3 class="code-line has-line-data" data-line-start="289" data-line-end="290"><a id="Formas_de_usar_289"></a>Formas de usar:</h3>
+<pre><code class="has-line-data language-python" data-line-start="292" data-line-end="306"><span class="hljs-comment"># Exibindo valores simples</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Olá!&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-number">42</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-number">3.14</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-literal">True</span>)
+
+<span class="hljs-comment"># Exibindo variáveis</span>
+nome = <span class="hljs-string">&quot;Carlos&quot;</span>
+<span class="hljs-built_in">print</span>(nome)
+
+<span class="hljs-comment"># Exibindo múltiplos valores (separados por vírgula)</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Nome:&quot;</span>, nome, <span class="hljs-string">&quot;| Idade:&quot;</span>, <span class="hljs-number">17</span>)
+<span class="hljs-comment"># saída: Nome: Carlos | Idade: 17</span>
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="307" data-line-end="308"><a id="Parmetros_do_print_307"></a>Parâmetros do <code>print()</code></h3>
+<pre><code class="has-line-data language-python" data-line-start="310" data-line-end="323"><span class="hljs-comment"># sep: define o separador entre os valores (padrão é espaço)</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, sep=<span class="hljs-string">&quot;-&quot;</span>)       <span class="hljs-comment"># a-b-c</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, sep=<span class="hljs-string">&quot; | &quot;</span>)     <span class="hljs-comment"># a | b | c</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, sep=<span class="hljs-string">&quot;&quot;</span>)        <span class="hljs-comment"># abc</span>
+
+<span class="hljs-comment"># end: define o que vem no final (padrão é \n — quebra de linha)</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Linha 1&quot;</span>, end=<span class="hljs-string">&quot; &quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Linha 2&quot;</span>)
+<span class="hljs-comment"># saída: Linha 1 Linha 2  (na mesma linha!)</span>
+
+<span class="hljs-comment"># \n dentro de strings: quebra de linha manual</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Linha 1\nLinha 2\nLinha 3&quot;</span>)
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="324" data-line-end="325"><a id="fstrings_com_print_forma_mais_moderna_324"></a>f-strings com <code>print()</code> (forma mais moderna):</h3>
+<pre><code class="has-line-data language-python" data-line-start="327" data-line-end="334">nome = <span class="hljs-string">&quot;Ana&quot;</span>
+nota = <span class="hljs-number">9.333</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Aluna: <span class="hljs-subst">{nome}</span>&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Nota final: <span class="hljs-subst">{nota:<span class="hljs-number">.1</span>f}</span>&quot;</span>)   <span class="hljs-comment"># 9.3</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Aprovada: <span class="hljs-subst">{nota &gt;= <span class="hljs-number">7</span>}</span>&quot;</span>)    <span class="hljs-comment"># True</span>
+</code></pre>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="337" data-line-end="338"><a id="7_A_funo_input_337"></a>7. A função <code>input()</code></h2>
+<p class="has-line-data" data-line-start="339" data-line-end="340"><code>input()</code> pausa o programa e aguarda o usuário digitar algo. O valor digitado é sempre retornado como <strong>string</strong>.</p>
+<h3 class="code-line has-line-data" data-line-start="341" data-line-end="342"><a id="Uso_bsico_341"></a>Uso básico:</h3>
+<pre><code class="has-line-data language-python" data-line-start="344" data-line-end="347">nome = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite seu nome: &quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Olá, <span class="hljs-subst">{nome}</span>!&quot;</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="348" data-line-end="349"><strong>Execução:</strong></p>
+<pre><code class="has-line-data" data-line-start="350" data-line-end="353">Digite seu nome: Maria
+Olá, Maria!
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="354" data-line-end="355"><a id="input_sempre_retorna_string_354"></a><code>input()</code> sempre retorna string!</h3>
+<p class="has-line-data" data-line-start="356" data-line-end="357">Este é o erro mais comum com iniciantes. Se você precisa de um número, <strong>converta</strong> com <code>int()</code> ou <code>float()</code>:</p>
+<pre><code class="has-line-data language-python" data-line-start="359" data-line-end="371"><span class="hljs-comment"># ❌ Errado: tenta somar string com número</span>
+idade = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Sua idade: &quot;</span>)
+<span class="hljs-built_in">print</span>(idade + <span class="hljs-number">1</span>)   <span class="hljs-comment"># TypeError!</span>
+
+<span class="hljs-comment"># ✅ Correto: converte antes de operar</span>
+idade = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Sua idade: &quot;</span>))
+<span class="hljs-built_in">print</span>(idade + <span class="hljs-number">1</span>)   <span class="hljs-comment"># funciona!</span>
+
+<span class="hljs-comment"># Para números decimais:</span>
+altura = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Sua altura (ex: 1.75): &quot;</span>))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Altura informada: <span class="hljs-subst">{altura}</span> m&quot;</span>)
+</code></pre>
+<h3 class="code-line has-line-data" data-line-start="372" data-line-end="373"><a id="Exemplo_completo_com_input_372"></a>Exemplo completo com <code>input()</code>:</h3>
+<pre><code class="has-line-data language-python" data-line-start="375" data-line-end="386"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;=== Calculadora de média ===&quot;</span>)
+
+nota1 = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite a nota 1: &quot;</span>))
+nota2 = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite a nota 2: &quot;</span>))
+nota3 = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite a nota 3: &quot;</span>))
+
+media = (nota1 + nota2 + nota3) / <span class="hljs-number">3</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;\nNotas: <span class="hljs-subst">{nota1}</span>, <span class="hljs-subst">{nota2}</span>, <span class="hljs-subst">{nota3}</span>&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Média: <span class="hljs-subst">{media:<span class="hljs-number">.2</span>f}</span>&quot;</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="387" data-line-end="388"><strong>Execução:</strong></p>
+<pre><code class="has-line-data" data-line-start="389" data-line-end="397">=== Calculadora de média ===
+Digite a nota 1: 7.5
+Digite a nota 2: 8.0
+Digite a nota 3: 9.0
+
+Notas: 7.5, 8.0, 9.0
+Média: 8.17
+</code></pre>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="400" data-line-end="401"><a id="8_Resumo_geral_400"></a>8. Resumo geral</h2>
+<pre><code class="has-line-data language-python" data-line-start="403" data-line-end="423"><span class="hljs-comment"># Variáveis e tipos</span>
+nome = <span class="hljs-string">&quot;João&quot;</span>          <span class="hljs-comment"># str</span>
+idade = <span class="hljs-number">17</span>             <span class="hljs-comment"># int</span>
+altura = <span class="hljs-number">1.72</span>          <span class="hljs-comment"># float</span>
+aprovado = <span class="hljs-literal">True</span>        <span class="hljs-comment"># bool</span>
+
+<span class="hljs-comment"># Verificando o tipo</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(nome))      <span class="hljs-comment"># &lt;class &#x27;str&#x27;&gt;</span>
+
+<span class="hljs-comment"># Conversão</span>
+numero = <span class="hljs-built_in">int</span>(<span class="hljs-string">&quot;42&quot;</span>)     <span class="hljs-comment"># str → int</span>
+texto = <span class="hljs-built_in">str</span>(<span class="hljs-number">100</span>)       <span class="hljs-comment"># int → str</span>
+
+<span class="hljs-comment"># Saída formatada</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Aluno: <span class="hljs-subst">{nome}</span>, <span class="hljs-subst">{idade}</span> anos, altura: <span class="hljs-subst">{altura:<span class="hljs-number">.2</span>f}</span>m&quot;</span>)
+
+<span class="hljs-comment"># Entrada do usuário</span>
+turma = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Qual sua turma? &quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Bem-vindo, aluno da turma <span class="hljs-subst">{turma}</span>!&quot;</span>)
+</code></pre>
+<hr>
+<h2 class="code-line has-line-data" data-line-start="426" data-line-end="427"><a id="9_Exerccios_426"></a>9. Exercícios</h2>
+<blockquote>
+<p class="has-line-data" data-line-start="428" data-line-end="429"><strong>Instruções:</strong> teste cada programa no IDLE ou VS Code. Leia as dicas apenas se travar por mais de 5 minutos.</p>
+</blockquote>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="432" data-line-end="433"><a id="Exerccio_1_Apresentao_pessoal_Fcil_432"></a>Exercício 1 — Apresentação pessoal 🟢 Fácil</h3>
+<p class="has-line-data" data-line-start="434" data-line-end="435"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="436" data-line-end="437">Crie um programa que use <code>input()</code> para pedir ao usuário seu <strong>nome</strong>, <strong>idade</strong> e <strong>cidade</strong>, e depois exiba uma mensagem de apresentação formatada.</p>
+<p class="has-line-data" data-line-start="438" data-line-end="439"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="440" data-line-end="447">Digite seu nome: Carlos
+Digite sua idade: 17
+Digite sua cidade: Caruaru
+
+=== Apresentação ===
+Olá! Me chamo Carlos, tenho 17 anos e moro em Caruaru.
+</code></pre>
+<p class="has-line-data" data-line-start="448" data-line-end="449"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="451" data-line-end="458">nome = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite seu nome: &quot;</span>)
+idade = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite sua idade: &quot;</span>)
+cidade = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite sua cidade: &quot;</span>)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n=== Apresentação ===&quot;</span>)
+<span class="hljs-comment"># exiba a mensagem formatada aqui</span>
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<p class="has-line-data" data-line-start="462" data-line-end="463">Use uma f-string:</p>
+<pre><code class="has-line-data language-python" data-line-start="464" data-line-end="466"><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Olá! Me chamo <span class="hljs-subst">{nome}</span>, tenho <span class="hljs-subst">{idade}</span> anos e moro em <span class="hljs-subst">{cidade}</span>.&quot;</span>)
+</code></pre>
+<p class="has-line-data" data-line-start="466" data-line-end="467">A idade pode ficar como string aqui, já que não vamos fazer cálculos com ela.</p>
+</details>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="472" data-line-end="473"><a id="Exerccio_2_Calculadora_de_IMC_Fcil_472"></a>Exercício 2 — Calculadora de IMC 🟢 Fácil</h3>
+<p class="has-line-data" data-line-start="474" data-line-end="475"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="476" data-line-end="477">Peça ao usuário seu <strong>peso</strong> (em kg) e <strong>altura</strong> (em metros). Calcule o IMC usando a fórmula <code>IMC = peso / altura²</code> e exiba o resultado com 2 casas decimais.</p>
+<p class="has-line-data" data-line-start="478" data-line-end="479"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="480" data-line-end="485">Digite seu peso (kg): 70
+Digite sua altura (m): 1.75
+
+Seu IMC é: 22.86
+</code></pre>
+<p class="has-line-data" data-line-start="486" data-line-end="487"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="489" data-line-end="496">peso = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite seu peso (kg): &quot;</span>))
+altura = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite sua altura (m): &quot;</span>))
+
+imc = peso / altura ** <span class="hljs-number">2</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;\nSeu IMC é: <span class="hljs-subst">{imc:<span class="hljs-number">.2</span>f}</span>&quot;</span>)
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<ul>
+<li class="has-line-data" data-line-start="500" data-line-end="501"><code>float(input(...))</code> converte a entrada direto para número decimal.</li>
+<li class="has-line-data" data-line-start="501" data-line-end="502"><code>altura ** 2</code> calcula altura ao quadrado.</li>
+<li class="has-line-data" data-line-start="502" data-line-end="504"><code>{imc:.2f}</code> formata o número com 2 casas decimais.</li>
+</ul>
+</details>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="508" data-line-end="509"><a id="Exerccio_3_Tipos_de_dados_na_prtica_Fcil_508"></a>Exercício 3 — Tipos de dados na prática 🟢 Fácil</h3>
+<p class="has-line-data" data-line-start="510" data-line-end="511"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="512" data-line-end="513">Crie um programa que declare <strong>uma variável de cada tipo</strong> (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>), exiba os valores e o tipo de cada uma usando <code>type()</code>. Escolha variáveis que façam sentido juntas (ex: dados de um produto, aluno ou pessoa).</p>
+<p class="has-line-data" data-line-start="514" data-line-end="515"><strong>Saída esperada (exemplo com aluno):</strong></p>
+<pre><code class="has-line-data" data-line-start="516" data-line-end="522">=== Dados do aluno ===
+Nome: Ana Souza     | Tipo: &lt;class 'str'&gt;
+Matrícula: 2025001  | Tipo: &lt;class 'int'&gt;
+Média: 8.75         | Tipo: &lt;class 'float'&gt;
+Aprovado: True      | Tipo: &lt;class 'bool'&gt;
+</code></pre>
+<p class="has-line-data" data-line-start="523" data-line-end="524"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="526" data-line-end="535">nome = <span class="hljs-string">&quot;Ana Souza&quot;</span>
+matricula = <span class="hljs-number">2025001</span>
+media = <span class="hljs-number">8.75</span>
+aprovado = <span class="hljs-literal">True</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;=== Dados do aluno ===&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Nome: <span class="hljs-subst">{nome}</span>     | Tipo: <span class="hljs-subst">{<span class="hljs-built_in">type</span>(nome)}</span>&quot;</span>)
+<span class="hljs-comment"># continue para as outras variáveis...</span>
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<p class="has-line-data" data-line-start="539" data-line-end="540"><code>type(variavel)</code> retorna o tipo da variável. Você pode usá-lo diretamente dentro de uma f-string: <code>f&quot;{type(nome)}&quot;</code>.</p>
+</details>
+<hr>
+<h3 class="code-line has-line-data" data-line-start="545" data-line-end="546"><a id="Exerccio_4_Conversor_de_temperatura_Mdio_545"></a>Exercício 4 — Conversor de temperatura 🟡 Médio</h3>
+<p class="has-line-data" data-line-start="547" data-line-end="548"><strong>Enunciado:</strong></p>
+<p class="has-line-data" data-line-start="549" data-line-end="550">Crie um programa que leia uma temperatura em <strong>Celsius</strong> e converta para <strong>Fahrenheit</strong> e <strong>Kelvin</strong>. Exiba os três valores com 1 casa decimal.</p>
+<p class="has-line-data" data-line-start="551" data-line-end="552"><strong>Fórmulas:</strong></p>
+<ul>
+<li class="has-line-data" data-line-start="552" data-line-end="553">Fahrenheit: <code>F = C × 1.8 + 32</code></li>
+<li class="has-line-data" data-line-start="553" data-line-end="555">Kelvin: <code>K = C + 273.15</code></li>
+</ul>
+<p class="has-line-data" data-line-start="555" data-line-end="556"><strong>Saída esperada:</strong></p>
+<pre><code class="has-line-data" data-line-start="557" data-line-end="564">Digite a temperatura em Celsius: 100
+
+=== Conversão de temperatura ===
+Celsius:    100.0 °C
+Fahrenheit: 212.0 °F
+Kelvin:     373.2 K
+</code></pre>
+<p class="has-line-data" data-line-start="565" data-line-end="566"><strong>Estrutura sugerida:</strong></p>
+<pre><code class="has-line-data language-python" data-line-start="568" data-line-end="577">celsius = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Digite a temperatura em Celsius: &quot;</span>))
+
+fahrenheit = celsius * <span class="hljs-number">1.8</span> + <span class="hljs-number">32</span>
+kelvin = celsius + <span class="hljs-number">273.15</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n=== Conversão de temperatura ===&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Celsius:    <span class="hljs-subst">{celsius:<span class="hljs-number">.1</span>f}</span> °C&quot;</span>)
+<span class="hljs-comment"># complete para fahrenheit e kelvin</span>
+</code></pre>
+<details>
+<summary>💡 Dica</summary>
+<p class="has-line-data" data-line-start="581" data-line-end="582">Use <code>{valor:.1f}</code> para formatar com 1 casa decimal. Basta substituir o nome da variável em cada linha do <code>print()</code>.</p>
+</details>
+<hr>
+<p class="has-line-data" data-line-start="587" data-line-end="588"><em>Programação Aplicada — ETE Professor Paulo Freire</em></p>
+
+</body>
+</html>
