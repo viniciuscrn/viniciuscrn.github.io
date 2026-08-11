@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial — GitHub e GitHub Pages</title>
+<style>
+:root{
+    --bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#64748b;
+    --primary:#2563eb;--primary2:#1d4ed8;--dark:#0f172a;
+    --border:#e2e8f0;--code:#111827;--green:#15803d;--yellow:#b45309;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+header{background:linear-gradient(135deg,#111827,#1e40af);color:#fff;padding:64px 20px 70px}
+.container{max-width:1050px;margin:auto}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:800;opacity:.8}
+h1{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.08;margin:12px 0}
+.hero p{max-width:780px;color:#dbeafe;font-size:1.1rem}
+.badge{display:inline-block;margin-top:16px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:.85rem}
+main{padding:32px 20px 70px}
+section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:22px;box-shadow:0 5px 20px rgba(15,23,42,.04)}
+h2{margin:0 0 18px;color:var(--dark);font-size:1.55rem;border-bottom:1px solid var(--border);padding-bottom:11px}
+h3{color:#1e3a8a;margin-top:26px}
+code{background:#eef2ff;color:#3730a3;padding:2px 6px;border-radius:5px}
+pre{background:var(--code);color:#e5e7eb;padding:18px;border-radius:10px;overflow:auto;font-size:.9rem}
+.info{padding:16px 18px;border-left:4px solid var(--primary);background:#eff6ff;border-radius:0 10px 10px 0;margin:18px 0}
+.success{border-left-color:var(--green);background:#f0fdf4}
+.warning{border-left-color:var(--yellow);background:#fffbeb}
+.step{display:inline-flex;width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-right:8px}
+table{width:100%;border-collapse:collapse;margin:18px 0}
+th,td{padding:12px 14px;border:1px solid var(--border);text-align:left}
+th{background:#f8fafc}
+.flow{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:18px;text-align:center;font-weight:700;overflow:auto}
+.url{background:#0f172a;color:#93c5fd;border-radius:10px;padding:14px 18px;font-family:monospace;overflow:auto}
+.checklist{list-style:none;padding:0}
+.checklist li{margin:9px 0}
+.checklist li::before{content:"☐";color:var(--primary);font-weight:800;margin-right:10px}
+.question{padding:13px 16px;background:#f8fafc;border:1px solid var(--border);border-radius:9px;margin:9px 0}
+footer{text-align:center;color:var(--muted);padding:30px 20px;border-top:1px solid var(--border)}
+a{color:var(--primary);font-weight:700}
+@media print{body{background:#fff}header{padding:35px 20px}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container hero">
+<div class="eyebrow">Administração de Sistemas Proprietários</div>
+<h1>GitHub + GitHub Pages</h1>
+<p>Crie sua conta no GitHub, publique um projeto da disciplina em um repositório e transforme seu código HTML em um site acessível pela Internet.</p>
+<span class="badge">Tutorial prático • GitHub • Repositório • GitHub Pages</span>
+</div>
+</header>
+
+<main class="container">
+
+<section>
+<h2>🎯 Objetivos</h2>
+<p>Ao concluir este tutorial, o aluno deverá ser capaz de:</p>
+<ul>
+<li>Criar uma conta pessoal no GitHub;</li>
+<li>Verificar o endereço de e-mail da conta;</li>
+<li>Criar um repositório para o projeto da disciplina;</li>
+<li>Adicionar arquivos HTML, CSS e JavaScript ao repositório;</li>
+<li>Ativar o GitHub Pages;</li>
+<li>Acessar o projeto através de uma URL pública;</li>
+<li>Atualizar o site por meio de novos commits.</li>
+</ul>
+<div class="info">
+<strong>Importante:</strong> o GitHub Pages é um serviço de hospedagem de sites estáticos. Ele publica arquivos como HTML, CSS e JavaScript a partir de um repositório do GitHub.
+</div>
+</section>
+
+<section>
+<h2>🔎 Antes de começar</h2>
+<p>Você precisará de:</p>
+<ul>
+<li>Um computador conectado à Internet;</li>
+<li>Um endereço de e-mail que você possa acessar;</li>
+<li>Um navegador Web;</li>
+<li>Um projeto simples da disciplina.</li>
+</ul>
+<p>O GitHub recomenda a verificação do e-mail e recomenda também a configuração de autenticação de dois fatores (2FA) para aumentar a segurança da conta.</p>
+</section>
+
+<section>
+<h2>1. Criando sua conta no GitHub</h2>
+<h3><span class="step">1</span>Acesse o GitHub</h3>
+<p>Abra o endereço oficial:</p>
+<div class="url">https://github.com/</div>
+<p>Clique em <strong>Sign up</strong> para iniciar o cadastro.</p>
+
+<h3><span class="step">2</span>Informe seus dados</h3>
+<p>Siga as etapas apresentadas pelo GitHub para informar seu e-mail, criar uma senha e escolher seu nome de usuário.</p>
+
+<div class="info">
+<strong>Dica:</strong> escolha um nome de usuário profissional. Ele poderá fazer parte das URLs dos seus projetos.
+</div>
+
+<h3><span class="step">3</span>Verifique seu e-mail</h3>
+<p>O GitHub solicita a verificação do endereço de e-mail. Essa verificação é necessária para realizar algumas tarefas básicas, incluindo a criação de repositórios.</p>
+
+<div class="info success">
+<strong>Concluído:</strong> depois de verificar o e-mail, sua conta estará pronta para criar o primeiro repositório.
+</div>
+</section>
+
+<section>
+<h2>2. Conhecendo o GitHub</h2>
+<table>
+<thead><tr><th>Conceito</th><th>O que significa?</th></tr></thead>
+<tbody>
+<tr><td>Conta</td><td>Identifica você dentro do GitHub.</td></tr>
+<tr><td>Repositório</td><td>Espaço onde ficam os arquivos e o histórico de um projeto.</td></tr>
+<tr><td>Commit</td><td>Registro de uma alteração realizada no projeto.</td></tr>
+<tr><td>Branch</td><td>Uma linha de desenvolvimento do projeto.</td></tr>
+<tr><td>GitHub Pages</td><td>Serviço que publica um site estático a partir de um repositório.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>3. Criando o projeto da disciplina</h2>
+<p>Depois de entrar na sua conta, procure a opção para criar um novo repositório (<strong>New repository</strong>).</p>
+
+<h3><span class="step">1</span>Nome do repositório</h3>
+<p>Utilize um nome relacionado à disciplina. Por exemplo:</p>
+<pre>administracao-sistemas-http</pre>
+<p>Outras possibilidades:</p>
+<pre>projeto-http
+atividade-iis
+meu-servidor-web
+sistemas-proprietarios</pre>
+
+<h3><span class="step">2</span>Descrição</h3>
+<p>Adicione uma descrição curta, por exemplo:</p>
+<pre>Projeto prático da disciplina de Administração de Sistemas Proprietários.</pre>
+
+<h3><span class="step">3</span>Visibilidade</h3>
+<p>Para esta atividade, utilize um repositório <strong>Public</strong>, especialmente se estiver usando uma conta gratuita do GitHub.</p>
+
+<div class="info warning">
+<strong>Atenção:</strong> não coloque senhas, tokens, chaves privadas, documentos pessoais ou qualquer informação sensível no repositório ou no site publicado.
+</div>
+
+<h3><span class="step">4</span>README</h3>
+<p>Marque a opção para adicionar um arquivo <code>README</code> e crie o repositório.</p>
+</section>
+
+<section>
+<h2>4. Criando o primeiro arquivo HTML</h2>
+<p>Dentro do repositório, crie um arquivo chamado:</p>
+<pre>index.html</pre>
+<p>Use este exemplo inicial:</p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Meu Projeto&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Meu Projeto da Disciplina&lt;/h1&gt;
+
+    &lt;p&gt;Aluno: SEU NOME&lt;/p&gt;
+    &lt;p&gt;Disciplina: Administração de Sistemas Proprietários&lt;/p&gt;
+    &lt;p&gt;Tema: HTTP&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<p>Adicione o arquivo ao repositório e registre a alteração com uma mensagem de commit, por exemplo:</p>
+<pre>Cria página inicial do projeto</pre>
+</section>
+
+<section>
+<h2>5. Estrutura recomendada para o projeto</h2>
+<p>À medida que o projeto crescer, organize os arquivos:</p>
+<pre>administracao-sistemas-http/
+│
+├── index.html
+├── sobre.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+└── imagens/
+    └── servidor.png</pre>
+
+<div class="info">
+<strong>Regra importante:</strong> os caminhos dos arquivos devem estar corretos e, para facilitar a publicação, evite espaços e caracteres especiais nos nomes dos arquivos e pastas.
+</div>
+</section>
+
+<section>
+<h2>6. Ativando o GitHub Pages</h2>
+<p>Agora vamos transformar o repositório em um site.</p>
+
+<h3><span class="step">1</span>Abra as configurações</h3>
+<p>No seu repositório, acesse:</p>
+<pre>Settings → Pages</pre>
+
+<h3><span class="step">2</span>Configure a publicação</h3>
+<p>Na área <strong>Build and deployment</strong>, configure a fonte de publicação para utilizar uma branch do repositório.</p>
+
+<p>Uma configuração simples para este projeto é:</p>
+<table>
+<tr><th>Opção</th><th>Valor</th></tr>
+<tr><td>Source</td><td>Deploy from a branch</td></tr>
+<tr><td>Branch</td><td>main</td></tr>
+<tr><td>Folder</td><td>/(root)</td></tr>
+</table>
+
+<p>Salve a configuração.</p>
+
+<div class="info">
+O GitHub Pages também pode utilizar fluxos de trabalho com GitHub Actions. Para uma primeira atividade, publicar diretamente a partir da branch <code>main</code> e da raiz do repositório é uma abordagem simples para compreender o funcionamento.
+</div>
+</section>
+
+<section>
+<h2>7. Acessando o site publicado</h2>
+<p>Depois da publicação, o GitHub disponibilizará uma URL para o site.</p>
+
+<p>Para um <strong>site de projeto</strong>, a URL normalmente seguirá o formato:</p>
+<div class="url">https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/</div>
+
+<p>Por exemplo, se:</p>
+<pre>Usuário: aluno123
+Repositório: administracao-sistemas-http</pre>
+
+<p>a URL do projeto será:</p>
+<div class="url">https://aluno123.github.io/administracao-sistemas-http/</div>
+
+<div class="info success">
+<strong>Resultado esperado:</strong> a página <code>index.html</code> estará disponível no navegador através da URL do GitHub Pages.
+</div>
+</section>
+
+<section>
+<h2>8. Testando uma alteração</h2>
+<p>Agora altere o conteúdo do <code>index.html</code>. Por exemplo, acrescente:</p>
+<pre>&lt;h2&gt;Meu primeiro site publicado!&lt;/h2&gt;
+&lt;p&gt;Este projeto utiliza GitHub Pages.&lt;/p&gt;</pre>
+
+<p>Faça um novo commit, por exemplo:</p>
+<pre>Atualiza página inicial</pre>
+
+<p>Depois aguarde a publicação e atualize o navegador.</p>
+
+<div class="flow">
+Editar → Commit → Publicação → Atualizar navegador → Nova versão do site
+</div>
+
+<div class="info">
+As alterações podem levar alguns minutos para aparecer no site publicado.
+</div>
+</section>
+
+<section>
+<h2>9. Desafio prático</h2>
+<p>Agora você deverá criar um pequeno site relacionado ao conteúdo estudado na disciplina.</p>
+
+<p>O site deverá conter, no mínimo:</p>
+<ul>
+<li>Uma página inicial <code>index.html</code>;</li>
+<li>Nome do aluno;</li>
+<li>Nome da disciplina;</li>
+<li>Nome da instituição;</li>
+<li>Um título relacionado ao tema estudado;</li>
+<li>Uma explicação sobre o conteúdo;</li>
+<li>Uma imagem relacionada ao assunto;</li>
+<li>Uma página adicional;</li>
+<li>CSS para melhorar a apresentação visual;</li>
+<li>Um link entre as páginas.</li>
+</ul>
+
+<h3>Sugestão de tema</h3>
+<pre>HTTP e Servidores Web</pre>
+
+<p>O site pode apresentar:</p>
+<ul>
+<li>O que é HTTP;</li>
+<li>Diferença entre cliente e servidor;</li>
+<li>O que é IIS;</li>
+<li>O que é uma requisição HTTP;</li>
+<li>Método GET;</li>
+<li>Códigos 200 e 404;</li>
+<li>Exemplo de URL;</li>
+<li>Conclusão.</li>
+</ul>
+</section>
+
+<section>
+<h2>10. Estrutura sugerida do site</h2>
+<pre>index.html
+    │
+    ├── Conceito de HTTP
+    ├── Cliente e servidor
+    ├── IIS
+    └── Link para "sobre.html"
+              │
+              └── sobre.html
+                    ├── Informações do aluno
+                    ├── Disciplina
+                    └── Referências</pre>
+</section>
+
+<section>
+<h2>11. Checklist de entrega</h2>
+<ul class="checklist">
+<li>Conta do GitHub criada.</li>
+<li>E-mail do GitHub verificado.</li>
+<li>Repositório criado.</li>
+<li>Repositório configurado como público.</li>
+<li>Arquivo <code>index.html</code> criado.</li>
+<li>Projeto publicado com GitHub Pages.</li>
+<li>URL do site funcionando.</li>
+<li>Site contendo informações do aluno e da disciplina.</li>
+<li>Segunda página criada.</li>
+<li>CSS aplicado ao projeto.</li>
+<li>Links entre as páginas funcionando.</li>
+<li>Pelo menos dois commits realizados.</li>
+</ul>
+</section>
+
+<section>
+<h2>12. Questões de fixação</h2>
+<div class="question">1. O que é o GitHub e qual é sua finalidade?</div>
+<div class="question">2. O que é um repositório?</div>
+<div class="question">3. O que é um commit?</div>
+<div class="question">4. Qual é a finalidade do GitHub Pages?</div>
+<div class="question">5. Qual é a função do arquivo <code>index.html</code> em um site?</div>
+<div class="question">6. Qual é a diferença entre um repositório e um site publicado pelo GitHub Pages?</div>
+<div class="question">7. Por que o projeto deve evitar informações sensíveis?</div>
+<div class="question">8. O que acontece quando você realiza um novo commit após modificar o site?</div>
+</section>
+
+<section>
+<h2>13. Entrega</h2>
+<p>Ao finalizar, entregue ao professor:</p>
+<ul>
+<li><strong>Nome de usuário do GitHub;</strong></li>
+<li><strong>Link do repositório;</strong></li>
+<li><strong>Link do GitHub Pages;</strong></li>
+<li>Capturas de tela mostrando o repositório;</li>
+<li>Captura de tela mostrando o GitHub Pages publicado.</li>
+</ul>
+
+<div class="info success">
+<strong>Produto final:</strong> cada aluno deverá possuir um projeto publicado na Internet e acessível através de uma URL do GitHub Pages.
+</div>
+</section>
+
+<section>
+<h2>14. Conceito final</h2>
+<div class="flow">
+GitHub → Repositório → Arquivos HTML/CSS/JS → GitHub Pages → Site na Internet
+</div>
+
+<p>
+A atividade apresenta ao aluno um fluxo real de desenvolvimento e publicação:
+<strong>criar → versionar → publicar → atualizar</strong>.
+Esse processo servirá de base para atividades futuras envolvendo Git, GitHub, desenvolvimento Web, servidores e automação.
+</p>
+</section>
+
+<section>
+<h2>📚 Documentação oficial</h2>
+<ul>
+<li><a href="https://docs.github.com/pt/get-started/start-your-journey/creating-an-account-on-github" target="_blank">Criando uma conta no GitHub</a></li>
+<li><a href="https://docs.github.com/pt/pages/quickstart" target="_blank">Início rápido para GitHub Pages</a></li>
+<li><a href="https://docs.github.com/pt/pages/getting-started-with-github-pages/creating-a-github-pages-site" target="_blank">Criando um site com GitHub Pages</a></li>
+</ul>
+</section>
+
+</main>
+
+<footer>
+<strong>Administração de Sistemas Proprietários</strong><br>
+Tutorial prático — GitHub e GitHub Pages
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atividade Prática — Meu Primeiro Servidor HTTP</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #64748b;
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --border: #e2e8f0;
+        --code: #0f172a;
+        --success: #15803d;
+        --warning: #b45309;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      header {
+        background: linear-gradient(135deg, #0f172a, #1e3a8a);
+        color: white;
+        padding: 64px 20px 72px;
+      }
+
+      .hero,
+      main {
+        max-width: 1050px;
+        margin: auto;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.78rem;
+        font-weight: 700;
+        opacity: 0.8;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        line-height: 1.1;
+        margin: 12px 0;
+      }
+
+      .subtitle {
+        max-width: 780px;
+        font-size: 1.1rem;
+        color: #dbeafe;
+      }
+
+      .badge {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 7px 13px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      main {
+        padding: 32px 20px 70px;
+      }
+
+      section,
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 22px;
+        box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: #0f172a;
+        font-size: 1.55rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 10px;
+      }
+
+      h3 {
+        color: #1e3a8a;
+        margin-top: 26px;
+      }
+
+      code {
+        background: #eef2ff;
+        color: #3730a3;
+        padding: 2px 6px;
+        border-radius: 5px;
+      }
+
+      pre {
+        background: var(--code);
+        color: #e2e8f0;
+        padding: 18px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-size: 0.9rem;
+      }
+
+      .flow {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        padding: 20px;
+        border-radius: 12px;
+        font-weight: 600;
+        text-align: center;
+        overflow-x: auto;
+      }
+
+      .info {
+        border-left: 4px solid var(--primary);
+        background: #eff6ff;
+        padding: 15px 18px;
+        margin: 18px 0;
+        border-radius: 0 10px 10px 0;
+      }
+
+      .success {
+        border-left-color: var(--success);
+        background: #f0fdf4;
+      }
+
+      .warning {
+        border-left-color: var(--warning);
+        background: #fffbeb;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 18px 0;
+      }
+
+      th,
+      td {
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: #f8fafc;
+      }
+
+      ol,
+      ul {
+        padding-left: 25px;
+      }
+
+      li {
+        margin: 7px 0;
+      }
+
+      .question {
+        padding: 13px 16px;
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        margin: 9px 0;
+      }
+
+      .checklist {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .checklist li::before {
+        content: '☐';
+        margin-right: 10px;
+        color: var(--primary);
+        font-weight: bold;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 30px 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+        header {
+          padding: 35px 20px;
+        }
+        section,
+        .card {
+          box-shadow: none;
+          break-inside: avoid;
+        }
+        main {
+          padding-top: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="hero">
+        <div class="eyebrow">Administração de Sistemas Proprietários</div>
+        <h1>Meu Primeiro Servidor HTTP</h1>
+        <p class="subtitle">
+          Atividade prática introdutória utilizando o IIS no Windows para compreender a comunicação entre navegador,
+          protocolo HTTP e servidor Web.
+        </p>
+        <span class="badge">HTTP • IIS • Windows • Servidor Web</span>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>🎯 Objetivo</h2>
+        <p>
+          Compreender, de forma prática, como funciona o acesso a um servidor Web através do protocolo
+          <strong>HTTP</strong>, utilizando o <strong>IIS (Internet Information Services)</strong> no Windows.
+        </p>
+
+        <div class="flow">Navegador → HTTP → IIS → Arquivo HTML → Resposta HTTP → Navegador</div>
+      </section>
+
+      <section>
+        <h2>🖥️ Ambiente necessário</h2>
+        <ul>
+          <li>Windows 10 ou Windows 11</li>
+          <li>IIS (Internet Information Services)</li>
+          <li>Microsoft Edge, Google Chrome ou Firefox</li>
+          <li>Bloco de Notas ou Visual Studio Code</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>1. Preparação do servidor</h2>
+
+        <p>Verifique se o IIS está instalado no Windows.</p>
+
+        <p>
+          Acesse:
+          <strong>Painel de Controle → Programas → Ativar ou desativar recursos do Windows</strong>
+        </p>
+
+        <p>Localize e ative:</p>
+
+        <pre>Internet Information Services</pre>
+
+        <p>Após a instalação, abra o navegador e acesse:</p>
+
+        <pre>http://localhost</pre>
+
+        <div class="info success"><strong>Resultado esperado:</strong> deverá aparecer a página padrão do IIS.</div>
+
+        <div class="info"><strong>Registro:</strong> faça uma captura de tela da página padrão do IIS.</div>
+      </section>
+
+      <section>
+        <h2>2. Criando a primeira página Web</h2>
+
+        <p>A pasta padrão utilizada pelo IIS para publicação de páginas Web é:</p>
+
+        <pre>C:\inetpub\wwwroot</pre>
+
+        <p>Crie nessa pasta um arquivo chamado:</p>
+
+        <pre>index.html</pre>
+
+        <p>Utilize o conteúdo abaixo:</p>
+
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Meu Primeiro Servidor HTTP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Meu Primeiro Servidor HTTP&lt;/h1&gt;
+
+    &lt;p&gt;Servidor: IIS&lt;/p&gt;
+    &lt;p&gt;Protocolo: HTTP&lt;/p&gt;
+    &lt;p&gt;Sistema operacional: Windows&lt;/p&gt;
+    &lt;p&gt;Aluno: SEU NOME&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre
+        >
+
+        <p>Salve o arquivo em:</p>
+
+        <pre>C:\inetpub\wwwroot\index.html</pre>
+      </section>
+
+      <section>
+        <h2>3. Primeiro acesso HTTP</h2>
+
+        <p>Acesse:</p>
+
+        <pre>http://localhost</pre>
+
+        <p>Depois acesse:</p>
+
+        <pre>http://127.0.0.1</pre>
+
+        <h3>Questão</h3>
+        <div class="question">Por que os dois endereços apresentam a mesma página?</div>
+      </section>
+
+      <section>
+        <h2>4. Conceitos envolvidos</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Elemento</th>
+              <th>Função</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Navegador</td>
+              <td>Cliente que solicita o recurso.</td>
+            </tr>
+            <tr>
+              <td>IIS</td>
+              <td>Servidor Web responsável por atender às requisições.</td>
+            </tr>
+            <tr>
+              <td>HTTP</td>
+              <td>Protocolo utilizado na comunicação.</td>
+            </tr>
+            <tr>
+              <td>localhost</td>
+              <td>Nome utilizado para representar o próprio computador.</td>
+            </tr>
+            <tr>
+              <td>127.0.0.1</td>
+              <td>Endereço IPv4 de loopback.</td>
+            </tr>
+            <tr>
+              <td>index.html</td>
+              <td>Recurso solicitado ao servidor.</td>
+            </tr>
+            <tr>
+              <td>URL</td>
+              <td>Endereço utilizado para localizar o recurso.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <pre>
+┌──────────────┐
+│   Navegador  │
+│   (Cliente)  │
+└──────┬───────┘
+       │ HTTP
+       │ GET /index.html
+       ▼
+┌──────────────┐
+│     IIS      │
+│   Servidor   │
+└──────┬───────┘
+       │
+       │ Localiza o arquivo
+       ▼
+┌────────────────────────┐
+│ C:\inetpub\wwwroot     │
+│        index.html      │
+└────────────────────────┘
+       │
+       │ HTTP 200 OK
+       ▼
+┌──────────────┐
+│   Navegador  │
+│ Exibe página │
+└──────────────┘</pre
+        >
+      </section>
+
+      <section>
+        <h2>5. Criando uma segunda página</h2>
+
+        <p>Crie o arquivo:</p>
+
+        <pre>sobre.html</pre>
+
+        <p>Na pasta:</p>
+
+        <pre>C:\inetpub\wwwroot</pre>
+
+        <p>Utilize, por exemplo:</p>
+
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Sobre o Aluno&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Sobre o Aluno&lt;/h1&gt;
+
+    &lt;p&gt;&lt;strong&gt;Nome:&lt;/strong&gt; SEU NOME&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Curso:&lt;/strong&gt; SEU CURSO&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Disciplina:&lt;/strong&gt; Administração de Sistemas Proprietários&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Tema:&lt;/strong&gt; HTTP&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre
+        >
+
+        <p>Acesse:</p>
+
+        <pre>http://localhost/sobre.html</pre>
+
+        <div class="question"><strong>Questão:</strong> Como o IIS conseguiu localizar e apresentar o arquivo?</div>
+      </section>
+
+      <section>
+        <h2>6. Observando uma requisição HTTP</h2>
+
+        <p>
+          Abra <code>http://localhost</code> e pressione <strong>F12</strong>
+          para abrir as ferramentas de desenvolvedor.
+        </p>
+
+        <p>Acesse a aba:</p>
+
+        <pre>Network / Rede</pre>
+
+        <p>Recarregue a página e localize a requisição relacionada ao arquivo <code>index.html</code>.</p>
+
+        <p>Observe:</p>
+
+        <pre>
+Request URL
+Request Method
+Status Code
+Content-Type</pre
+        >
+
+        <div class="info">
+          Você deverá encontrar informações semelhantes a:
+          <pre>
+Request Method: GET
+Status Code: 200
+Content-Type: text/html</pre
+          >
+        </div>
+      </section>
+
+      <section>
+        <h2>7. Entendendo a requisição</h2>
+
+        <pre>
+NAVEGADOR
+    │
+    │ GET /index.html HTTP/1.1
+    ▼
+   IIS
+    │
+    │ Localiza index.html
+    ▼
+    │ HTTP/1.1 200 OK
+    │ Content-Type: text/html
+    ▼
+NAVEGADOR</pre
+        >
+
+        <h3>GET</h3>
+        <p>Método HTTP utilizado para solicitar um recurso ao servidor.</p>
+
+        <h3>200 OK</h3>
+        <p>Indica que a solicitação foi processada com sucesso.</p>
+
+        <h3>Content-Type: text/html</h3>
+        <p>Indica que o conteúdo retornado pelo servidor é uma página HTML.</p>
+      </section>
+
+      <section>
+        <h2>8. Provocando um erro 404</h2>
+
+        <p>Acesse:</p>
+
+        <pre>http://localhost/naoexiste.html</pre>
+
+        <p>Observe o resultado. O servidor deverá informar que o recurso não foi encontrado.</p>
+
+        <div class="info warning"><strong>Código HTTP:</strong> 404 — recurso não encontrado.</div>
+
+        <h3>Questões</h3>
+
+        <div class="question">1. O que significa o código HTTP <strong>200</strong>?</div>
+        <div class="question">2. O que significa o código HTTP <strong>404</strong>?</div>
+        <div class="question">3. Por que o servidor retornou 404?</div>
+        <div class="question">4. Qual foi o recurso solicitado pelo navegador?</div>
+        <div class="question">
+          5. O que aconteceria se o arquivo <code>naoexiste.html</code> fosse criado em <code>C:\inetpub\wwwroot</code>?
+        </div>
+      </section>
+
+      <section>
+        <h2>9. Desafio final — Administrador de um servidor Web</h2>
+
+        <p>
+          Imagine que você recebeu um computador com Windows recém-instalado. Sua missão é disponibilizar uma página Web
+          para os usuários do servidor.
+        </p>
+
+        <ol>
+          <li>Instalar o IIS.</li>
+          <li>Verificar se o IIS está funcionando.</li>
+          <li>Criar uma página <code>index.html</code>.</li>
+          <li>Publicar a página em <code>C:\inetpub\wwwroot</code>.</li>
+          <li>Acessar a página através de <code>http://localhost</code>.</li>
+          <li>Acessar a página através de <code>http://127.0.0.1</code>.</li>
+          <li>Criar uma segunda página chamada <code>sobre.html</code>.</li>
+          <li>Acessar <code>sobre.html</code> através do navegador.</li>
+          <li>Utilizar as ferramentas de desenvolvedor do navegador.</li>
+          <li>Identificar o método HTTP utilizado.</li>
+          <li>Identificar o código de resposta HTTP.</li>
+          <li>Identificar o tipo de conteúdo retornado pelo servidor.</li>
+          <li>Solicitar uma página inexistente.</li>
+          <li>Identificar o erro <code>404</code>.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>10. Questões de fixação</h2>
+
+        <div class="question">
+          1. O que é o protocolo HTTP e qual é sua função na comunicação entre navegador e servidor?
+        </div>
+        <div class="question">2. Qual é a função do IIS em um computador Windows?</div>
+        <div class="question">3. Qual é a diferença entre <code>localhost</code> e <code>127.0.0.1</code>?</div>
+        <div class="question">4. Quem é o cliente e quem é o servidor durante o acesso a uma página Web?</div>
+        <div class="question">5. Qual é a função do método HTTP <code>GET</code>?</div>
+        <div class="question">6. O que significa o código de resposta HTTP <code>200 OK</code>?</div>
+        <div class="question">7. O que significa o código HTTP <code>404</code>?</div>
+        <div class="question">8. Qual é a função da pasta <code>C:\inetpub\wwwroot</code>?</div>
+        <div class="question">9. O que representa o endereço <code>http://localhost/sobre.html</code>?</div>
+        <div class="question">
+          10. Por que é importante que um administrador de sistemas saiba identificar requisições e códigos de resposta
+          HTTP?
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>Administração de Sistemas Proprietários</strong><br />
+      Atividade prática — HTTP e IIS
+    </footer>
+  </body>
+</html>
