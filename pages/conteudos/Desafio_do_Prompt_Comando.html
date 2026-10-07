@@ -59,7 +59,7 @@ kbd { font-family: var(--f-body); font-size: 12px; border: 1px solid var(--line)
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 16px; min-width: 0; }
 .prog-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: var(--muted); }
 .prog-head b { color: var(--ink); font-variant-numeric: tabular-nums; }
-.progress { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin-top: 6px; }
+.progress { display: grid; grid-template-columns: repeat(10, 1fr); row-gap: 5px; gap: 4px; margin-top: 6px; }
 .progress span { height: 28px; border-radius: 4px; background: var(--pending); color: var(--muted); font: 600 12px/28px var(--f-mono); text-align: center; }
 .progress .cur { background: var(--surface); color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
 .progress .ok { background: var(--ok); color: var(--surface); }
@@ -81,7 +81,10 @@ button.primary:hover { filter: brightness(1.08); color: var(--accent-ink); }
 .note.warn { background: var(--bad-soft); } .note.warn b { color: var(--bad); }
 .note.good { background: var(--ok-soft); } .note.good b { color: var(--ok); }
 .scoring { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
-.scoring ul { margin: 4px 0 0; padding-left: 18px; }
+.scoring ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+.sw.ok { background: var(--ok); } .sw.hint { background: var(--hint); } .sw.skip { background: var(--bad-soft); box-shadow: inset 0 0 0 1px var(--bad); }
 
 /* Resultado */
 .score-big { font-family: var(--f-display); font-size: 48px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -126,7 +129,7 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
     <div class="intro">
       <div class="eyebrow">ETE Professor Paulo Freire · Redes de Computadores · 2º ano</div>
       <h1><span class="gt">C:\&gt;</span>Desafio do Prompt de Comando</h1>
-      <p>São 10 missões. Leia cada uma, digite o comando no terminal ao lado e pressione <kbd>Enter</kbd>. O sistema confere a resposta na hora.</p>
+      <p>São 20 missões. Leia cada uma, digite o comando no terminal ao lado e pressione <kbd>Enter</kbd>. O sistema confere a resposta na hora.</p>
     </div>
     <div class="who">
       <div class="field"><label for="nome">Seu nome</label><input id="nome" autocomplete="name" placeholder="Nome completo"></div>
@@ -137,18 +140,18 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
   <main class="layout">
     <section class="panel" aria-live="polite">
       <div>
-        <div class="prog-head"><span>Progresso</span><span>Pontos: <b id="pts">0</b> de 10</span></div>
+        <div class="prog-head"><span>Progresso</span><span>Concluídas: <b id="pts">0</b> de 20</span></div>
         <div class="progress" id="progress"></div>
       </div>
 
       <div id="qview" style="display:grid;gap:14px">
         <div>
-          <div class="qlabel" id="qlabel">Missão 1 de 10</div>
+          <div class="qlabel" id="qlabel">Missão 1 de 20</div>
           <h2 class="qtext" id="qtext"></h2>
           <p class="qsub" id="qsub"></p>
         </div>
         <div class="actions">
-          <button id="btnHint" type="button">Ver dica (vale 0,5)</button>
+          <button id="btnHint" type="button">Ver dica</button>
           <button id="btnSkip" type="button">Pular e ver resposta</button>
         </div>
         <div class="note hintbox" id="hint" hidden><b>Dica</b><span id="hintText"></span></div>
@@ -158,7 +161,7 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
       <div id="result" hidden style="display:grid;gap:14px">
         <div>
           <div class="qlabel">Desafio concluído</div>
-          <div class="score-big" id="finalScore">0<small> / 10</small></div>
+          <div class="score-big" id="finalScore">0<small> de 20 sem dica</small></div>
           <p class="qsub" id="finalInfo"></p>
         </div>
         <div class="reslist" id="reslist"></div>
@@ -176,11 +179,11 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
       <div class="note good" id="last" hidden><b id="lastTitle">Correto</b><span id="lastText"></span></div>
 
       <div class="scoring">
-        Como funciona a pontuação:
-        <ul>
-          <li>Acertou sem dica: 1 ponto</li>
-          <li>Acertou usando a dica: 0,5 ponto</li>
-          <li>Pulou: 0 ponto (a resposta é executada para você seguir)</li>
+        Cores do progresso:
+        <ul class="legend">
+          <li><i class="sw ok"></i>Concluída sem dica</li>
+          <li><i class="sw hint"></i>Concluída com dica</li>
+          <li><i class="sw skip"></i>Pulada (a resposta é executada para você seguir)</li>
         </ul>
       </div>
     </section>
@@ -677,7 +680,7 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
     ctx.name = (toks[0] || '').toLowerCase();
     ctx.args = toks.slice(1);
     ctx.flags = ctx.args.filter(a => /^[/-]\S/.test(a)).map(a => a.toLowerCase());
-    ctx.redirect = !!target;
+    ctx.redirect = !!target; ctx.append = append;
 
     if (!ctx.name && target !== null) {
       line('A sintaxe do comando está incorreta.', 'err'); ctx.ok = false;
@@ -870,6 +873,127 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
       ok: c => c.name === 'ping' && c.args.includes('8.8.8.8'),
       near: c => c.name === 'ping' ? 'Você testou outro destino. A missão pede o endereço 8.8.8.8.' : null,
       why: '<code>ping</code> testa a conectividade. "0% de perda" significa que todos os pacotes voltaram. No Linux, use <code>ping -c 4</code>.'
+    }    ,
+    {
+      short: 'Acrescentar texto',
+      t: 'Acrescente uma nova linha com o texto <code>Redes de Computadores</code> ao final de <code>aula.txt</code>, sem apagar o que já está escrito.',
+      sub: 'Depois, confira com type aula.txt: as duas linhas devem aparecer.',
+      hint: 'Na apostila, há um operador com dois sinais que soma ao final do arquivo em vez de substituir.',
+      ans: 'echo Redes de Computadores >> aula.txt',
+      pre: () => { ensureFile(REDES + '\\aula.txt', 'Aula de CMD'); goTo(REDES); },
+      ok: c => { const g = nodeAt(REDES + '\\aula.txt'); const t = g && g.node.type === 'file' ? (g.node.content || '') : ''; return c.name === 'echo' && /aula de cmd/i.test(t) && /redes de computadores/i.test(t); },
+      near: c => {
+        if (c.name === 'echo' && c.redirect && !c.append) return 'Com um só sinal > o conteúdo anterior foi apagado! Grave de novo o texto Aula de CMD e acrescente a nova linha com o operador de dois sinais.';
+        if (c.name === 'echo' && !c.redirect) return 'O texto apareceu só na tela. Ele precisa ser acrescentado ao arquivo.';
+        return null;
+      },
+      why: '<code>&gt;&gt;</code> acrescenta ao final do arquivo; <code>&gt;</code> apaga e escreve de novo.'
+    },
+    {
+      short: 'Renomear arquivo',
+      t: 'Renomeie o arquivo <code>backup.txt</code> para <code>copia.txt</code>.',
+      sub: 'O arquivo backup.txt deve deixar de existir com esse nome.',
+      hint: 'O comando é a abreviação de "rename".',
+      ans: 'ren backup.txt copia.txt',
+      pre: () => { ensureFile(REDES + '\\backup.txt', 'Aula de CMD'); goTo(REDES); },
+      ok: c => (c.name === 'ren' || c.name === 'rename' || c.name === 'move') && isFile(REDES + '\\copia.txt') && !isFile(REDES + '\\backup.txt'),
+      near: c => c.name === 'copy' ? 'Isso criou uma cópia. A missão pede para trocar o nome do arquivo, sem duplicar.' : null,
+      why: '<code>ren nome_antigo nome_novo</code> renomeia arquivos. No Linux, use <code>mv</code>.'
+    },
+    {
+      short: 'Filtrar com curinga',
+      t: 'Liste apenas os arquivos com extensão <code>.txt</code> da pasta atual.',
+      sub: 'Use um único comando, sem listar as outras coisas da pasta.',
+      hint: 'Use dir com um curinga: o asterisco substitui qualquer nome.',
+      ans: 'dir *.txt',
+      pre: () => goTo(REDES),
+      ok: c => c.name === 'dir' && c.ok && c.args.some(a => /(^|\\)\*\.txt$/i.test(a)),
+      near: c => c.name === 'dir' ? 'Esse dir não filtrou pela extensão .txt. Use o curinga * antes da extensão.' : null,
+      why: 'O curinga <code>*</code> substitui qualquer sequência de caracteres: <code>*.txt</code> são todos os arquivos .txt.'
+    },
+    {
+      short: 'Apagar arquivo',
+      t: 'Apague o arquivo <code>copia.txt</code>. O arquivo aula.txt deve continuar existindo.',
+      sub: 'Atenção: no CMD não existe Lixeira.',
+      hint: 'O comando vem de "delete" e tem três letras.',
+      ans: 'del copia.txt',
+      pre: () => { ensureFile(REDES + '\\aula.txt', 'Aula de CMD\nRedes de Computadores'); ensureFile(REDES + '\\copia.txt', 'Aula de CMD'); goTo(REDES); },
+      ok: c => c.name === 'del' && !isFile(REDES + '\\copia.txt') && isFile(REDES + '\\aula.txt'),
+      near: c => c.name === 'del' && !isFile(REDES + '\\aula.txt') ? 'Você apagou o aula.txt também! Ele será recriado se você pular; tente apagar só o copia.txt.' : null,
+      why: '<code>del</code> apaga arquivos de forma definitiva. No Linux: <code>rm</code>.'
+    },
+    {
+      short: 'Voltar uma pasta',
+      t: 'Volte para a pasta de cima (o Desktop) com um único comando.',
+      sub: 'O prompt deve terminar em \\Desktop.',
+      hint: 'Dois pontos seguidos representam a pasta "pai".',
+      ans: 'cd ..',
+      pre: () => { ensureDir('Users\\aluno\\Desktop\\redes'); goTo(REDES); },
+      ok: c => isCd(c) && cwdIs(DESK),
+      near: c => isCd(c) && c.ok ? 'Você mudou de pasta, mas não está no Desktop. Confira o prompt.' : null,
+      why: '<code>cd ..</code> sobe uma pasta. Funciona igual no Linux.'
+    },
+    {
+      short: 'Pedir ajuda',
+      t: 'Peça ao CMD a ajuda do comando <code>ping</code>, para ver as opções que ele aceita.',
+      sub: 'Você vai precisar de uma dessas opções na última missão.',
+      hint: 'No Windows, a ajuda de um comando aparece com uma barra e um ponto de interrogação.',
+      ans: 'ping /?',
+      ok: c => c.name === 'ping' && c.args.some(a => a === '/?' || a === '-?'),
+      near: c => c.name === 'help' ? 'O help lista todos os comandos. A missão pede a ajuda específica do ping.' : (c.name === 'ping' ? 'Isso executou o ping. A missão pede a ajuda do comando.' : null),
+      why: '<code>comando /?</code> mostra a ajuda no CMD. No Linux: <code>comando --help</code> ou <code>man comando</code>.'
+    },
+    {
+      short: 'Limpar a tela',
+      t: 'Limpe a tela do terminal.',
+      sub: 'Todo o texto anterior deve sumir.',
+      hint: 'O comando vem de "clear screen".',
+      ans: 'cls',
+      ok: c => c.name === 'cls',
+      why: '<code>cls</code> limpa a tela do CMD. No Linux: <code>clear</code> ou <kbd>Ctrl</kbd>+<kbd>L</kbd>.'
+    },
+    {
+      short: 'Nome do computador',
+      t: 'Descubra o nome deste computador na rede.',
+      sub: 'Em laboratórios, ele identifica cada máquina.',
+      hint: 'Em inglês, "nome do host".',
+      ans: 'hostname',
+      ok: c => c.name === 'hostname' || (c.name === 'echo' && /%computername%/i.test(c.line)),
+      near: c => c.name === 'whoami' ? 'O whoami mostra o usuário. A missão pede o nome do computador.' : null,
+      why: '<code>hostname</code> mostra o nome do computador, aqui ' + HOST + '. Funciona igual no Linux.'
+    },
+    {
+      short: 'Salvar config. de rede',
+      t: 'Salve a configuração de IP deste computador no arquivo <code>rede.txt</code>, dentro do Desktop.',
+      sub: 'A configuração não deve aparecer na tela: ela vai direto para o arquivo.',
+      hint: 'Use o comando de configuração de IP e o operador que envia a saída para um arquivo.',
+      ans: 'ipconfig > rede.txt',
+      pre: () => goTo(DESK),
+      ok: c => c.name === 'ipconfig' && c.meta.wrote === DESK + '\\rede.txt',
+      near: c => {
+        if (c.name === 'ipconfig' && !c.redirect) return 'A configuração apareceu na tela, mas não foi salva no arquivo.';
+        if (c.name === 'ipconfig' && c.redirect) return 'O arquivo foi salvo com outro nome ou em outra pasta. O pedido é rede.txt, dentro do Desktop.';
+        return null;
+      },
+      why: 'O <code>&gt;</code> funciona com qualquer comando. Assim um técnico guarda um registro da configuração da rede.'
+    },
+    {
+      short: 'Ping com 2 pacotes',
+      t: 'Teste a conexão com <code>google.com</code> enviando apenas <strong>2</strong> pacotes.',
+      sub: 'Por padrão, o ping do Windows envia 4. Use a opção que você viu na missão 16.',
+      hint: 'A opção é -n seguida da quantidade de pacotes.',
+      ans: 'ping -n 2 google.com',
+      ok: c => {
+        if (c.name !== 'ping' || !c.args.some(a => a.toLowerCase() === 'google.com')) return false;
+        const i = c.args.findIndex(a => /^[-/]n$/i.test(a));
+        return i >= 0 && c.args[i + 1] === '2';
+      },
+      near: c => {
+        if (c.name !== 'ping') return null;
+        if (!c.args.some(a => a.toLowerCase() === 'google.com')) return 'O destino pedido é google.com.';
+        return 'O ping foi para google.com, mas não com 2 pacotes. Falta a opção que define a quantidade.';
+      },
+      why: '<code>ping -n 2</code> envia 2 pacotes no Windows. No Linux, a opção equivalente é <code>-c 2</code>.'
     }
   ];
 
@@ -884,7 +1008,7 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
     renderQ(); renderProgress();
     input.value = ''; input.disabled = false;
   }
-  function points() { return results.reduce((s, r) => s + (r ? r.pts : 0), 0); }
+  function doneCount() { return results.filter(Boolean).length; }
   function renderProgress() {
     const pr = $('progress'); pr.textContent = '';
     Q.forEach((q, i) => {
@@ -895,20 +1019,20 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
       s.title = `Missão ${i + 1}: ${q.short}`;
       pr.appendChild(s);
     });
-    $('pts').textContent = fmtPts(points());
+    $('pts').textContent = doneCount();
   }
   function renderQ() {
     const q = Q[cur];
-    $('qlabel').textContent = `Missão ${cur + 1} de 10 · ${q.short}`;
+    $('qlabel').textContent = `Missão ${cur + 1} de ${Q.length} · ${q.short}`;
     $('qtext').innerHTML = q.t;
     $('qsub').innerHTML = q.sub || '';
     $('hint').hidden = true; $('feedback').hidden = true;
-    $('btnHint').disabled = false; $('btnHint').textContent = 'Ver dica (vale 0,5)';
+    $('btnHint').disabled = false; $('btnHint').textContent = 'Ver dica';
   }
   function feedback(msg) { $('feedbackText').textContent = msg; $('feedback').hidden = false; }
-  function finishQ(status, pts, cmd) {
+  function finishQ(status, cmd) {
     const q = Q[cur];
-    results[cur] = { status, pts, cmd, attempts };
+    results[cur] = { status, cmd, attempts };
     $('lastTitle').textContent = status === 'skip' ? `Missão ${cur + 1}: resposta` : `Missão ${cur + 1}: correto` + (status === 'hint' ? ' com dica' : '');
     $('lastText').innerHTML = (status === 'skip' ? `A resposta era <code>${q.ans.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>. ` : '') + q.why;
     $('last').className = 'note ' + (status === 'skip' ? 'warn' : 'good');
@@ -926,7 +1050,7 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
     const c = await exec(raw);
     if (cur >= Q.length || !c.line) return;
     const q = Q[cur];
-    if (q.ok(c)) { finishQ(hintUsed ? 'hint' : 'ok', hintUsed ? 0.5 : 1, raw.trim()); return; }
+    if (q.ok(c)) { finishQ(hintUsed ? 'hint' : 'ok', raw.trim()); return; }
     if (c.neutral || c.name === 'cls') return;
     attempts++;
     let msg = q.near && q.near(c);
@@ -942,18 +1066,18 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
     setPrompt();
     await exec(`REM Resposta da missão ${cur + 1}`, { rem: true });
     await exec(q.ans, { fast: true });
-    finishQ('skip', 0, '(pulou)');
+    finishQ('skip', '(pulou)');
     input.focus();
   }
 
   function showResult() {
     $('qview').hidden = true; $('result').hidden = false;
-    const pts = points();
-    const secs = Math.round((Date.now() - startAt) / 1000);
+        const secs = Math.round((Date.now() - startAt) / 1000);
     const dur = `${Math.floor(secs / 60)} min ${d2(secs % 60)} s`;
-    $('finalScore').innerHTML = `${fmtPts(pts)}<small> / 10</small>`;
+    
     const ok = results.filter(r => r.status === 'ok').length, hn = results.filter(r => r.status === 'hint').length, sk = results.filter(r => r.status === 'skip').length;
-    $('finalInfo').textContent = `${ok} sem dica, ${hn} com dica, ${sk} puladas · tempo: ${dur}`;
+    $('finalScore').innerHTML = `${ok}<small> de ${Q.length} sem dica</small>`;
+    $('finalInfo').textContent = `${hn} com dica, ${sk} pulada${sk === 1 ? '' : 's'} · tempo: ${dur}`;
     const list = $('reslist'); list.textContent = '';
     const label = { ok: 'Acertou', hint: 'Com dica', skip: 'Pulou' };
     results.forEach((r, i) => {
@@ -969,17 +1093,17 @@ textarea { width: 100%; min-height: 150px; font: 12px/1.45 var(--f-mono); color:
     buildSummary(dur);
   }
   function buildSummary(dur) {
-    const label = { ok: 'Acertou   (1,0)', hint: 'Com dica  (0,5)', skip: 'Pulou     (0,0)' };
+    const label = { ok: 'Acertou ', hint: 'Com dica', skip: 'Pulou   ' };
     const nome = $('nome').value.trim() || '(sem nome)', turma = $('turma').value.trim() || '(sem turma)';
     const t = new Date();
     const L = [
       'DESAFIO DO PROMPT DE COMANDO — RESULTADO',
       `Aluno: ${nome} | Turma: ${turma}`,
       `Data: ${d2(t.getDate())}/${d2(t.getMonth() + 1)}/${t.getFullYear()} ${d2(t.getHours())}:${d2(t.getMinutes())}${dur ? ' | Tempo: ' + dur : ''}`,
-      `Pontuação: ${fmtPts(points())} / 10`, ''
+      `Sem dica: ${results.filter(r => r.status === 'ok').length} | Com dica: ${results.filter(r => r.status === 'hint').length} | Puladas: ${results.filter(r => r.status === 'skip').length}`, ''
     ];
     results.forEach((r, i) => {
-      L.push(`${d2(i + 1)} ${Q[i].short.padEnd(18)} ${label[r.status]}  ${r.status === 'skip' ? '' : r.cmd}`.trimEnd());
+      L.push(`${d2(i + 1)} ${Q[i].short.padEnd(23)} ${label[r.status]}  ${r.status === 'skip' ? '' : r.cmd}`.trimEnd());
     });
     $('summary').value = L.join('\n');
     $('summary').dataset.dur = dur || '';
