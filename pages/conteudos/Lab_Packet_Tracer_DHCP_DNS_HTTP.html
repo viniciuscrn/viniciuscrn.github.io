@@ -1,0 +1,1725 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lab Packet Tracer — DHCP, DNS e HTTP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f6fa;
+        --card: #fff;
+        --ink: #1b2333;
+        --muted: #5b6578;
+        --line: #dfe4ee;
+        --dhcp: #e8770e;
+        --dhcp-bg: #fff3e6;
+        --dns: #5b4bdb;
+        --dns-bg: #efedff;
+        --http: #119c5a;
+        --http-bg: #e6f7ee;
+        --base: #2563eb;
+        --base-bg: #e8f0ff;
+        --pane: #d6334a;
+        --pane-bg: #fdecee;
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.55;
+      }
+      code,
+      pre,
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      header {
+        background: linear-gradient(135deg, #0f1b33, #1e3a6e);
+        color: #fff;
+        padding: 28px 20px 22px;
+      }
+      .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header h1 {
+        margin: 0 0 6px;
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      header p {
+        margin: 0;
+        opacity: 0.85;
+      }
+      .chain {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 14px;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+      .chip {
+        padding: 4px 12px;
+        border-radius: 999px;
+        color: #fff;
+      }
+      .chip.dhcp {
+        background: var(--dhcp);
+      }
+      .chip.dns {
+        background: var(--dns);
+      }
+      .chip.http {
+        background: var(--http);
+      }
+      .grp {
+        margin-top: 16px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .grp label {
+        font-weight: 600;
+      }
+      .grp input {
+        width: 70px;
+        padding: 6px 8px;
+        border-radius: 8px;
+        border: none;
+        font: inherit;
+        font-weight: 700;
+        text-align: center;
+      }
+      .grp .dompill {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 5px 12px;
+        border-radius: 8px;
+      }
+      .progress {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 99px;
+        margin-top: 16px;
+        overflow: hidden;
+      }
+      .progress > div {
+        height: 100%;
+        width: 0;
+        background: #4ade80;
+        transition: width 0.4s;
+      }
+      .ptxt {
+        font-size: 0.85rem;
+        opacity: 0.85;
+        margin-top: 6px;
+      }
+
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+      nav .wrap {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        padding: 8px 20px;
+      }
+      nav button {
+        flex: none;
+        border: none;
+        background: none;
+        font: inherit;
+        font-weight: 600;
+        color: var(--muted);
+        padding: 8px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      nav button:hover {
+        background: var(--bg);
+      }
+      nav button.on {
+        background: var(--ink);
+        color: #fff;
+      }
+      nav button .ok {
+        color: #16a34a;
+        margin-left: 4px;
+      }
+      nav button.on .ok {
+        color: #4ade80;
+      }
+
+      main {
+        padding: 24px 0 60px;
+      }
+      section.tab {
+        display: none;
+      }
+      section.tab.on {
+        display: block;
+        animation: fade 0.25s;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 22px;
+        margin-bottom: 18px;
+      }
+      h2 {
+        margin: 0 0 4px;
+        font-size: 1.5rem;
+        letter-spacing: -0.01em;
+      }
+      h3 {
+        margin: 0 0 10px;
+        font-size: 1.1rem;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 0 0 6px;
+      }
+      .mhead {
+        border-left: 6px solid var(--c, var(--base));
+        padding-left: 14px;
+        margin-bottom: 18px;
+      }
+      .dhcpT {
+        --c: var(--dhcp);
+        --cb: var(--dhcp-bg);
+      }
+      .dnsT {
+        --c: var(--dns);
+        --cb: var(--dns-bg);
+      }
+      .httpT {
+        --c: var(--http);
+        --cb: var(--http-bg);
+      }
+      .baseT {
+        --c: var(--base);
+        --cb: var(--base-bg);
+      }
+      .paneT {
+        --c: var(--pane);
+        --cb: var(--pane-bg);
+      }
+      .tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--c);
+        background: var(--cb);
+        padding: 3px 10px;
+        border-radius: 99px;
+        margin-bottom: 6px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 9px 10px;
+        border-bottom: 1px solid var(--line);
+      }
+      th {
+        background: var(--bg);
+        font-weight: 600;
+      }
+      td code {
+        background: var(--bg);
+        padding: 1px 6px;
+        border-radius: 5px;
+      }
+
+      .steps {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .steps li {
+        display: flex;
+        gap: 12px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .steps li:hover {
+        border-color: var(--c, var(--base));
+      }
+      .steps li.done {
+        background: var(--cb, var(--base-bg));
+        border-color: var(--c, var(--base));
+      }
+      .steps li.done .txt {
+        opacity: 0.75;
+      }
+      .steps input {
+        width: 20px;
+        height: 20px;
+        flex: none;
+        margin-top: 2px;
+        accent-color: var(--c, var(--base));
+        cursor: pointer;
+      }
+      .steps .path {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.85em;
+        background: var(--bg);
+        padding: 1px 6px;
+        border-radius: 5px;
+      }
+      .steps li.done .path {
+        background: #fff;
+      }
+
+      pre {
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 14px 16px;
+        border-radius: 10px;
+        overflow-x: auto;
+        font-size: 0.88rem;
+        margin: 10px 0;
+      }
+      pre .c {
+        color: #94a3b8;
+      }
+      .tip,
+      .warn,
+      .think {
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin: 12px 0;
+        font-size: 0.95rem;
+      }
+      .tip {
+        background: var(--base-bg);
+        border-left: 4px solid var(--base);
+      }
+      .warn {
+        background: #fff7e0;
+        border-left: 4px solid #e0a400;
+      }
+      .think {
+        background: #f3eefe;
+        border-left: 4px solid #8b5cf6;
+      }
+      .tip b,
+      .warn b,
+      .think b {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .cfg {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 8px;
+        margin: 10px 0;
+      }
+      .cfg div {
+        background: var(--cb, var(--bg));
+        border-radius: 8px;
+        padding: 8px 12px;
+      }
+      .cfg small {
+        display: block;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+      .cfg span {
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 600;
+      }
+
+      /* quiz */
+      .quiz .q {
+        margin-bottom: 18px;
+      }
+      .quiz .q p {
+        font-weight: 600;
+        margin: 0 0 8px;
+      }
+      .opts {
+        display: grid;
+        gap: 6px;
+      }
+      .opts button {
+        text-align: left;
+        font: inherit;
+        color: var(--ink);
+        font-weight: 500;
+        padding: 10px 14px;
+        border: 1.5px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .opts button:hover:not(:disabled) {
+        border-color: var(--c, var(--base));
+      }
+      .opts button.right {
+        background: #e6f7ee;
+        border-color: #16a34a;
+        color: #14532d;
+        font-weight: 600;
+      }
+      .opts button.wrong {
+        background: #fdecee;
+        border-color: #d6334a;
+        color: #7f1d1d;
+      }
+      .opts button:disabled {
+        cursor: default;
+        opacity: 1;
+      }
+      .field input,
+      .field textarea,
+      .grp input {
+        color: var(--ink);
+        background: #fff;
+      }
+      .fb {
+        font-size: 0.9rem;
+        margin-top: 6px;
+        min-height: 1em;
+      }
+      .fb.r {
+        color: #15803d;
+      }
+      .fb.w {
+        color: #b91c1c;
+      }
+
+      /* sequence */
+      .seq {
+        background: #0f172a;
+        border-radius: 12px;
+        padding: 12px;
+        color: #e2e8f0;
+      }
+      .seq svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .seqctl {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .btn {
+        font: inherit;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        padding: 9px 16px;
+        cursor: pointer;
+        background: var(--c, var(--base));
+        color: #fff;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--c, var(--base));
+        border: 1.5px solid var(--c, var(--base));
+      }
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+      .seqinfo {
+        font-size: 0.9rem;
+        color: #cbd5e1;
+        flex: 1;
+        min-width: 200px;
+      }
+
+      /* order */
+      .order {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 10px 0;
+      }
+      .order button {
+        font: inherit;
+        font-weight: 600;
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: 1.5px dashed var(--dhcp);
+        background: #fff;
+        color: var(--dhcp);
+        cursor: pointer;
+      }
+      .order button.used {
+        opacity: 0.3;
+        cursor: default;
+      }
+      .slots {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 10px 0;
+      }
+      .slots div {
+        min-width: 110px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: var(--bg);
+        border: 1.5px solid var(--line);
+        text-align: center;
+        font-weight: 600;
+        color: var(--muted);
+      }
+      .slots div.f {
+        background: var(--dhcp-bg);
+        border-color: var(--dhcp);
+        color: var(--dhcp);
+      }
+
+      /* panes */
+      .panes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 14px;
+      }
+      .pcard {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+        background: #fff;
+        border-top: 5px solid var(--pane);
+      }
+      .pcard h4 {
+        margin: 0 0 6px;
+      }
+      .pcard .sym {
+        background: var(--pane-bg);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 0.92rem;
+        margin-bottom: 10px;
+      }
+      .pcard label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--muted);
+        margin: 8px 0 3px;
+      }
+      .pcard input,
+      .pcard textarea {
+        width: 100%;
+        font: inherit;
+        font-size: 0.92rem;
+        padding: 7px 9px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .hint {
+        display: none;
+        font-size: 0.88rem;
+        background: #fff7e0;
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin-top: 8px;
+      }
+      .hint.on {
+        display: block;
+      }
+      .linkbtn {
+        background: none;
+        border: none;
+        color: var(--pane);
+        font: inherit;
+        font-weight: 600;
+        font-size: 0.85rem;
+        cursor: pointer;
+        padding: 0;
+        margin-top: 8px;
+      }
+
+      /* report */
+      .form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 10px;
+      }
+      .field label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.88rem;
+        margin-bottom: 4px;
+      }
+      .field input,
+      .field textarea {
+        width: 100%;
+        font: inherit;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .field textarea {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.82rem;
+        min-height: 110px;
+      }
+      .full {
+        grid-column: 1/-1;
+      }
+      #out {
+        white-space: pre-wrap;
+        min-height: 120px;
+      }
+      .copied {
+        color: #16a34a;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .topo svg {
+        width: 100%;
+        max-width: 760px;
+        display: block;
+        margin: 0 auto;
+      }
+      .grid2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+      }
+      .navbtns {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        gap: 10px;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <h1>🌐 Lab: Montando a rede da Empresa Fictícia</h1>
+        <p>Administração de Sistemas Proprietários · Prática no Cisco Packet Tracer</p>
+        <div class="chain">
+          <span class="chip dhcp">DHCP · me dá um IP</span>→ <span class="chip dns">DNS · traduz o nome</span>→
+          <span class="chip http">HTTP · entrega a página</span>
+        </div>
+        <div class="grp">
+          <span class="dompill">Domínio da rede: <b class="mono dom">empresa.local</b></span>
+        </div>
+        <div class="progress"><div id="pbar"></div></div>
+        <div class="ptxt" id="ptxt">0% concluído</div>
+      </div>
+    </header>
+
+    <nav><div class="wrap" id="nav"></div></nav>
+
+    <main>
+      <div class="wrap">
+        <!-- ================= VISÃO GERAL ================= -->
+        <section class="tab" data-tab="inicio" data-label="📋 Visão geral">
+          <div class="card">
+            <div class="mhead baseT">
+              <span class="tag">Missão da dupla</span>
+              <h2>Vocês são a equipe de TI da empresa</h2>
+              <p class="sub">
+                A empresa precisa que qualquer computador ligado na rede receba IP automaticamente e consiga abrir o
+                site interno digitando <b class="mono">www.<span class="dom">empresa.local</span></b
+                >.
+              </p>
+            </div>
+            <div class="think">
+              <b>🤔 Pergunta-guia da aula</b>O que precisa acontecer, nos bastidores, entre você digitar um endereço no
+              navegador e a página aparecer na tela?
+            </div>
+          </div>
+
+          <div class="card topo">
+            <h3>Topologia da rede</h3>
+            <svg
+              viewBox="0 0 760 360"
+              role="img"
+              aria-label="Topologia: três servidores e quatro PCs ligados a um switch"
+            >
+              <defs>
+                <g id="srv">
+                  <rect x="-34" y="-42" width="68" height="84" rx="8" fill="#1e293b" />
+                  <rect x="-24" y="-30" width="48" height="8" rx="2" fill="#475569" />
+                  <rect x="-24" y="-16" width="48" height="8" rx="2" fill="#475569" />
+                  <rect x="-24" y="-2" width="48" height="8" rx="2" fill="#475569" />
+                  <circle cx="16" cy="26" r="4" fill="#4ade80" />
+                </g>
+                <g id="pc">
+                  <rect x="-32" y="-26" width="64" height="42" rx="5" fill="#334155" />
+                  <rect x="-26" y="-20" width="52" height="30" rx="2" fill="#93c5fd" />
+                  <rect x="-6" y="16" width="12" height="8" fill="#334155" />
+                  <rect x="-18" y="24" width="36" height="5" rx="2" fill="#334155" />
+                </g>
+              </defs>
+              <g stroke="#94a3b8" stroke-width="3">
+                <line x1="150" y1="110" x2="380" y2="185" />
+                <line x1="380" y1="110" x2="380" y2="185" />
+                <line x1="610" y1="110" x2="380" y2="185" />
+                <line x1="110" y1="290" x2="380" y2="185" />
+                <line x1="290" y1="290" x2="380" y2="185" />
+                <line x1="470" y1="290" x2="380" y2="185" />
+                <line x1="650" y1="290" x2="380" y2="185" />
+              </g>
+              <use href="#srv" x="150" y="70" />
+              <use href="#srv" x="380" y="70" />
+              <use href="#srv" x="610" y="70" />
+              <rect x="150" y="16" width="0" height="0" />
+              <g font-family="Inter" font-weight="700" font-size="14" text-anchor="middle">
+                <text x="150" y="130" fill="#e8770e">SRV-DHCP</text>
+                <text x="380" y="130" fill="#5b4bdb">SRV-DNS</text>
+                <text x="610" y="130" fill="#119c5a">SRV-WEB</text>
+              </g>
+              <g font-family="JetBrains Mono" font-size="12" text-anchor="middle" fill="#5b6578">
+                <text x="150" y="147">192.168.10.10</text>
+                <text x="380" y="147">192.168.10.11</text>
+                <text x="610" y="147">192.168.10.12</text>
+              </g>
+              <rect x="320" y="170" width="120" height="32" rx="6" fill="#0f766e" />
+              <text
+                x="380"
+                y="191"
+                font-family="Inter"
+                font-weight="700"
+                font-size="13"
+                fill="#fff"
+                text-anchor="middle"
+              >
+                Switch 2960
+              </text>
+              <use href="#pc" x="110" y="300" />
+              <use href="#pc" x="290" y="300" />
+              <use href="#pc" x="470" y="300" />
+              <use href="#pc" x="650" y="300" />
+              <g font-family="Inter" font-weight="600" font-size="13" text-anchor="middle" fill="#1b2333">
+                <text x="110" y="348">PC1 · DHCP</text>
+                <text x="290" y="348">PC2 · DHCP</text>
+                <text x="470" y="348">PC3 · DHCP</text>
+                <text x="650" y="348">PC4 · DHCP</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="card">
+            <h3>Tabela de endereçamento</h3>
+            <table>
+              <tr>
+                <th>Dispositivo</th>
+                <th>Endereço IP</th>
+                <th>Máscara</th>
+                <th>DNS</th>
+                <th>Função</th>
+              </tr>
+              <tr>
+                <td><b>SRV-DHCP</b> (Server-PT)</td>
+                <td><code>192.168.10.10</code></td>
+                <td><code>255.255.255.0</code></td>
+                <td><code>192.168.10.11</code></td>
+                <td>Distribui IPs</td>
+              </tr>
+              <tr>
+                <td><b>SRV-DNS</b> (Server-PT)</td>
+                <td><code>192.168.10.11</code></td>
+                <td><code>255.255.255.0</code></td>
+                <td><code>192.168.10.11</code></td>
+                <td>Resolve nomes</td>
+              </tr>
+              <tr>
+                <td><b>SRV-WEB</b> (Server-PT)</td>
+                <td><code>192.168.10.12</code></td>
+                <td><code>255.255.255.0</code></td>
+                <td><code>192.168.10.11</code></td>
+                <td>Hospeda o site</td>
+              </tr>
+              <tr>
+                <td><b>PC1 a PC4</b> (PC-PT)</td>
+                <td colspan="3"><i>Recebem tudo automaticamente via DHCP</i></td>
+                <td>Clientes</td>
+              </tr>
+            </table>
+            <div class="warn">
+              <b>🖥️ Versão do laboratório: Packet Tracer 5.0</b>Nesta versão, os serviços dos servidores (HTTP, DHCP,
+              DNS) ficam na aba <b>Config</b>, no menu da esquerda, abaixo de <b>SERVICES</b>. Tutoriais da internet
+              para versões novas falam em uma aba "Services", que não existe aqui.
+            </div>
+            <div class="tip">
+              <b>💡 Como usar esta página</b>Marque cada passo à medida que concluir. Responda os checkpoints de cada
+              missão e, no fim, preencha a aba <b>Relatório</b> e copie o texto para o formulário indicado pelo
+              professor. O progresso fica salvo neste navegador.
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= MISSÃO 1 ================= -->
+        <section class="tab" data-tab="m1" data-label="1 · Montagem">
+          <div class="card baseT">
+            <div class="mhead">
+              <span class="tag">Missão 1 · ~25 min</span>
+              <h2>Montar a rede: 3 servidores e 4 clientes</h2>
+              <p class="sub">
+                Servidores precisam de endereço fixo: os clientes precisam saber sempre onde encontrá-los. Os clientes,
+                por enquanto, só ficam ligados na rede.
+              </p>
+            </div>
+
+            <h3>Parte A · Colocar os equipamentos</h3>
+            <ul class="steps">
+              <li>
+                <input type="checkbox" data-save id="m1s1" />
+                <div class="txt">
+                  Na barra inferior esquerda, clique em <b>Switches</b> e arraste um <b>2960</b> para o centro da área
+                  de trabalho.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m1s1b" />
+                <div class="txt">
+                  Clique em <b>End Devices</b> e arraste <b>3 Server-PT</b> (parte de cima) e <b>4 PC-PT</b> (parte de
+                  baixo), como na topologia da Visão geral.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m1s2" />
+                <div class="txt">
+                  Dê nome aos servidores: clique no servidor e vá em
+                  <span class="path">Config &gt; GLOBAL &gt; Settings &gt; Display Name</span>. Use SRV-DHCP, SRV-DNS e
+                  SRV-WEB. Nomeie também os PCs (PC1 a PC4).
+                </div>
+              </li>
+            </ul>
+
+            <h3 style="margin-top: 18px">Parte B · Cabeamento</h3>
+            <ul class="steps">
+              <li>
+                <input type="checkbox" data-save id="m1s3" />
+                <div class="txt">
+                  Em <b>Connections</b> (ícone do raio), escolha <b>Copper Straight-Through</b> (cabo preto contínuo).
+                  Clique no servidor, escolha <span class="path">FastEthernet</span>, depois clique no switch e escolha
+                  uma porta <span class="path">FastEthernet0/x</span> livre.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m1s3b" />
+                <div class="txt">
+                  Repita para os 3 servidores e os 4 PCs (7 cabos no total). Anote qual porta do switch ficou com cada
+                  equipamento.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m1s5" />
+                <div class="txt">
+                  Aguarde as bolinhas dos cabos ficarem <b>verdes</b>. O switch leva alguns segundos; para acelerar,
+                  clique várias vezes em <span class="path">Fast Forward Time</span> (barra amarela, canto inferior
+                  direito).
+                </div>
+              </li>
+            </ul>
+            <table style="margin-top: 8px">
+              <tr>
+                <th>Equipamento</th>
+                <th>Porta do equipamento</th>
+                <th>Porta sugerida no switch</th>
+              </tr>
+              <tr>
+                <td>SRV-DHCP</td>
+                <td><code>FastEthernet</code></td>
+                <td><code>Fa0/1</code></td>
+              </tr>
+              <tr>
+                <td>SRV-DNS</td>
+                <td><code>FastEthernet</code></td>
+                <td><code>Fa0/2</code></td>
+              </tr>
+              <tr>
+                <td>SRV-WEB</td>
+                <td><code>FastEthernet</code></td>
+                <td><code>Fa0/3</code></td>
+              </tr>
+              <tr>
+                <td>PC1 a PC4</td>
+                <td><code>FastEthernet</code></td>
+                <td><code>Fa0/11</code> a <code>Fa0/14</code></td>
+              </tr>
+            </table>
+
+            <h3 style="margin-top: 18px">Parte C · IP fixo nos servidores</h3>
+            <ul class="steps">
+              <li>
+                <input type="checkbox" data-save id="m1s4" />
+                <div class="txt">
+                  Em cada servidor, abra <span class="path">Desktop &gt; IP Configuration</span>, deixe marcado
+                  <b>Static</b> e preencha IP, máscara e DNS conforme a tabela abaixo. Os valores são salvos
+                  automaticamente; basta fechar a janela.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m1s4b" />
+                <div class="txt">
+                  Confira em <span class="path">Config &gt; INTERFACE &gt; FastEthernet</span> se o IP aparece lá também
+                  e se a <b>Port Status</b> está <b>On</b>.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m1s4c" />
+                <div class="txt">
+                  <b>Desligue os serviços que não são daquele servidor.</b> Em
+                  <span class="path">Config &gt; SERVICES</span>, coloque em <b>Off</b> tudo que não for a função dele.
+                  Exemplo: no SRV-DNS, desligue HTTP e DHCP e deixe só DNS. Veja a tabela abaixo.
+                </div>
+              </li>
+            </ul>
+            <table style="margin-top: 8px">
+              <tr>
+                <th>Servidor</th>
+                <th>IP / Máscara</th>
+                <th>DNS</th>
+                <th>HTTP</th>
+                <th>DHCP</th>
+                <th>DNS (serviço)</th>
+              </tr>
+              <tr>
+                <td><b>SRV-DHCP</b></td>
+                <td><code>192.168.10.10 /24</code></td>
+                <td><code>192.168.10.11</code></td>
+                <td>Off</td>
+                <td><b style="color: var(--dhcp)">On</b></td>
+                <td>Off</td>
+              </tr>
+              <tr>
+                <td><b>SRV-DNS</b></td>
+                <td><code>192.168.10.11 /24</code></td>
+                <td><code>192.168.10.11</code></td>
+                <td>Off</td>
+                <td>Off</td>
+                <td><b style="color: var(--dns)">On</b></td>
+              </tr>
+              <tr>
+                <td><b>SRV-WEB</b></td>
+                <td><code>192.168.10.12 /24</code></td>
+                <td><code>192.168.10.11</code></td>
+                <td><b style="color: var(--http)">On</b></td>
+                <td>Off</td>
+                <td>Off</td>
+              </tr>
+            </table>
+            <div class="warn">
+              <b>⚠️ Por que desligar os outros serviços?</b>Se dois servidores estiverem com DHCP ligado, os PCs podem
+              receber endereço do servidor errado. É exatamente o problema do "DHCP pirata" numa rede real.
+            </div>
+
+            <h3 style="margin-top: 18px">Parte D · Clientes na rede e teste</h3>
+            <ul class="steps">
+              <li>
+                <input type="checkbox" data-save id="m1s6" />
+                <div class="txt">
+                  Nos PCs, <b>não configure nada ainda</b>. Eles vão receber endereço na Missão 2, pelo DHCP.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m1s7" />
+                <div class="txt">
+                  Teste a base da rede: no SRV-DHCP, abra <span class="path">Desktop &gt; Command Prompt</span> e faça
+                  ping nos outros dois servidores. Os dois precisam responder.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m1s8" />
+                <div class="txt">
+                  Salve o arquivo: <span class="path">File &gt; Save As</span>, com o nome
+                  <span class="path">lab-servidores.pkt</span>. Salve de novo ao fim de cada missão.
+                </div>
+              </li>
+            </ul>
+            <pre>
+SERVER&gt;ping 192.168.10.11
+SERVER&gt;ping 192.168.10.12</pre
+            >
+            <div class="tip">
+              <b>💡 O primeiro ping falhou?</b>É normal: na 1ª vez o equipamento ainda está descobrindo o MAC do destino
+              (ARP). Repita o comando antes de procurar o erro.
+            </div>
+          </div>
+          <div class="card quiz baseT">
+            <h3>✅ Checkpoint</h3>
+            <div class="q" data-q="q1" data-ans="1">
+              <p>Por que os servidores usam IP fixo e não DHCP?</p>
+              <div class="opts">
+                <button>Porque IP fixo é mais rápido que IP dinâmico</button>
+                <button>Porque os clientes precisam encontrá-los sempre no mesmo endereço</button>
+                <button>Porque o Packet Tracer não permite DHCP em servidores</button>
+              </div>
+              <div class="fb"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= MISSÃO 2 ================= -->
+        <section class="tab" data-tab="m2" data-label="2 · DHCP">
+          <div class="card dhcpT">
+            <div class="mhead">
+              <span class="tag">Missão 2 · ~25 min</span>
+              <h2>DHCP: endereço automático para todos</h2>
+              <p class="sub">O DHCP entrega aos clientes IP, máscara, gateway e o endereço do servidor DNS.</p>
+            </div>
+            <ul class="steps">
+              <li>
+                <input type="checkbox" data-save id="m2s1" />
+                <div class="txt">
+                  No SRV-DHCP, abra <span class="path">Config &gt; SERVICES &gt; DHCP</span> e marque o serviço como
+                  <b>On</b>.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m2s2" />
+                <div class="txt">
+                  Clique no pool <b>serverPool</b> na lista. Os campos são preenchidos com os valores atuais; substitua
+                  pelos valores abaixo.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m2s3" />
+                <div class="txt">
+                  Clique em <b>Save</b> e confira se a linha do serverPool na lista mostra os novos valores. ⚠️ Sem
+                  salvar, nada muda!
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m2s4" />
+                <div class="txt">
+                  Em cada PC, vá em <span class="path">Desktop &gt; IP Configuration</span> e marque <b>DHCP</b>.
+                  Aguarde alguns segundos até os campos IP, máscara, gateway e DNS se preencherem sozinhos.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m2s5" />
+                <div class="txt">
+                  No <span class="path">Desktop &gt; Command Prompt</span> de um PC, rode
+                  <span class="path">ipconfig /all</span> e confira IP e DNS recebidos. Guarde a saída para o relatório.
+                </div>
+              </li>
+            </ul>
+            <div class="cfg">
+              <div><small>Pool Name</small><span>serverPool</span></div>
+              <div><small>Default Gateway</small><span>192.168.10.1</span></div>
+              <div><small>DNS Server</small><span>192.168.10.11</span></div>
+              <div><small>Start IP Address</small><span>192.168.10.100</span></div>
+              <div><small>Subnet Mask</small><span>255.255.255.0</span></div>
+              <div><small>Maximum Number of Users</small><span>100</span></div>
+            </div>
+            <pre>PC&gt;ipconfig /all</pre>
+            <div class="tip">
+              <b>💡 Como pedir um IP novo ao DHCP no PT 5.0</b>Em <span class="path">IP Configuration</span>, marque
+              <b>Static</b> e depois <b>DHCP</b> de novo. O PC refaz todo o pedido ao servidor. Use esse mesmo truque na
+              simulação do DORA.
+            </div>
+            <div class="warn">
+              <b>⚠️ PC com IP 169.254.x.x?</b>Esse é um endereço APIPA: o PC pediu IP e ninguém respondeu. Verifique se
+              o serviço DHCP está On e se o pool foi salvo.
+            </div>
+          </div>
+
+          <div class="card dhcpT">
+            <h3>🔬 Modo Simulação: o processo DORA</h3>
+            <p class="sub">
+              No Packet Tracer, clique em <b>Simulation</b> (canto inferior direito), em <b>Edit Filters</b> deixe só
+              <b>DHCP</b> e, em um PC, alterne <b>Static → DHCP</b> no IP Configuration. Avance com
+              <b>Capture/Forward</b> e clique nos envelopes para ver o conteúdo. Veja abaixo o que deve acontecer:
+            </p>
+            <div class="seq" id="seqDora"></div>
+          </div>
+
+          <div class="card dhcpT">
+            <h3>🧩 Coloque o DORA em ordem</h3>
+            <p class="sub">Clique nas mensagens na ordem em que acontecem.</p>
+            <div class="order" id="doraOpts"></div>
+            <div class="slots" id="doraSlots"></div>
+            <div class="fb" id="doraFb"></div>
+            <button class="btn ghost" id="doraReset" style="margin-top: 6px">Recomeçar</button>
+          </div>
+
+          <div class="card quiz dhcpT">
+            <h3>✅ Checkpoint</h3>
+            <div class="q" data-q="q2" data-ans="2">
+              <p>Qual campo do pool faz os PCs saberem qual servidor resolve nomes?</p>
+              <div class="opts">
+                <button>Default Gateway</button><button>Start IP Address</button><button>DNS Server</button>
+              </div>
+              <div class="fb"></div>
+            </div>
+            <div class="q" data-q="q3" data-ans="0">
+              <p>Na mensagem DHCP Discover, o PC ainda não sabe quem é o servidor. Como ele envia a mensagem?</p>
+              <div class="opts">
+                <button>Em broadcast, para todos da rede</button><button>Direto para 192.168.10.10</button
+                ><button>Para o servidor DNS</button>
+              </div>
+              <div class="fb"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= MISSÃO 3 ================= -->
+        <section class="tab" data-tab="m3" data-label="3 · DNS">
+          <div class="card dnsT">
+            <div class="mhead">
+              <span class="tag">Missão 3 · ~20 min</span>
+              <h2>DNS: a agenda de contatos da rede</h2>
+              <p class="sub">Pessoas lembram nomes, computadores usam números. O DNS faz a tradução.</p>
+            </div>
+            <ul class="steps">
+              <li>
+                <input type="checkbox" data-save id="m3s1" />
+                <div class="txt">
+                  No SRV-DNS, abra <span class="path">Config &gt; SERVICES &gt; DNS</span> e marque
+                  <b>DNS Service: On</b>.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m3s2" />
+                <div class="txt">
+                  Em <b>Name</b>, digite <span class="path">www.<span class="dom">empresa.local</span></span
+                  >. Em <b>Address</b>, digite <span class="path">192.168.10.12</span>. Clique em <b>Add</b>; o registro
+                  aparece na lista.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m3s3" />
+                <div class="txt">
+                  Adicione um segundo registro:
+                  <span class="path">srv-web.<span class="dom">empresa.local</span></span> →
+                  <span class="path">192.168.10.12</span>. Dois nomes podem apontar para o mesmo IP.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m3s4" />
+                <div class="txt">
+                  Em um PC, teste a resolução com <span class="path">nslookup</span> e
+                  <span class="path">ping</span> usando o nome. Guarde a saída para o relatório.
+                </div>
+              </li>
+            </ul>
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>O que significa</th>
+              </tr>
+              <tr>
+                <td>
+                  <code>www.<span class="dom">empresa.local</span></code>
+                </td>
+                <td><code>192.168.10.12</code></td>
+                <td>Nome que os usuários digitam no navegador</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>srv-web.<span class="dom">empresa.local</span></code>
+                </td>
+                <td><code>192.168.10.12</code></td>
+                <td>Nome técnico do servidor, usado pela equipe de TI</td>
+              </tr>
+            </table>
+            <div class="tip">
+              <b>💡 Sobre o tipo de registro</b>No PT 5.0, o DNS só cria registros do tipo <b>A</b> (nome → IPv4), por
+              isso não aparece a opção de tipo. Em servidores reais, como o Windows Server, existem outros tipos, por
+              exemplo o <b>CNAME</b>, um apelido que aponta para outro nome.
+            </div>
+            <pre>PC&gt;nslookup www.<span class="dom">empresa.local</span>
+PC&gt;ping www.<span class="dom">empresa.local</span></pre>
+            <div class="warn">
+              <b>⚠️ nslookup não reconhecido?</b>Se o comando não existir nesta instalação, use só o
+              <span class="path">ping www.<span class="dom">empresa.local</span></span
+              >. Se a resposta vier de 192.168.10.12, o nome foi resolvido pelo DNS.
+            </div>
+            <div class="think">
+              <b>🤔 Pense nisso</b>Ninguém configurou o DNS manualmente nos PCs. Mesmo assim eles sabem que devem
+              perguntar ao 192.168.10.11. Quem contou isso a eles?
+            </div>
+          </div>
+          <div class="card quiz dnsT">
+            <h3>✅ Checkpoint</h3>
+            <div class="q" data-q="q4" data-ans="0">
+              <p>Os registros que vocês criaram (nome → endereço IPv4) são de qual tipo?</p>
+              <div class="opts"><button>A</button><button>MX</button><button>NS</button></div>
+              <div class="fb"></div>
+            </div>
+            <div class="q" data-q="q5" data-ans="1">
+              <p>Se o SRV-WEB mudar para o IP .20, o que precisa ser feito no SRV-DNS?</p>
+              <div class="opts">
+                <button>Nada, o DNS descobre sozinho</button
+                ><button>Atualizar os dois registros que apontam para .12</button
+                ><button>Desligar e religar o serviço DHCP</button>
+              </div>
+              <div class="fb"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= MISSÃO 4 ================= -->
+        <section class="tab" data-tab="m4" data-label="4 · HTTP">
+          <div class="card httpT">
+            <div class="mhead">
+              <span class="tag">Missão 4 · ~20 min</span>
+              <h2>HTTP: no ar, o site da empresa</h2>
+              <p class="sub">Agora a cadeia se completa: IP pelo DHCP, nome pelo DNS, página pelo HTTP.</p>
+            </div>
+            <ul class="steps">
+              <li>
+                <input type="checkbox" data-save id="m4s1" />
+                <div class="txt">
+                  No SRV-WEB, abra <span class="path">Config &gt; SERVICES &gt; HTTP</span> e confirme que
+                  <b>HTTP</b> está <b>On</b>.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m4s2" />
+                <div class="txt">
+                  Na mesma tela aparece uma caixa de texto com o HTML da página padrão (começa com "Welcome to Packet
+                  Tracer 5.0…"). Ela é o <span class="path">index.html</span> do servidor.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m4s3" />
+                <div class="txt">
+                  Apague o conteúdo e cole a página da sua empresa (modelo abaixo, personalize os nomes). A alteração
+                  vale assim que você digita; feche a janela.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m4s4" />
+                <div class="txt">
+                  Em um PC, abra <span class="path">Desktop &gt; Web Browser</span> e acesse
+                  <span class="path">http://www.<span class="dom">empresa.local</span></span
+                  >.
+                </div>
+              </li>
+              <li>
+                <input type="checkbox" data-save id="m4s5" />
+                <div class="txt">
+                  No Modo Simulação, filtre <b>DNS</b> e <b>HTTP</b>, acesse o site de novo e observe a ordem dos
+                  pacotes.
+                </div>
+              </li>
+            </ul>
+            <pre id="htmlTpl"></pre>
+          </div>
+          <div class="card httpT">
+            <h3>🔬 Modo Simulação: a cadeia completa</h3>
+            <p class="sub">O que você deve ver ao acessar o site com os filtros DNS + HTTP:</p>
+            <div class="seq" id="seqWeb"></div>
+          </div>
+          <div class="card quiz httpT">
+            <h3>✅ Checkpoint</h3>
+            <div class="q" data-q="q6" data-ans="2">
+              <p>Ao acessar o site, qual pacote aparece primeiro na simulação?</p>
+              <div class="opts">
+                <button>HTTP Request</button><button>DHCP Discover</button><button>DNS Query</button>
+              </div>
+              <div class="fb"></div>
+            </div>
+            <div class="q" data-q="q7" data-ans="1">
+              <p>O ping para www funciona, mas o navegador mostra "Request Timeout". Qual a causa mais provável?</p>
+              <div class="opts">
+                <button>O DNS está desligado</button><button>O serviço HTTP do SRV-WEB está desligado</button
+                ><button>O PC não recebeu IP do DHCP</button>
+              </div>
+              <div class="fb"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= RELATÓRIO ================= -->
+        <section class="tab" data-tab="relatorio" data-label="📝 Relatório">
+          <div class="card baseT">
+            <div class="mhead">
+              <span class="tag">Entrega</span>
+              <h2>Relatório da dupla</h2>
+              <p class="sub">
+                Preencha, clique em <b>Gerar relatório</b> e depois em <b>Copiar</b>. Cole o texto no formulário
+                indicado pelo professor.
+              </p>
+            </div>
+            <div class="form">
+              <div class="field"><label>Aluno(a) 1</label><input id="r_a1" data-save /></div>
+              <div class="field"><label>Aluno(a) 2</label><input id="r_a2" data-save /></div>
+              <div class="field">
+                <label>Turma</label><input id="r_turma" data-save placeholder="Ex.: 2º Redes A" />
+              </div>
+              <div class="field full">
+                <label>Evidência 1: saída do <code>ipconfig /all</code> em um PC</label
+                ><textarea id="r_ipc" data-save></textarea>
+              </div>
+              <div class="field full">
+                <label
+                  >Evidência 2: saída do <code>nslookup www.<span class="dom">empresa.local</span></code></label
+                ><textarea id="r_ns" data-save></textarea>
+              </div>
+              <div class="field full">
+                <label>Evidência 3: qual texto apareceu no navegador ao abrir o site?</label
+                ><textarea id="r_web" data-save style="min-height: 70px"></textarea>
+              </div>
+              <div class="field full">
+                <label>Explique com suas palavras: o que acontece em cada etapa do DORA?</label
+                ><textarea id="r_dora" data-save style="font-family: Inter; font-size: 0.95rem"></textarea>
+              </div>
+              <div class="field full">
+                <label>Reflexão: o que aconteceria se um aluno ligasse um servidor DHCP na rede real da escola?</label
+                ><textarea
+                  id="r_refl"
+                  data-save
+                  style="font-family: Inter; font-size: 0.95rem; min-height: 80px"
+                ></textarea>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; align-items: center">
+              <button class="btn" id="gen">Gerar relatório</button>
+              <button class="btn ghost" id="copy">Copiar</button>
+              <span class="copied" id="copied"></span>
+            </div>
+            <pre id="out">O relatório aparecerá aqui.</pre>
+          </div>
+        </section>
+
+        <div class="navbtns">
+          <button class="btn ghost" id="prev">← Anterior</button><button class="btn" id="next">Próxima →</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>ETE Professor Paulo Freire · Administração de Sistemas Proprietários</footer>
+
+    <script>
+      (function () {
+        const KEY = 'lab-pt-dhcp-dns-http-v1';
+        let st = {};
+        try {
+          st = JSON.parse(localStorage.getItem(KEY) || '{}');
+        } catch (e) {
+          st = {};
+        }
+        function save() {
+          try {
+            localStorage.setItem(KEY, JSON.stringify(st));
+          } catch (e) {}
+        }
+
+        /* ---------- grupo / domínio ---------- */
+        function dom() {
+          return 'empresa.local';
+        }
+        function applyDom() {
+          document.querySelectorAll('.dom').forEach((e) => (e.textContent = dom()));
+          renderTpl();
+        }
+
+        /* ---------- tabs ---------- */
+        const tabs = [...document.querySelectorAll('section.tab')];
+        const nav = document.getElementById('nav');
+        tabs.forEach((t, i) => {
+          const b = document.createElement('button');
+          b.innerHTML = t.dataset.label + '<span class="ok"></span>';
+          b.onclick = () => show(i);
+          nav.appendChild(b);
+        });
+        const navBtns = [...nav.children];
+        let cur = 0;
+        function show(i) {
+          cur = Math.max(0, Math.min(tabs.length - 1, i));
+          tabs.forEach((t, j) => t.classList.toggle('on', j === cur));
+          navBtns.forEach((b, j) => b.classList.toggle('on', j === cur));
+          document.getElementById('prev').style.visibility = cur ? 'visible' : 'hidden';
+          document.getElementById('next').style.visibility = cur < tabs.length - 1 ? 'visible' : 'hidden';
+          try {
+            history.replaceState(null, '', '#' + tabs[cur].dataset.tab);
+          } catch (e) {}
+          st._tab = cur;
+          save();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        document.getElementById('prev').onclick = () => show(cur - 1);
+        document.getElementById('next').onclick = () => show(cur + 1);
+
+        /* ---------- salvar campos ---------- */
+        document.querySelectorAll('[data-save]').forEach((el) => {
+          if (st[el.id] !== undefined) {
+            if (el.type === 'checkbox') el.checked = st[el.id];
+            else el.value = st[el.id];
+          }
+          el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', () => {
+            st[el.id] = el.type === 'checkbox' ? el.checked : el.value;
+            save();
+            refresh();
+          });
+        });
+        document.querySelectorAll('.steps li').forEach((li) => {
+          li.addEventListener('click', (e) => {
+            if (e.target.tagName === 'INPUT') return;
+            const c = li.querySelector('input');
+            c.checked = !c.checked;
+            c.dispatchEvent(new Event('change'));
+          });
+        });
+
+        /* ---------- quizzes ---------- */
+        const FB = {
+          q1: 'Isso! Se o IP do servidor mudasse, os clientes não o encontrariam.',
+          q2: 'Exato: a opção DNS Server do pool é enviada junto com o IP.',
+          q3: 'Correto: o Discover vai em broadcast (255.255.255.255), porque o PC ainda não conhece o servidor.',
+          q4: 'Certo: o registro A liga nome → IPv4. É o único tipo do DNS no PT 5.0.',
+          q5: 'Isso! O DNS não adivinha: o administrador precisa atualizar os registros.',
+          q6: 'Correto: antes de pedir a página, o PC precisa descobrir o IP do nome.',
+          q7: 'Exato: a rede e o DNS funcionam (o ping respondeu), mas ninguém atende na porta 80.',
+        };
+        document.querySelectorAll('.q').forEach((q) => {
+          const id = q.dataset.q,
+            ans = +q.dataset.ans,
+            btns = [...q.querySelectorAll('.opts button')],
+            fb = q.querySelector('.fb');
+          function lock(sel) {
+            btns.forEach((b, i) => {
+              b.disabled = true;
+              if (i === ans) b.classList.add('right');
+              else if (i === sel) b.classList.add('wrong');
+            });
+            fb.className = 'fb ' + (sel === ans ? 'r' : 'w');
+            fb.textContent = (sel === ans ? '✔ ' : '✘ Não foi dessa vez. ') + FB[id];
+          }
+          if (st['quiz_' + id] !== undefined) lock(st['quiz_' + id]);
+          btns.forEach(
+            (b, i) =>
+              (b.onclick = () => {
+                st['quiz_' + id] = i;
+                save();
+                lock(i);
+                refresh();
+              }),
+          );
+        });
+
+        /* ---------- diagramas de sequência ---------- */
+        function seq(elId, lanes, msgs, color) {
+          const el = document.getElementById(elId);
+          const W = 700,
+            top = 50,
+            gap = 58,
+            H = top + msgs.length * gap + 20;
+          const xs = lanes.map((_, i) => 80 + i * ((W - 160) / (lanes.length - 1)));
+          let svg = `<svg viewBox="0 0 ${W} ${H}"><defs><marker id="ar${elId}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="context-stroke"/></marker></defs>`;
+          lanes.forEach((l, i) => {
+            svg += `<rect x="${xs[i] - 60}" y="6" width="120" height="30" rx="7" fill="${l.c}"/><text x="${xs[i]}" y="26" text-anchor="middle" fill="#fff" font-family="Inter" font-weight="700" font-size="13">${l.n}</text><line x1="${xs[i]}" y1="36" x2="${xs[i]}" y2="${H - 6}" stroke="#475569" stroke-dasharray="4 4"/>`;
+          });
+          msgs.forEach((m, i) => {
+            const y = top + i * gap + 20,
+              x1 = xs[m.f],
+              x2 = xs[m.t],
+              mid = (x1 + x2) / 2;
+            svg += `<g class="msg" data-i="${i}" style="opacity:0;transition:opacity .4s"><line x1="${x1}" y1="${y}" x2="${x2 + (x2 > x1 ? -4 : 4)}" y2="${y}" stroke="${m.c}" stroke-width="3" marker-end="url(#ar${elId})"/><text x="${mid}" y="${y - 9}" text-anchor="middle" fill="#fff" font-family="Inter" font-weight="700" font-size="13">${i + 1}. ${m.n}</text>${m.sub ? `<text x="${mid}" y="${y + 18}" text-anchor="middle" fill="#94a3b8" font-family="JetBrains Mono" font-size="11">${m.sub}</text>` : ''}</g>`;
+          });
+          svg += '</svg>';
+          el.innerHTML =
+            svg +
+            `<div class="seqctl"><button class="btn" style="--c:${color}">Próximo pacote ▶</button><button class="btn ghost" style="--c:#cbd5e1">Reiniciar</button><div class="seqinfo">Clique em "Próximo pacote" para avançar.</div></div>`;
+          const g = [...el.querySelectorAll('.msg')],
+            [nb, rb] = el.querySelectorAll('button'),
+            info = el.querySelector('.seqinfo');
+          let k = 0;
+          nb.onclick = () => {
+            if (k < g.length) {
+              g[k].style.opacity = 1;
+              info.textContent = msgs[k].d;
+              k++;
+              if (k === g.length) nb.disabled = true;
+            }
+          };
+          rb.onclick = () => {
+            k = 0;
+            g.forEach((x) => (x.style.opacity = 0));
+            nb.disabled = false;
+            info.textContent = 'Clique em "Próximo pacote" para avançar.';
+          };
+        }
+        seq(
+          'seqDora',
+          [
+            { n: 'PC1', c: '#334155' },
+            { n: 'SRV-DHCP', c: '#e8770e' },
+          ],
+          [
+            {
+              f: 0,
+              t: 1,
+              n: 'DISCOVER',
+              sub: 'broadcast · "tem algum DHCP aí?"',
+              c: '#fbbf24',
+              d: 'Discover: o PC grita em broadcast procurando um servidor DHCP.',
+            },
+            {
+              f: 1,
+              t: 0,
+              n: 'OFFER',
+              sub: '"posso te dar o 192.168.10.100"',
+              c: '#fb923c',
+              d: 'Offer: o servidor oferece um endereço livre do pool.',
+            },
+            {
+              f: 0,
+              t: 1,
+              n: 'REQUEST',
+              sub: '"aceito o 192.168.10.100"',
+              c: '#fbbf24',
+              d: 'Request: o PC pede formalmente o endereço oferecido.',
+            },
+            {
+              f: 1,
+              t: 0,
+              n: 'ACK',
+              sub: 'IP + máscara + gateway + DNS',
+              c: '#fb923c',
+              d: 'Ack: o servidor confirma e envia IP, máscara, gateway e DNS. Pronto!',
+            },
+          ],
+          '#e8770e',
+        );
+        seq(
+          'seqWeb',
+          [
+            { n: 'PC1', c: '#334155' },
+            { n: 'SRV-DNS', c: '#5b4bdb' },
+            { n: 'SRV-WEB', c: '#119c5a' },
+          ],
+          [
+            {
+              f: 0,
+              t: 1,
+              n: 'DNS Query',
+              sub: '"qual o IP de www?"',
+              c: '#a5b4fc',
+              d: 'O navegador ainda não sabe o IP, então pergunta ao DNS (recebido via DHCP).',
+            },
+            {
+              f: 1,
+              t: 0,
+              n: 'DNS Response',
+              sub: '"é 192.168.10.12"',
+              c: '#818cf8',
+              d: 'O DNS procura o nome na sua lista de registros e responde com o IP.',
+            },
+            {
+              f: 0,
+              t: 2,
+              n: 'HTTP Request',
+              sub: 'GET /index.html · porta 80',
+              c: '#6ee7b7',
+              d: 'Agora sim o PC pede a página diretamente ao IP do servidor web.',
+            },
+            {
+              f: 2,
+              t: 0,
+              n: 'HTTP Response',
+              sub: '200 OK + página',
+              c: '#34d399',
+              d: 'O servidor web entrega o index.html e o navegador mostra a página.',
+            },
+          ],
+          '#119c5a',
+        );
+
+        /* ---------- ordenar DORA ---------- */
+        const DORA = ['Discover', 'Offer', 'Request', 'Ack'];
+        const doraOpts = document.getElementById('doraOpts'),
+          doraSlots = document.getElementById('doraSlots'),
+          doraFb = document.getElementById('doraFb');
+        let pick = [];
+        function doraRender() {
+          const sh = ['Request', 'Ack', 'Discover', 'Offer'];
+          doraOpts.innerHTML = '';
+          sh.forEach((n) => {
+            const b = document.createElement('button');
+            b.textContent = n;
+            if (pick.includes(n)) b.classList.add('used');
+            b.onclick = () => {
+              if (pick.includes(n) || pick.length >= 4) return;
+              pick.push(n);
+              doraRender();
+            };
+            doraOpts.appendChild(b);
+          });
+          doraSlots.innerHTML = '';
+          for (let i = 0; i < 4; i++) {
+            const d = document.createElement('div');
+            d.textContent = pick[i] ? i + 1 + '. ' + pick[i] : i + 1 + '. ?';
+            if (pick[i]) d.classList.add('f');
+            doraSlots.appendChild(d);
+          }
+          if (pick.length === 4) {
+            const ok = pick.every((p, i) => p === DORA[i]);
+            doraFb.className = 'fb ' + (ok ? 'r' : 'w');
+            doraFb.textContent = ok
+              ? '✔ Perfeito: D-O-R-A, Discover, Offer, Request, Ack!'
+              : '✘ Ainda não. Dica: o PC começa procurando, o servidor oferece, o PC pede, o servidor confirma.';
+            st.dora = ok;
+            save();
+            refresh();
+          } else {
+            doraFb.textContent = '';
+          }
+        }
+        document.getElementById('doraReset').onclick = () => {
+          pick = [];
+          doraRender();
+        };
+        if (st.dora) {
+          pick = [...DORA];
+        }
+        doraRender();
+
+        /* ---------- modelo HTML ---------- */
+        function renderTpl() {
+          const t = `\x3Chtml>
+\x3Chead>\x3Ctitle>Empresa XYZ\x3C/title>\x3C/head>
+\x3Cbody>
+  \x3Ch1>Bem-vindo à Empresa XYZ!\x3C/h1>
+  \x3Cp>Equipe de TI: [nome 1] e [nome 2]\x3C/p>
+  \x3Cp>Servidor: SRV-WEB (192.168.10.12)\x3C/p>
+  \x3Cp>Endereço: www.${dom()}\x3C/p>
+\x3C/body>
+\x3C/html>`;
+          document.getElementById('htmlTpl').textContent = t;
+        }
+
+        const PANES = [];
+
+        /* ---------- progresso ---------- */
+        const sections = { m1: 'm1', m2: 'm2', m3: 'm3', m4: 'm4' };
+        function refresh() {
+          const boxes = [...document.querySelectorAll('.steps input')];
+          boxes.forEach((b) => b.closest('li').classList.toggle('done', b.checked));
+          const qs = [...document.querySelectorAll('.q')];
+          const qDone = qs.filter((q) => st['quiz_' + q.dataset.q] !== undefined).length;
+          const pDone = PANES.filter((_, i) => (st['p' + (i + 1) + 'cau'] || '').trim()).length;
+          const total = boxes.length + qs.length + 1 + PANES.length;
+          const done = boxes.filter((b) => b.checked).length + qDone + (st.dora ? 1 : 0) + pDone;
+          const pct = Math.round((done / total) * 100);
+          document.getElementById('pbar').style.width = pct + '%';
+          const right = qs.filter((q) => st['quiz_' + q.dataset.q] === +q.dataset.ans).length;
+          document.getElementById('ptxt').textContent =
+            `${pct}% concluído · checkpoints: ${right}/${qs.length} acertos`;
+          tabs.forEach((t, i) => {
+            const bx = [...t.querySelectorAll('.steps input')];
+            const ok = bx.length && bx.every((b) => b.checked);
+            navBtns[i].querySelector('.ok').textContent = ok ? '✔' : '';
+          });
+        }
+
+        /* ---------- relatório ---------- */
+        const v = (id) => (document.getElementById(id).value || '').trim() || '(não preenchido)';
+        function gen() {
+          const qs = [...document.querySelectorAll('.q')];
+          const right = qs.filter((q) => st['quiz_' + q.dataset.q] === +q.dataset.ans).length;
+          const steps = [...document.querySelectorAll('.steps input')];
+          let r = `RELATÓRIO · LAB PACKET TRACER: DHCP, DNS E HTTP
+Domínio: ${dom()}
+Dupla: ${v('r_a1')} e ${v('r_a2')}
+Turma: ${v('r_turma')}
+Passos concluídos: ${steps.filter((b) => b.checked).length}/${steps.length}
+Checkpoints: ${right}/${qs.length} acertos · DORA ordenado: ${st.dora ? 'sim' : 'não'}
+
+== EVIDÊNCIA 1: ipconfig /all ==
+${v('r_ipc')}
+
+== EVIDÊNCIA 2: nslookup www.${dom()} ==
+${v('r_ns')}
+
+== EVIDÊNCIA 3: página no navegador ==
+${v('r_web')}
+
+== DORA COM MINHAS PALAVRAS ==
+${v('r_dora')}
+
+== REFLEXÃO: DHCP PIRATA ==
+${v('r_refl')}`;
+          document.getElementById('out').textContent = r;
+          return r;
+        }
+        document.getElementById('gen').onclick = gen;
+        document.getElementById('copy').onclick = async () => {
+          const t = gen();
+          const m = document.getElementById('copied');
+          try {
+            await navigator.clipboard.writeText(t);
+            m.textContent = '✔ Copiado!';
+          } catch (e) {
+            const s = window.getSelection(),
+              rg = document.createRange();
+            rg.selectNodeContents(document.getElementById('out'));
+            s.removeAllRanges();
+            s.addRange(rg);
+            m.textContent = 'Texto selecionado: use Ctrl+C para copiar.';
+          }
+          setTimeout(() => (m.textContent = ''), 3500);
+        };
+
+        /* ---------- init ---------- */
+        applyDom();
+        refresh();
+        const h = (location.hash || '').slice(1);
+        const hi = tabs.findIndex((t) => t.dataset.tab === h);
+        show(hi >= 0 ? hi : st._tab || 0);
+      })();
+    </script>
+  </body>
+</html>
